@@ -27,7 +27,7 @@ class _duoFourState extends State<duoFour> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Provider.of<Helper>(context).text1(
+                Provider.of<toolS>(context).text1(
                     'duolingo', 60, FontWeight.bold, Colors.white, 'duob'),
               ],
             ),

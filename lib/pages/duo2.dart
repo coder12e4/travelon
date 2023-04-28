@@ -148,19 +148,19 @@ class _duoTwoState extends State<duoTwo> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 elevation: 8,
-                                child: Provider.of<Helper>(context)
+                                child: Provider.of<toolS>(context)
                                     .cont3(color: Colors.white, label: 'ok')),
                             Card(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 elevation: 8,
-                                child: Provider.of<Helper>(context)
+                                child: Provider.of<toolS>(context)
                                     .cont3(color: Colors.white, label: 'ok')),
                             Card(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 elevation: 8,
-                                child: Provider.of<Helper>(context)
+                                child: Provider.of<toolS>(context)
                                     .cont3(color: Colors.white, label: 'ok'))
                           ],
                         ),
@@ -170,8 +170,8 @@ class _duoTwoState extends State<duoTwo> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Provider.of<Helper>(context).text1("Explore statewise ", 20, FontWeight.w400, Colors.teal, 'regular'),
-                            Provider.of<Helper>(context).text1("View All", 20, FontWeight.w400, Colors.teal, 'regular')
+                            Provider.of<toolS>(context).text1("Explore statewise ", 20, FontWeight.w400, Colors.teal, 'regular'),
+                            Provider.of<toolS>(context).text1("View All", 20, FontWeight.w400, Colors.teal, 'regular')
                           ],
                         ),
                         SizedBox(
@@ -181,7 +181,7 @@ class _duoTwoState extends State<duoTwo> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           elevation: 8,
-                          child: Provider.of<Helper>(context).cont4(color: Colors.white, label: "ok",),
+                          child: Provider.of<toolS>(context).cont4(color: Colors.white, label: "ok",),
                         ),
                         SizedBox(
                           height: 20,
@@ -190,7 +190,7 @@ class _duoTwoState extends State<duoTwo> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           elevation: 8,
-                          child: Provider.of<Helper>(context).cont4(color: Colors.white, label: "ok",),
+                          child: Provider.of<toolS>(context).cont4(color: Colors.white, label: "ok",),
                         ),
                         SizedBox(
                           height: 20,
@@ -198,15 +198,15 @@ class _duoTwoState extends State<duoTwo> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Provider.of<Helper>(context).text1("Explore Nearby", 20, FontWeight.w400, Colors.teal, 'regular'),
-                            Provider.of<Helper>(context).text1("View All", 20, FontWeight.w400, Colors.teal, 'regular')
+                            Provider.of<toolS>(context).text1("Explore Nearby", 20, FontWeight.w400, Colors.teal, 'regular'),
+                            Provider.of<toolS>(context).text1("View All", 20, FontWeight.w400, Colors.teal, 'regular')
                           ],
                         ),
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           elevation: 8,
-                          child: Provider.of<Helper>(context).cont4(color: Colors.white, label: "ok",),
+                          child: Provider.of<toolS>(context).cont4(color: Colors.white, label: "ok",),
                         ),
                         SizedBox(
                           height: 20,
@@ -215,7 +215,7 @@ class _duoTwoState extends State<duoTwo> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           elevation: 8,
-                          child: Provider.of<Helper>(context).cont4(color: Colors.white, label: "ok",),
+                          child: Provider.of<toolS>(context).cont4(color: Colors.white, label: "ok",),
                         ),
                         SizedBox(
                           height: 20,
@@ -224,7 +224,7 @@ class _duoTwoState extends State<duoTwo> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           elevation: 8,
-                          child: Provider.of<Helper>(context).cont4(color: Colors.white, label: "ok",),
+                          child: Provider.of<toolS>(context).cont4(color: Colors.white, label: "ok",),
                         ),
                         SizedBox(
                           height: 20,
@@ -246,7 +246,7 @@ class _duoTwoState extends State<duoTwo> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     elevation: 10,
-                    child: Provider.of<Helper>(context).cont2(height: 100,width: 200,
+                    child: Provider.of<toolS>(context).cont2(height: 100,width: 200,
                       color: Colors.white,
                       label: "available",sty: TextStyle(fontSize: 20,color: Colors.white)
                     )))
