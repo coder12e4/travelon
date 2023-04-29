@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../../utils/constants/constantsOfTravlne.dart';
 import '../../utils/widgets/btnTravelon.dart';
@@ -25,7 +26,8 @@ class _nearByState extends State<nearBy> {
               margin: EdgeInsets.all(10),
               child: Container(
                 height: MediaQuery.of(context).size.height * .2,
-                width: MediaQuery.of(context).size.width * .9,
+                width: MediaQuery.of(context).size.width * .4,
+
                 padding: EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -58,52 +60,58 @@ class _nearByState extends State<nearBy> {
                     SizedBox(
                       width: 8,
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        txtOftravalon(
-                            data: "Public Park",
-                            textStyle: Constants().boldstyleblack(24)),
-                        txtOftravalon(
-                            data: "description",
-                            textStyle: Constants().Regularstyleblack(16)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              color: Colors.green,
-                            ),
-                            txtOftravalon(
-                                data: "Location",
-                                textStyle: Constants().lightstyle1(16)),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Container(
-                              height: 20,
-                              width: 60,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.vertical(
-                                      bottom: Radius.elliptical(
-                                          MediaQuery.of(context).size.width,
-                                          100.0),
-                                    top: Radius.elliptical(
-                                        MediaQuery.of(context).size.width,
-                                        100.0),
-                                  ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          txtOftravalon(
+                              data: "Public Park",
+                              textStyle: Constants().boldstyleblack(14)),
+                          txtOftravalon(
+                              data: "description",
+                              textStyle: Constants().Regularstyleblack(12)),
 
-                                  color: Colors.green.shade800),
-                              child: txtOftravalon(
-                                data: "Open",
-                                textStyle: Constants().Regularstyleblack(14),
-                              ),
+                          Container(
+                            height: 30,
+
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                              children: [
+
+                                txtOftravalon(
+                                    data: "Location",
+                                    textStyle: Constants().lightstyle1(10)
+
+                                ),
+
+
+
+
+                                Container(
+                                  height: 20,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                  color: HexColor(Constants().pastelgreen400),
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(30),
+                                    bottomRight: Radius.circular(20)
+                                    )
+
+                                  ),
+                                  alignment: Alignment.center,
+
+                                  child: txtOftravalon(
+                                    data: "Open",
+                                    textStyle: Constants().Regularstyleblack(14),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),

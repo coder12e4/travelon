@@ -36,12 +36,20 @@ class Constants {
     return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.white);
   }
 
-  mediumstyle1(double size) {
+  Stylemediuemgreen(double size) {
     return TextStyle(
       fontFamily: "semibold",
       color: HexColor(pastelgreen400),
       fontSize: size,
     );
+  }
+    StyleMediumBlack(double size) {
+      return TextStyle(
+        fontFamily: "semibold",
+        color: Colors.black,
+        fontSize: size,
+      );
+    
   }
 
   mediumstyleblack(double size) {
