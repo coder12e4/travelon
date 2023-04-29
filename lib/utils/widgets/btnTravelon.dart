@@ -27,6 +27,7 @@ class btnTravelon extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
+
         alignment: Alignment.center,
         decoration: boxDecoration,
         child: childWid,
@@ -105,3 +106,47 @@ class btntwoTravelon extends StatelessWidget {
     );
   }
 }
+class btnthreeTravelon extends StatelessWidget {
+  final Function function;
+
+  final  double? height;
+  final double? width;
+  final Widget childWid;
+
+  const btnthreeTravelon(
+      {Key? key,
+        required this.function,
+
+        this.height,
+        this.width, required this.childWid})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        function();
+      },
+      child: Container(
+        height: height,
+        width: width,
+        alignment: Alignment.center,
+        padding:EdgeInsets.all(10),
+
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20,),color:Colors.green.shade700
+        ),
+        child: childWid,
+      ),
+    );
+  }
+
+
+
+
+
+
+
+
+}
+

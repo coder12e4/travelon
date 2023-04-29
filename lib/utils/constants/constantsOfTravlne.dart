@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Constants {
-
   String txtAppname = "TRAVELON";
   String txtIntroductionNear = "get Nearby Locations";
   String txtIntroductionChoose = "Choose a Location";
@@ -27,9 +27,13 @@ class Constants {
     return TextStyle(
         fontFamily: "bold", fontSize: size, color: HexColor(pastelgreen500));
   }
+
   boldstyleblack(double size) {
-    return TextStyle(
-        fontFamily: "bold", fontSize: size, color:Colors.black);
+    return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.black);
+  }
+
+  boldstylewhite(double size) {
+    return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.white);
   }
 
   Stylemediuemgreen(double size) {
@@ -48,13 +52,35 @@ class Constants {
     
   }
 
+  mediumstyleblack(double size) {
+    return TextStyle(
+      fontFamily: "semibold",
+      color: Colors.black,
+      fontSize: size,
+    );
+  }
+
+  mediumstylewhite(double size) {
+    return TextStyle(
+      fontFamily: "semibold",
+      color: Colors.white,
+      fontSize: size,
+    );
+  }
+
   Regularstyle1(double size) {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: HexColor(pastelgreen800));
   }
+
   Regularstyleblack(double size) {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: Colors.black);
+  }
+
+  Regularstylewhite(double size) {
+    return TextStyle(
+        fontFamily: "regular", fontSize: size, color: Colors.white);
   }
 
   lightstyle1(double size) {
@@ -62,7 +88,7 @@ class Constants {
         fontFamily: "light", fontSize: size, color: HexColor(pastelgreen900));
   }
 
-  radiusreturning(){
+  radiusreturning() {
     return BorderRadius.circular(20);
   }
 
@@ -78,37 +104,69 @@ class Constants {
     );
   }
 
-  borders(){
-    return Border.all(color: HexColor(pastelgreen500),width: 1);
-  }
-  bordersLight(){
-    return Border.all(color: HexColor(pastelgreen100),width: 1);
-  }
-  bordersDark(){
-    return Border.all(color: HexColor(pastelgreen900),width: 1);
+  borders() {
+    return Border.all(color: HexColor(pastelgreen500), width: 1);
   }
 
-  List<String> btnlist=[
-    "Lakes", "Jungle"," Mountain", "Beaches", "Museums"," ArtGallery", "Parks"];
+  bordersLight() {
+    return Border.all(color: HexColor(pastelgreen100), width: 1);
+  }
+
+  bordersDark() {
+    return Border.all(color: HexColor(pastelgreen900), width: 1);
+  }
+
+  List<String> btnlist = [
+    "Lakes",
+    "Jungle",
+    " Mountain",
+    "Beaches",
+    "Museums",
+    " ArtGallery",
+    "Parks"
+  ];
 
   btmbar(
-       IconData icon,
-     String label,
-      ){
-    return BottomNavigationBarItem(icon:Icon(icon,color: Colors.green.shade400,),label:label);
+    IconData icon,
+    String label,
+  ) {
+    return BottomNavigationBarItem(
+        icon: Icon(
+          icon,
+          color: Colors.green.shade400,
+        ),
+        label: label);
   }
-  row(
-      String text
-      ){
+
+  row(String text) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(text),
         Text(text),
-
       ],
     );
   }
-
-
+ loadPages(Widget t ,BuildContext context){
+return   Navigator.push(
+    context,
+    PageTransition(
+        type: PageTransitionType.scale,
+        alignment: Alignment.center,
+        duration: Duration(milliseconds: 400),
+        isIos: true,
+        child: t));
 }
+
+decor(){
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: Colors.white,
+      border: Border(right: BorderSide.none),
+      shape: BoxShape.rectangle
+    );
+}
+
+
+  }
+
