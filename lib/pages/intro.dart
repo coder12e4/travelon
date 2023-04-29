@@ -29,13 +29,14 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/home.jpg"),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         child: Column(
@@ -47,7 +48,7 @@ class _IntroPageState extends State<IntroPage> {
               child: BlocListener<GetcurrentLocationCubit,GetcurrentLocationState>(
                 listener: (context, state) {
                 if(state is GetcurrentLocationSuccess){
-print("logimed");
+                        print("logimed");
                 }
 
                 },

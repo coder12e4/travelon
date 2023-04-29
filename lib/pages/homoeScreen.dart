@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hexcolor/hexcolor.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
@@ -115,7 +116,5 @@ class _homeScreenState extends State<homeScreen> {
             Constants().btmbar(Icons.person_2_outlined, "Profile")
           ],
         ),
-      ),
-    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
+
 class travelogList extends StatefulWidget {
   const travelogList({Key? key}) : super(key: key);
 

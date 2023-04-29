@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travlon/pages/duo1.dart';
+
 import 'package:travlon/pages/homoeScreen.dart';
 import 'package:travlon/pages/intro.dart';
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: /*const Introductionpage()*/homeScreen(),
+      home:  Introductionpage(),
+
     );
   }
 }
