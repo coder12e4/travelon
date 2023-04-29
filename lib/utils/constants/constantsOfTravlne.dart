@@ -23,9 +23,13 @@ class Constants {
   String pastelgreen900 = "#14531a";
   String pastelgreen950 = "#052e0a";
 
-  boldstyle1(double size) {
+  boldstylegreen(double size) {
     return TextStyle(
         fontFamily: "bold", fontSize: size, color: HexColor(pastelgreen500));
+  }
+  boldstyleblack(double size) {
+    return TextStyle(
+        fontFamily: "bold", fontSize: size, color:Colors.black);
   }
 
   mediumstyle1(double size) {
@@ -40,6 +44,10 @@ class Constants {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: HexColor(pastelgreen800));
   }
+  Regularstyleblack(double size) {
+    return TextStyle(
+        fontFamily: "regular", fontSize: size, color: Colors.black);
+  }
 
   lightstyle1(double size) {
     return TextStyle(
@@ -47,7 +55,7 @@ class Constants {
   }
 
   radiusreturning(){
-    return BorderRadius.circular(10);
+    return BorderRadius.circular(20);
   }
 
   decorations(
@@ -72,6 +80,27 @@ class Constants {
     return Border.all(color: HexColor(pastelgreen900),width: 1);
   }
 
+  List<String> btnlist=[
+    "Lakes", "Jungle"," Mountain", "Beaches", "Museums"," ArtGallery", "Parks"];
+
+  btmbar(
+       IconData icon,
+     String label,
+      ){
+    return BottomNavigationBarItem(icon:Icon(icon,color: Colors.green.shade400,),label:label);
+  }
+  row(
+      String text
+      ){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(text),
+        Text(text),
+
+      ],
+    );
+  }
 
 
 }
