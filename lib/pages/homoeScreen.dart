@@ -5,6 +5,7 @@ import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
+import 'homeTabs/nearestplaceList.dart';
 import 'homeTabs/travloglList.dart';
 
 class homeScreen extends StatefulWidget {
@@ -95,7 +96,7 @@ class _homeScreenState extends State<homeScreen> {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      travelogList(),
+                      nearBy(),
                       travelogList()
 
                     ],
@@ -116,5 +117,6 @@ class _homeScreenState extends State<homeScreen> {
             Constants().btmbar(Icons.person_2_outlined, "Profile")
           ],
         ),
+    ));
   }
 }
