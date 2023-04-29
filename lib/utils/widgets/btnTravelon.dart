@@ -61,7 +61,9 @@ class btnoneTravelon extends StatelessWidget {
         alignment: Alignment.center,
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30,),color: Colors.grey.shade300
+
+          borderRadius: BorderRadius.circular(24,),color:HexColor(Constants().pastelgreen200)
+
         ),
         child: childWid,
       ),
