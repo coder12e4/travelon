@@ -81,7 +81,7 @@ flutter:
   fonts:
     - family: bold
       fonts:
-        - asset: assets/fonts/IBMPlexSans-Bold.ttf.ttf
+        - asset: assets/fonts/IBMPlexSans-Bold.ttf
     - family: semibold
       fonts:
         - asset: assets/fonts/IBMPlexSans-Medium.ttf
