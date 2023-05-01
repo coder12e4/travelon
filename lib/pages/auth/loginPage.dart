@@ -51,11 +51,11 @@ class _loginState extends State<login> {
               height: 50,
             ),
             edttravlon(
-                textEditingController: username, hinttext: "Username or email"),
+                textEditingController: username, hinttext: "Username or email",),
             SizedBox(
               height: 10,
             ),
-            edttravlon(textEditingController: password, hinttext: "Password"),
+            edttravlon(textEditingController: password, hinttext: "Password", ),
             SizedBox(
               height: 30,
             ),
@@ -95,7 +95,7 @@ class _loginState extends State<login> {
                     textStyle: Constants().mediumstyleblack(14)),
                 txtOftravalon(
                     data: "Register now",
-                    textStyle: Constants().mediumstyle1(14)),
+                    textStyle: Constants().mediumstyleblack(14)),
               ],
             ),
           

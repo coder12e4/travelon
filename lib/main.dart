@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:travlon/pages/auth/location.dart';
 import 'package:travlon/pages/auth/loginPage.dart';
+import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/pages/auth/splashScreen.dart';
 import 'package:travlon/pages/duo1.dart';
 
 import 'package:travlon/pages/homeTabs/nearestplaceList.dart';
+import 'package:travlon/pages/homeTabs/placeView.dart';
 
 import 'package:travlon/pages/homoeScreen.dart';
 import 'package:travlon/pages/intro.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: /*const Introductionpage()*/splash(),
+      home: /*const Introductionpage()*/register(),
 
     );
   }
