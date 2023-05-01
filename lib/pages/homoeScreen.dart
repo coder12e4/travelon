@@ -21,35 +21,7 @@ class _homeScreenState extends State<homeScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            title:Container(
-              child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8,),
-                  txtOftravalon(data:"Street name", textStyle: Constants().boldstylegreen(16)),
-                  txtOftravalon(data: "District state name", textStyle: Constants().lightstyle1(8)),
-                ],
-              ),
-            ),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.notification_add_outlined,
-                    color: Colors.grey.shade500,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.account_tree_outlined,
-                    color: Colors.grey.shade500,
-                  ))
-            ],
-          ),
+
          
           body: Container(
             height: MediaQuery.of(context).size.height,
@@ -57,6 +29,41 @@ class _homeScreenState extends State<homeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 60,
+                  child: Row(children: [
+                    SizedBox(width: 20,),
+                    Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 8,),
+                          txtOftravalon(data:"Street name", textStyle: Constants().boldstylegreen(16)),
+                          txtOftravalon(data: "District state name", textStyle: Constants().lightstyle1(8)),
+                        ],
+                      ),
+                    ),
+                    Expanded(child: SizedBox()),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.notification_add_outlined,
+                          color: Colors.grey.shade500,
+                        )),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.account_tree_outlined,
+                          color: Colors.grey.shade500,
+                        )),
+                    SizedBox(width: 20,),
+
+                  ],),
+                ),
                 Container(
                   color: Colors.white,
                   height: 30,

@@ -91,6 +91,9 @@ class Constants {
   radiusreturning() {
     return BorderRadius.circular(20);
   }
+  radiusreturningone() {
+    return BorderRadius.circular(30);
+  }
 
   decorations(
     BorderRadius borderRadius,
