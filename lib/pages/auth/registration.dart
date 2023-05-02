@@ -123,8 +123,9 @@ class _registerState extends State<register> {
                       child: btnthreeTravelon(
                         function: () {
 
-                          Constants().loadPages(homeScreen(), context);
-                        },
+                       /*   Constants().loadPages(homeScreen(), context);
+                       */
+                          },
                         height: 50,
                         width: double.infinity,
                         childWid: txtOftravalon(

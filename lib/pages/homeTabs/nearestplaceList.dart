@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../../repository/loginrepository.dart';
 import '../../utils/constants/constantsOfTravlne.dart';
 import '../../utils/widgets/btnTravelon.dart';
 import '../../utils/widgets/txtOftravalon.dart';
 
 class nearBy extends StatefulWidget {
-  const nearBy({Key? key}) : super(key: key);
+  final  List<Nearplaces>? nearplaces;
+  const nearBy({Key? key, this.nearplaces}) : super(key: key);
 
   @override
   State<nearBy> createState() => _nearByState();
 }
 
 class _nearByState extends State<nearBy> {
+  List<Nearplaces>? nearplaces=[];
+  @override
+  void initState() {
+    nearplaces=widget.nearplaces;
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-          itemCount: 10,
+
+          itemCount: nearplaces!.length,
           itemBuilder: (context, index) {
             return Card(
               shape: RoundedRectangleBorder(
@@ -66,10 +76,10 @@ class _nearByState extends State<nearBy> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           txtOftravalon(
-                              data: "Public Park",
+                              data: nearplaces![index].placeName!,
                               textStyle: Constants().boldstyleblack(14)),
                           txtOftravalon(
-                              data: "description",
+                              data: nearplaces![index].review!,
                               textStyle: Constants().Regularstyleblack(12)),
 
                           Container(
