@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/edttravelon.dart';
@@ -19,13 +21,6 @@ class _registerState extends State<register> {
   TextEditingController email=TextEditingController();
   TextEditingController password=TextEditingController();
   TextEditingController confirmpassword=TextEditingController();
-  bool _validate = false;
-
-  @override
-  void dispose() {
-    name.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +122,7 @@ class _registerState extends State<register> {
 
                       child: btnthreeTravelon(
                         function: () {
+
                           Constants().loadPages(homeScreen(), context);
                         },
                         height: 50,
@@ -139,15 +135,10 @@ class _registerState extends State<register> {
                       height: 20,
                     ),
 
-
-
                   ],
                 ),
               ),
             )
-
-
-
           ],
         ),
       ),
