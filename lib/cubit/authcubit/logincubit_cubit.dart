@@ -11,7 +11,7 @@ class LogincubitCubit extends Cubit<LogincubitState> {
 
   Future <void>login(String username,String password)async {
 emit(LogincubitLoading());
-loginModel objlogin=await objloginrepo.functionname( username, password);
+loginModel objlogin=await objloginrepo.loginToaccount( username, password);
 emit(LogincubitSuccess(objlogin));
 
 

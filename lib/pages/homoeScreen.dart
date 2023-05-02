@@ -23,13 +23,27 @@ class homeScreen extends StatefulWidget {
 class _homeScreenState extends State<homeScreen> {
         loginModel? objlogin;
         Data? data;
-        List<Nearplaces>? nearplaces;
-        List<Tavologs>? tavologs;
+
+        String? name;
+        String? place;
+        String? email;
+        String? password;
+        String? sId;
+        List<Nearplaces>? nearplaces=[];
+        List<Tavologs>? tavologs=[];
+        String? createdAt;
+        int? iV;
+
 
 
 @override
   void initState() {
   objlogin=widget.objlogin;
+  name=objlogin!.data!.name;
+  place=objlogin!.data!.place;
+
+  nearplaces=objlogin!.data!.nearplaces;
+  tavologs=objlogin!.data!.tavologs;
     // TODO: implement initState
     super.initState();
   }
@@ -60,8 +74,8 @@ class _homeScreenState extends State<homeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 8,),
-                          txtOftravalon(data:"Street name", textStyle: Constants().boldstylegreen(16)),
-                          txtOftravalon(data: "District state name", textStyle: Constants().lightstyle1(8)),
+                          txtOftravalon(data:"hi"+ name!, textStyle: Constants().boldstylegreen(16)),
+                          txtOftravalon(data: place!, textStyle: Constants().lightstyle1(8)),
                         ],
                       ),
                     ),
@@ -121,108 +135,8 @@ class _homeScreenState extends State<homeScreen> {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      ListView.builder(
-                          itemCount: nearplaces!.length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: Constants().radiusreturning(),
-                              ),
-                              margin: EdgeInsets.all(10),
-                              child: Container(
-                                height: MediaQuery.of(context).size.height * .2,
-                                width: MediaQuery.of(context).size.width * .4,
-
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          height: MediaQuery.of(context).size.width * .4,
-                                          width: MediaQuery.of(context).size.width * .4,
-                                          margin: EdgeInsets.only(right: 12),
-                                          child: ClipRRect(
-                                            borderRadius: Constants().radiusreturning(),
-                                            child: Image.asset(
-                                              "assets/images/park.jpg",
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                            right: 18,
-                                            top: 18,
-                                            child: Icon(
-                                              Icons.favorite_border,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ))
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          txtOftravalon(
-                                              data: "Public Park",
-                                              textStyle: Constants().boldstyleblack(14)),
-                                          txtOftravalon(
-                                              data: nearplaces![index].review.toString(),
-                                              textStyle: Constants().Regularstyleblack(12)),
-
-                                          Container(
-                                            height: 30,
-
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-
-                                              children: [
-
-                                                txtOftravalon(
-                                                    data: "Location",
-                                                    textStyle: Constants().lightstyle1(10)
-
-                                                ),
-
-
-
-
-                                                Container(
-                                                  height: 20,
-                                                  width: 60,
-                                                  decoration: BoxDecoration(
-                                                      color: HexColor(Constants().pastelgreen400),
-                                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(30),
-                                                          bottomRight: Radius.circular(20)
-                                                      )
-
-                                                  ),
-                                                  alignment: Alignment.center,
-
-                                                  child: txtOftravalon(
-                                                    data: "Open",
-                                                    textStyle: Constants().Regularstyleblack(14),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                      nearBy(nearplaces: nearplaces,),
+                      travelogList()
 
                     ],
                   ),

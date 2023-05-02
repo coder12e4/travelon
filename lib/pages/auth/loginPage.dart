@@ -22,10 +22,13 @@ class _loginState extends State<login> {
   late LogincubitCubit objlogincubit;
   @override
   void initState() {
-    objlogincubit=LogincubitCubit(LogincubitInitial(), loginInt());
+    objlogincubit = LogincubitCubit(LogincubitInitial(), loginInt());
     // TODO: implement initState
     super.initState();
   }
+
+  String? username_ = "";
+  String password_ = "";
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,6 @@ class _loginState extends State<login> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-
         padding: EdgeInsets.all(30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,11 +63,16 @@ class _loginState extends State<login> {
               height: 50,
             ),
             edttravlon(
-                textEditingController: username, hinttext: "Username or email",),
+              textEditingController: username,
+              hinttext: "Username or email",
+            ),
             SizedBox(
               height: 10,
             ),
-            edttravlon(textEditingController: password, hinttext: "Password", ),
+            edttravlon(
+              textEditingController: password,
+              hinttext: "Password",
+            ),
             SizedBox(
               height: 30,
             ),
@@ -83,39 +90,35 @@ class _loginState extends State<login> {
             Container(
               height: 50,
               width: MediaQuery.of(context).size.width,
-
               child: btnthreeTravelon(
-                function: () {
-                  objlogincubit.login("amal", "amal123");
-
-                },
-                height: 50,
-                width: double.infinity,
-                childWid: BlocProvider<LogincubitCubit >(
-                  create: (context) => objlogincubit,
-                  child: BlocListener<LogincubitCubit, LogincubitState>(
-
-                    listener: (context, state) {
-                      if (state is LogincubitSuccess){
-                        loginModel obj=state.loginobj;
-
-                      }
-                      // TODO: implement listener
-                    },
-                    child:BlocBuilder<LogincubitCubit, LogincubitState>(
-
-                      builder: (context, state) {
-                        if(state is LogincubitLoading){
-                          return CircularProgressIndicator();
-                        }else{
-                          return txtOftravalon(data: "Login", textStyle: Constants().boldstylewhite(14));
+                  function: () {
+                    objlogincubit.login("amal", "amal123");
+                  },
+                  height: 50,
+                  width: double.infinity,
+                  childWid: BlocProvider<LogincubitCubit>(
+                    create: (context) => objlogincubit,
+                    child: BlocListener<LogincubitCubit, LogincubitState>(
+                      listener: (context, state) {
+                        if (state is LogincubitSuccess) {
+                          loginModel obj = state.loginobj;
+                          Constants().loadPages(homeScreen(objlogin: obj), context);
                         }
-
+                        // TODO: implement listener
                       },
+                      child: BlocBuilder<LogincubitCubit, LogincubitState>(
+                        builder: (context, state) {
+                          if (state is LogincubitLoading) {
+                            return CircularProgressIndicator();
+                          } else {
+                            return txtOftravalon(
+                                data: "Login",
+                                textStyle: Constants().boldstylewhite(14));
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                )
-              ),
+                  )),
             ),
             SizedBox(
               height: 20,
@@ -131,32 +134,31 @@ class _loginState extends State<login> {
                     textStyle: Constants().mediumstyleblack(14)),
               ],
             ),
-          
-
           ],
         ),
       ),
     );
   }
 }
-bool validationChecker(String k){
-  if(k.length==0){
+
+bool validationChecker(String k) {
+  if (k.length == 0) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
-void validation(String username,String password){
-  
-  if(validationChecker(username)){
+
+void validation(String username, String password) {
+  if (validationChecker(username)) {
     print("Enter valid username");
-  }else if(validationChecker(password)){
+  } else if (validationChecker(password)) {
     print("enter valid password");
-  }else {
+  } else {
     login();
   }
-  
 }
-void Login(){
+
+void Login() {
   print("login success");
 }

@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:travlon/pages/auth/location.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: /*const Introductionpage()*/const homeScreen(),
+      home: /*const Introductionpage()*/const splash(),
 
     );
   }
