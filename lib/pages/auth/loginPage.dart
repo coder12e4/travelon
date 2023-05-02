@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/edttravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
+import '../../cubit/authcubit/logincubit_cubit.dart';
 import '../homoeScreen.dart';
 
 class login extends StatefulWidget {
@@ -16,6 +19,13 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
+  late LogincubitCubit objlogincubit;
+  @override
+  void initState() {
+    objlogincubit=LogincubitCubit(LogincubitInitial(), loginInt());
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +86,35 @@ class _loginState extends State<login> {
 
               child: btnthreeTravelon(
                 function: () {
-                      Constants().loadPages(homeScreen(), context);
+                  objlogincubit.login("amal", "amal123");
+
                 },
                 height: 50,
                 width: double.infinity,
-                childWid: txtOftravalon(
-                    data: "Log In", textStyle: Constants().boldstylewhite(16)),
+                childWid: BlocProvider<LogincubitCubit >(
+                  create: (context) => objlogincubit,
+                  child: BlocListener<LogincubitCubit, LogincubitState>(
+
+                    listener: (context, state) {
+                      if (state is LogincubitSuccess){
+                        loginModel obj=state.loginobj;
+
+                      }
+                      // TODO: implement listener
+                    },
+                    child:BlocBuilder<LogincubitCubit, LogincubitState>(
+
+                      builder: (context, state) {
+                        if(state is LogincubitLoading){
+                          return CircularProgressIndicator();
+                        }else{
+                          return txtOftravalon(data: "Login", textStyle: Constants().boldstylewhite(14));
+                        }
+
+                      },
+                    ),
+                  ),
+                )
               ),
             ),
             SizedBox(
@@ -105,4 +138,25 @@ class _loginState extends State<login> {
       ),
     );
   }
+}
+bool validationChecker(String k){
+  if(k.length==0){
+    return true;
+  }else{
+    return false;
+  }
+}
+void validation(String username,String password){
+  
+  if(validationChecker(username)){
+    print("Enter valid username");
+  }else if(validationChecker(password)){
+    print("enter valid password");
+  }else {
+    login();
+  }
+  
+}
+void Login(){
+  print("login success");
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:travlon/pages/homeTabs/nearestplaceList.dart';
+import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
@@ -36,7 +38,7 @@ class _locationState extends State<location> {
 
             btnthreeTravelon(
               function: () {
-                Constants().loadPages(homeScreen(), context);
+                Constants().loadPages(homeScreen(objlogin:), context);
               },
               height: 50,
               width: 400,
