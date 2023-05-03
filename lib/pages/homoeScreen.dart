@@ -136,7 +136,7 @@ class _homeScreenState extends State<homeScreen> {
                   child: TabBarView(
                     children: [
                       nearBy(nearplaces: nearplaces,),
-                      travelogList()
+                      travelogList(tavologs: tavologs,)
 
                     ],
                   ),

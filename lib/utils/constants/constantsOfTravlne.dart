@@ -169,6 +169,24 @@ decor(){
       shape: BoxShape.rectangle
     );
 }
+  decor1(){
+    return BoxDecoration(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
+        color: Colors.white,
+        border: Border(right: BorderSide.none),
+        shape: BoxShape.rectangle
+    );
+  }
+
+  List<String>faciList=["Restaurant","Petrol Pump","Police Station","Restrooms","Walkways","Open Gym"];
+  List<IconData> iconList = [
+    Icons.emoji_food_beverage_outlined,
+    Icons.wifi,
+    Icons.wash,
+    Icons.directions_walk_outlined,
+    Icons.sports_gymnastics,
+  ];
+
 
 
   }
