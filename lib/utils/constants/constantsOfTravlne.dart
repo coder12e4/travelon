@@ -35,6 +35,9 @@ class Constants {
   boldstylewhite(double size) {
     return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.white);
   }
+  boldstyleblue(double size) {
+    return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.blue);
+  }
 
   Stylemediuemgreen(double size) {
     return TextStyle(
@@ -51,6 +54,14 @@ class Constants {
       );
     
   }
+  StyleMediumBlue(double size) {
+    return TextStyle(
+      fontFamily: "semibold",
+      color: Colors.blue,
+      fontSize: size,
+    );
+
+  }
 
   mediumstyleblack(double size) {
     return TextStyle(
@@ -59,6 +70,7 @@ class Constants {
       fontSize: size,
     );
   }
+
 
   mediumstylewhite(double size) {
     return TextStyle(
@@ -76,6 +88,10 @@ class Constants {
   Regularstyleblack(double size) {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: Colors.black);
+  }
+  Regularstylegrey(double size) {
+    return TextStyle(
+        fontFamily: "regular", fontSize: size, color: Colors.grey);
   }
 
   Regularstylewhite(double size) {
