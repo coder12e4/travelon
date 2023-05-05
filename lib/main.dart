@@ -16,6 +16,7 @@ import 'package:travlon/pages/homeTabs/travaleogView.dart';
 
 import 'package:travlon/pages/homoeScreen.dart';
 import 'package:travlon/pages/intro.dart';
+import 'package:travlon/pages/youtube.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: /*const Introductionpage()*/const profileView(),
+      home: /*const Introductionpage()*/const ytClone(),
 
     );
   }

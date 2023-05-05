@@ -103,6 +103,10 @@ class Constants {
     return TextStyle(
         fontFamily: "light", fontSize: size, color: HexColor(pastelgreen900));
   }
+  lightstylewhite(double size) {
+    return TextStyle(
+        fontFamily: "light", fontSize: size, color: Colors.white);
+  }
 
   radiusreturning() {
     return BorderRadius.circular(20);
