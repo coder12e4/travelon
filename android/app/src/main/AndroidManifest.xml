@@ -6,7 +6,7 @@
    <application
         android:label="travlon"
         android:name="${applicationName}"
-        android:icon="@mipmap/travelonicon.png">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"

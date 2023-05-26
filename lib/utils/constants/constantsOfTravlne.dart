@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../widgets/txtOftravalon.dart';
+
 class Constants {
   String txtAppname = "TRAVELON";
   String txtIntroductionNear = "get Nearby Locations";
@@ -89,6 +91,14 @@ class Constants {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: Colors.black);
   }
+  RegularstyleblackMon(double size) {
+    return TextStyle(
+        fontFamily: "Regular", fontSize: size, color: Colors.black);
+  }
+  notoRegularstyleblack(double size) {
+    return TextStyle(
+        fontFamily: "notoregular", fontSize: size, color: Colors.black);
+  }
   Regularstylegrey(double size) {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: Colors.grey);
@@ -107,12 +117,28 @@ class Constants {
     return TextStyle(
         fontFamily: "light", fontSize: size, color: Colors.white);
   }
+  lightstylegrey(double size) {
+    return TextStyle(
+        fontFamily: "light", fontSize: size, color: Colors.grey);
+  }
 
   radiusreturning() {
     return BorderRadius.circular(20);
   }
+  radiusreturningthree() {
+    return BorderRadius.circular(14);
+  }
   radiusreturningone() {
     return BorderRadius.circular(30);
+  }
+  radiusreturningtwo(
+      BorderRadius borderRadius,
+      Color color,
+      ) {
+    return BoxDecoration(
+        borderRadius: borderRadius,
+            color: color,
+    );
   }
 
   decorations(
@@ -154,6 +180,7 @@ class Constants {
     String label,
   ) {
     return BottomNavigationBarItem(
+
         icon: Icon(
           icon,
           color: Colors.green.shade400,
@@ -206,6 +233,34 @@ decor(){
     Icons.directions_walk_outlined,
     Icons.sports_gymnastics,
   ];
+
+  List<dynamic>carimg=[
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+  ];
+
+List<dynamic>carnames=[
+  'A-Class',
+  'E-Class',
+  'C-Class',
+  'S-Class',
+  'GLA',
+  'GLB',
+  'GLE',
+  'GLC',
+  'GLS'
+];
+
+
+
+
+
+
 
 
 
