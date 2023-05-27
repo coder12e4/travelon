@@ -14,13 +14,7 @@ class homeScreen extends StatefulWidget {
 
 
 
-  const homeScreen({Key? key, required this.
-
-
-
-
-
-  objlogin}) : super(key: key);
+  const homeScreen({Key? key, required this.objlogin}) : super(key: key);
 
   @override
   State<homeScreen> createState() => _homeScreenState();

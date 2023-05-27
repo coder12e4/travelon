@@ -8,7 +8,6 @@ import 'package:travlon/pages/auth/splashScreen.dart';
 
 import 'package:travlon/pages/duo1.dart';
 import 'package:travlon/pages/homeTabs/bottom%20sheet.dart';
-import 'package:travlon/pages/homeTabs/glass.dart';
 
 import 'package:travlon/pages/homeTabs/nearestplaceList.dart';
 import 'package:travlon/pages/homeTabs/placeView.dart';
