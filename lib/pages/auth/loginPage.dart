@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
@@ -110,7 +111,10 @@ class _loginState extends State<login> {
                       child: BlocBuilder<LogincubitCubit, LogincubitState>(
                         builder: (context, state) {
                           if (state is LogincubitLoading) {
-                            return CircularProgressIndicator();
+                            return SpinKitCircle(
+                              color: Colors.yellow,
+                              size: 40,
+                            );
                           } else {
                             return txtOftravalon(
                                 data: "Login",

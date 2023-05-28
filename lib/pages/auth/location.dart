@@ -23,7 +23,7 @@ class _locationState extends State<location> {
   String dropdownValue = "10m";
   List<String> items = ["10m", "25m", "50m", "100m", "500m", "1KM"];
   bool newValue = false;
-  bool text = false;
+  var text = "Get Location";
 
   double _width = 340;
   double _height = 50;
@@ -70,7 +70,7 @@ class _locationState extends State<location> {
                     duration: Duration(seconds: 1),
                     curve: Curves.fastOutSlowIn,
                     child: txtOftravalon(
-                        data: text ? "Go to Home" : "Get Location",
+                        data: text ,
                         textStyle: Constants().boldstylewhite(16)),
                   ),
                   onTap: () {
@@ -123,7 +123,7 @@ class _locationState extends State<location> {
                         onChanged: (String? newValue) {
                           setState(() {
                             dropdownValue = newValue!;
-                            text = !text;
+                            text = "Go to Home";
                             if(dropdownValue == newValue){
                               _width=340;
                               _height = 50;
