@@ -111,9 +111,12 @@ class _loginState extends State<login> {
                       child: BlocBuilder<LogincubitCubit, LogincubitState>(
                         builder: (context, state) {
                           if (state is LogincubitLoading) {
-                            return SpinKitCircle(
-                              color: Colors.yellow,
-                              size: 40,
+                            return Center(
+                              child: SpinKitCubeGrid(
+                                duration: Duration(seconds: 5),
+                                color: Colors.white,
+                                size: 20,
+                              ),
                             );
                           } else {
                             return txtOftravalon(
