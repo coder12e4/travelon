@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:travlon/models/nearplacesModel.dart';
 import 'package:travlon/pages/auth/location.dart';
 import 'package:travlon/pages/auth/loginPage.dart';
 import 'package:travlon/pages/auth/registration.dart';
@@ -16,6 +17,7 @@ import 'package:travlon/pages/homeTabs/travaleogView.dart';
 
 import 'package:travlon/pages/homeScreen.dart';
 import 'package:travlon/pages/intro.dart';
+import 'package:travlon/repository/nearbyrepo.dart';
 
 
 void main() {
@@ -29,15 +31,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+        title: 'Flutter Demo',
+        theme: ThemeData(
 
-        primarySwatch: Colors.blue,
-      ),
+          primarySwatch: Colors.blue,
+        ),
 
-      home: /*const Introductionpage()*/login(),
+        home: /*const Introductionpage()*/login()
 
     );
   }
-}
 
+}

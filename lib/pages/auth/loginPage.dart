@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:travlon/cubit/home/home_cubit.dart';
+import 'package:travlon/models/nearplacesModel.dart';
 import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/repository/loginrepository.dart';
+import 'package:travlon/repository/nearbyrepo.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/edttravelon.dart';
@@ -21,16 +24,14 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-  late LogincubitCubit objlogincubit;
+
+  late HomeCubit objhomecubit;
   @override
   void initState() {
-    objlogincubit = LogincubitCubit(LogincubitInitial(), loginInt());
+   objhomecubit =HomeCubit(HomeInitial(),homeView() );
     // TODO: implement initState
     super.initState();
   }
-
-  String? username_ = "";
-  String password_ = "";
 
   @override
   Widget build(BuildContext context) {
@@ -94,23 +95,23 @@ class _loginState extends State<login> {
               width: MediaQuery.of(context).size.width,
               child: btnthreeTravelon(
                   function: () {
-                    objlogincubit.login("amal", "amal123");
+                        objhomecubit.nearby();
                   },
                   height: 50,
                   width: double.infinity,
-                  childWid: BlocProvider<LogincubitCubit>(
-                    create: (context) => objlogincubit,
-                    child: BlocListener<LogincubitCubit, LogincubitState>(
+                  childWid: BlocProvider<HomeCubit>(
+                    create: (context) => objhomecubit,
+                    child: BlocListener<HomeCubit, HomeState>(
                       listener: (context, state) {
-                        if (state is LogincubitSuccess) {
-                          loginModel obj = state.loginobj;
-                          Constants().loadPages(homeScreen(objlogin: obj), context);
+                        if (state is HomeSuccess) {
+                          nearbyModel objhome = state.objnearby;
+                          Constants().loadPages(homeScreen(objnearby:objhome), context);
                         }
                         // TODO: implement listener
                       },
-                      child: BlocBuilder<LogincubitCubit, LogincubitState>(
+                      child: BlocBuilder<HomeCubit, HomeState>(
                         builder: (context, state) {
-                          if (state is LogincubitLoading) {
+                          if (state is HomeLoading) {
                             return Center(
                               child: SpinKitCubeGrid(
                                 duration: Duration(seconds: 5),

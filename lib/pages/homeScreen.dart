@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:travlon/repository/loginrepository.dart';
+
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
+import '../models/nearplacesModel.dart';
 import 'homeTabs/nearestplaceList.dart';
 import 'homeTabs/travloglList.dart';
 
 class homeScreen extends StatefulWidget {
-  final loginModel objlogin;
 
+  final nearbyModel objnearby;
 
-
-  const homeScreen({Key? key, required this.objlogin}) : super(key: key);
+  const homeScreen({Key? key,required this.objnearby}) : super(key: key);
 
   @override
   State<homeScreen> createState() => _homeScreenState();
@@ -23,29 +23,31 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
 
-        loginModel? objlogin;
-        Data? data;
-
-        String? name;
-        String? place;
-        String? email;
-        String? password;
-        String? sId;
-        List<Nearplaces>? nearplaces=[];
-        List<Tavologs>? tavologs=[];
-        String? createdAt;
-        int? iV;
-
+      nearbyModel? objnearby;
+       Data? data;
+       String? sId;
+      String? name;
+      String? detail;
+      String? address;
+      String? country;
+      String? state;
+      String? district;
+      Location? location;
+      bool? status;
+      String? totalRating;
+      int? iV;
+      List<String>? image;
+      double? distanceInMeters;
+       List<Result>? result=[];
 
 
 @override
   void initState() {
-  objlogin=widget.objlogin;
-  name=objlogin!.data!.name;
-  place=objlogin!.data!.place;
+  objnearby=widget.objnearby;
 
-  nearplaces=objlogin!.data!.nearplaces;
-  tavologs=objlogin!.data!.tavologs;
+  result = objnearby!.data!.result;
+
+
     // TODO: implement initState
     super.initState();
   }
@@ -77,7 +79,7 @@ class _homeScreenState extends State<homeScreen> {
                         children: [
                           SizedBox(height: 8,),
                           txtOftravalon(data:"hi"+ name!, textStyle: Constants().boldstylegreen(16)),
-                          txtOftravalon(data: place!, textStyle: Constants().lightstyle1(8)),
+                          txtOftravalon(data:"India", textStyle: Constants().lightstyle1(8)),
                         ],
                       ),
                     ),
@@ -137,8 +139,8 @@ class _homeScreenState extends State<homeScreen> {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      nearBy(nearplaces: nearplaces,),
-                      travelogList(tavologs: tavologs,)
+                      nearBy(result:result ,),
+                     /* travelogList(travologs: tavologs,)*/
 
                     ],
                   ),
