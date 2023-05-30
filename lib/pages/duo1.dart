@@ -5,14 +5,14 @@ import 'package:travlon/pages/duo2.dart';
 
 
 
-class duoOne extends StatefulWidget {
-  const duoOne({Key? key}) : super(key: key);
+class Introductionpage extends StatefulWidget {
+  const Introductionpage({Key? key}) : super(key: key);
 
   @override
-  State<duoOne> createState() => _duoOneState();
+  State<Introductionpage> createState() => _IntroductionpageState();
 }
 
-class _duoOneState extends State<duoOne> {
+class _IntroductionpageState extends State<Introductionpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

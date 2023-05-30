@@ -24,13 +24,7 @@ class _duoFourState extends State<duoFour> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Provider.of<Helper>(context).text1(
-                    'duolingo', 60, FontWeight.bold, Colors.white, 'duob'),
-              ],
-            ),
+
             Text(
               "Login to your account",
               textAlign: TextAlign.center,
