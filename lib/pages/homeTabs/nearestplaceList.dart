@@ -4,14 +4,15 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:travlon/pages/homeTabs/placeView.dart';
 
+import '../../models/nearplacesModel.dart';
 import '../../repository/loginrepository.dart';
 import '../../utils/constants/constantsOfTravlne.dart';
 import '../../utils/widgets/btnTravelon.dart';
 import '../../utils/widgets/txtOftravalon.dart';
 
 class nearBy extends StatefulWidget {
-  final List<Nearplaces>? nearplaces;
-  const nearBy({Key? key, this.nearplaces}) : super(key: key);
+  final  List<Result>? result;
+  const nearBy({Key? key, this.result,}) : super(key: key);
 
   @override
   State<nearBy> createState() => _nearByState();
@@ -43,10 +44,11 @@ class _nearByState extends State<nearBy> {
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  List<Nearplaces>? nearplaces = [];
+  List<Result>? result;
   @override
   void initState() {
-    nearplaces = widget.nearplaces;
+
+    result =widget.result;
     // TODO: implement initState
     super.initState();
   }
@@ -58,9 +60,9 @@ class _nearByState extends State<nearBy> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
-            itemCount: nearplaces!.length,
+            itemCount: result!.length,
             itemBuilder: (context, index) {
-              if (nearplaces!.length == 0) {
+              if (result!.length == 0) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey.shade300,
                   highlightColor: Colors.grey.shade100,
@@ -133,11 +135,11 @@ class _nearByState extends State<nearBy> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     txtOftravalon(
-                                        data: nearplaces![index].placeName!,
+                                        data: result![index].name!,
                                         textStyle: Constants().boldstyleblack(
                                             14)),
                                     txtOftravalon(
-                                        data: nearplaces![index].review!,
+                                        data: result![index].detail!,
                                         textStyle:
                                         Constants().Regularstyleblack(12)),
                                     Container(
@@ -196,7 +198,7 @@ class _nearByState extends State<nearBy> {
                       }),
                 );
               } else {
-                return GestureDetector(
+              /*  return GestureDetector(
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: Constants().radiusreturning(),
@@ -315,7 +317,7 @@ class _nearByState extends State<nearBy> {
                     ),
                     onTap: () {
                       Constants().loadPages(placeView(), context);
-                    });
+                    });*/
               }
             }
             ),
