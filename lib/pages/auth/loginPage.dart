@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
@@ -7,7 +8,7 @@ import 'package:travlon/utils/widgets/edttravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
 import '../../cubit/authcubit/logincubit_cubit.dart';
-import '../homoeScreen.dart';
+import '../homeScreen.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -129,9 +130,14 @@ class _loginState extends State<login> {
                 txtOftravalon(
                     data: "Not a member?",
                     textStyle: Constants().mediumstyleblack(14)),
-                txtOftravalon(
-                    data: "Register now",
-                    textStyle: Constants().mediumstyleblack(14)),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>registerone()));
+                  },
+                  child: txtOftravalon(
+                      data: "Register now",
+                      textStyle: Constants().Stylemediuemgreen(14)),
+                ),
               ],
             ),
           ],

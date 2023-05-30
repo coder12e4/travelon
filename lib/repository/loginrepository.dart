@@ -10,6 +10,7 @@ class loginInt extends loginRepo{
   Future<loginModel> loginToaccount(String username, String password) async{
    loginModel? loginobj;
     var response= await http.get(Uri.parse("https://mocki.io/v1/5dbe07f2-bc08-47ee-b12c-edc8661a8495"));
+
     if (response.statusCode==200){
       print(response.body);
       var data=jsonDecode(response.body);
@@ -21,6 +22,7 @@ class loginInt extends loginRepo{
     // TODO: implement functionname
     throw UnimplementedError();
   }
+
   
 }
 

@@ -82,9 +82,7 @@ class _placeViewState extends State<placeView> {
                         txtOftravalon(
                             data: "Street No.2",
                             textStyle: Constants().Regularstyleblack(14)),
-                        SizedBox(
-                          width: 230,
-                        ),
+                        Spacer(flex: 1,),
                         Icon(
                           Icons.star,
                           color: Colors.yellow,
@@ -104,20 +102,63 @@ class _placeViewState extends State<placeView> {
                     SizedBox(
                       height: 20,
                     ),
+                    txtOftravalon(
+                        data: "Images",
+                        textStyle: Constants().StyleMediumBlack(16)),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: Constants().radiusreturningone()),
+                      child: Container(
+                        height: 150,
+                        width: 400,
+                        decoration: Constants().decorations(
+                            Constants().radiusreturningone(),
+                            Colors.green.shade100,
+                            Border(top: BorderSide.none)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         txtOftravalon(
-                            data: "Facility",
+                            data: "Nearby",
                             textStyle: Constants().StyleMediumBlack(16)),
                         txtOftravalon(
                             data: "See all",
                             textStyle: Constants().Stylemediuemgreen(14))
                       ],
                     ),
-                    SizedBox(
-                      height: 100,
+                    Container(
+                      color: Colors.white,
+                      height: 70,
+                      width: 500,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: Constants().faciList.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                btnplaceview(
+                                    function: () {},
+                                    height: 50,
+                                    width: 150,
+                                    childWid: txtOftravalon(
+                                      data: Constants().faciList[index],
+                                      textStyle:
+                                          Constants().Stylemediuemgreen(14),
+                                    ))
+                              ],
+                            );
+                          }),
                     ),
+                    Spacer(flex: 1,),
                     Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
@@ -130,9 +171,7 @@ class _placeViewState extends State<placeView> {
                             textStyle: Constants().boldstylewhite(16)),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    Spacer(flex: 1,)
                   ],
                 ),
               ),

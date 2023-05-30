@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../widgets/txtOftravalon.dart';
+
 class Constants {
   String txtAppname = "TRAVELON";
   String txtIntroductionNear = "get Nearby Locations";
@@ -35,6 +37,9 @@ class Constants {
   boldstylewhite(double size) {
     return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.white);
   }
+  boldstyleblue(double size) {
+    return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.blue);
+  }
 
   Stylemediuemgreen(double size) {
     return TextStyle(
@@ -51,6 +56,14 @@ class Constants {
       );
     
   }
+  StyleMediumBlue(double size) {
+    return TextStyle(
+      fontFamily: "semibold",
+      color: Colors.blue,
+      fontSize: size,
+    );
+
+  }
 
   mediumstyleblack(double size) {
     return TextStyle(
@@ -59,6 +72,7 @@ class Constants {
       fontSize: size,
     );
   }
+
 
   mediumstylewhite(double size) {
     return TextStyle(
@@ -77,6 +91,18 @@ class Constants {
     return TextStyle(
         fontFamily: "regular", fontSize: size, color: Colors.black);
   }
+  RegularstyleblackMon(double size) {
+    return TextStyle(
+        fontFamily: "Regular", fontSize: size, color: Colors.black);
+  }
+  notoRegularstyleblack(double size) {
+    return TextStyle(
+        fontFamily: "notoregular", fontSize: size, color: Colors.black);
+  }
+  Regularstylegrey(double size) {
+    return TextStyle(
+        fontFamily: "regular", fontSize: size, color: Colors.grey);
+  }
 
   Regularstylewhite(double size) {
     return TextStyle(
@@ -87,12 +113,32 @@ class Constants {
     return TextStyle(
         fontFamily: "light", fontSize: size, color: HexColor(pastelgreen900));
   }
+  lightstylewhite(double size) {
+    return TextStyle(
+        fontFamily: "light", fontSize: size, color: Colors.white);
+  }
+  lightstylegrey(double size) {
+    return TextStyle(
+        fontFamily: "light", fontSize: size, color: Colors.grey);
+  }
 
   radiusreturning() {
     return BorderRadius.circular(20);
   }
+  radiusreturningthree() {
+    return BorderRadius.circular(14);
+  }
   radiusreturningone() {
     return BorderRadius.circular(30);
+  }
+  radiusreturningtwo(
+      BorderRadius borderRadius,
+      Color color,
+      ) {
+    return BoxDecoration(
+        borderRadius: borderRadius,
+            color: color,
+    );
   }
 
   decorations(
@@ -134,6 +180,7 @@ class Constants {
     String label,
   ) {
     return BottomNavigationBarItem(
+
         icon: Icon(
           icon,
           color: Colors.green.shade400,
@@ -169,6 +216,52 @@ decor(){
       shape: BoxShape.rectangle
     );
 }
+  decor1(){
+    return BoxDecoration(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
+        color: Colors.white,
+        border: Border(right: BorderSide.none),
+        shape: BoxShape.rectangle
+    );
+  }
+
+  List<String>faciList=["Restaurant","Petrol Pump","Police Station","Restrooms","Walkways","Open Gym"];
+  List<IconData> iconList = [
+    Icons.emoji_food_beverage_outlined,
+    Icons.wifi,
+    Icons.wash,
+    Icons.directions_walk_outlined,
+    Icons.sports_gymnastics,
+  ];
+
+  List<dynamic>carimg=[
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+   "assets/images/ben.jpg",
+  ];
+
+List<dynamic>carnames=[
+  'A-Class',
+  'E-Class',
+  'C-Class',
+  'S-Class',
+  'GLA',
+  'GLB',
+  'GLE',
+  'GLC',
+  'GLS'
+];
+
+
+
+
+
+
+
 
 
   }

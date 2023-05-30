@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:travlon/pages/homoeScreen.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:travlon/pages/homeScreen.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 
 import '../../utils/widgets/txtOftravalon.dart';
@@ -17,16 +18,12 @@ class splash extends StatefulWidget {
 class _splashState extends State<splash> {
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3),
-            () =>
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder:
-                    (context) =>location()
-
-                )
-            )
-    );
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => location())));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +31,23 @@ class _splashState extends State<splash> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Center(
-          child: txtOftravalon(
-            data: "TravelOn",textStyle: Constants().boldstylegreen(24),
-          ),
-        ),
+            child: RichText(
+                text: TextSpan(
+                    text: "travel",
+                    style:TextStyle (
+                        fontSize: 24,
+                        fontFamily: "bold",
+                        color: HexColor(Constants().pastelgreen400)),
+                children: [
+                  TextSpan(
+                    text: "On",
+                    style: TextStyle (
+                        fontSize: 24,
+                        fontFamily: "bold",
+                        color: Colors.black),
+                  )
+                ]
+                ))),
       ),
     );
   }
