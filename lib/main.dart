@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:travlon/models/nearplacesModel.dart';
 import 'package:travlon/pages/auth/location.dart';
@@ -37,7 +35,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
 
-        home: /*const Introductionpage()*/login()
+        home: /const Introductionpage()/login()
 
     );
   }
