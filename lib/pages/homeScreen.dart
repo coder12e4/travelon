@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
@@ -21,6 +22,7 @@ class homeScreen extends StatefulWidget {
 }
 
 class _homeScreenState extends State<homeScreen> {
+
         loginModel? objlogin;
         Data? data;
 
