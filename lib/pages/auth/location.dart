@@ -78,6 +78,18 @@ class _locationState extends State<location> {
 
                   onTap: (){
                     objhomecubit.getLocation();
+
+setState(() {
+
+  if (_isShow = !_isShow) {
+    _width = 180;
+    _height = 50;
+  } else {
+    _width = 340;
+    _height = 50;
+  }
+
+});
                   },
 
                     child: AnimatedContainer(
@@ -98,35 +110,21 @@ class _locationState extends State<location> {
                               if (state is buttonClicckOneInitial) {
                                 // guestBtnName=state.buttonName;
                               } else if (state is buttonClicckOneLoading) {
-
                                 //no value
                               }
                               else if(state is buttonClicckOneSuccess){
 
 
 
-                                if (_isShow = !_isShow) {
-                                  _width = 180;
-                                  _height = 50;
-                                } else {
-                                  _width = 340;
-                                  _height = 50;
-                                }
 
                               }
 
-                              if (dropdownValue == newValue) {
-                                _width = 340;
-                                _height = 50;
-                              } else {
-                                _width = 180;
-                                _height = 50;
-                              }
+
 
                             },
                             child: BlocBuilder<HomeCubit, HomeState>(
                               builder: (context, state) {
-                                if (state is HomeLoading) {
+                                if (state is buttonClicckOneLoading) {
                                   return Center(
                                     child: SpinKitCubeGrid(
                                       duration: Duration(seconds: 2),
@@ -134,77 +132,85 @@ class _locationState extends State<location> {
                                       size: 20,
                                     ),
                                   );
-                                } else {
-                                  return txtOftravalon(
-                                      data: text,
-                                      textStyle:
-                                          Constants().boldstylewhite(14));
+                                } else if(state is buttonClicckOneSuccess) {
+                                  return Visibility(
+                                    visible: _isShow,
+                                    child: btnthreeTravelon(
+                                        function: () {
+                                          objhomecubit.getLocation();
+                                        },
+                                        height: 50,
+                                        width: 150,
+                                        childWid: BlocProvider<HomeCubit>(
+                                          create: (context) => objhomecubit,
+                                          child: BlocListener<HomeCubit, HomeState>(
+                                            listener: (context, state) {
+
+                                              if(state is buttonClicckOneLoading){
+                                                //
+                                              }
+
+
+                                              else if (state is buttonClicckOneSuccess) {
+                                                dropdownValue == newValue;
+                                                text = "Go to Home";
+                                                if (dropdownValue == newValue) {
+                                                  _width = 340;
+                                                  _height = 50;
+                                                  _isShow = false;
+                                                } else {
+                                                  _width = 180;
+                                                  _height = 50;
+                                                }
+                                              }
+
+                                            },
+                                            child: BlocBuilder<HomeCubit, HomeState>(
+                                              builder: (context, state) {
+                                                if (state is buttonClicckOneLoading) {
+                                                  return CircularProgressIndicator();
+                                                } else {
+                                                  return DropdownButton(
+                                                      underline: SizedBox(),
+                                                      dropdownColor: Colors.green.shade700,
+                                                      menuMaxHeight: 100,
+                                                      iconEnabledColor: HexColor(
+                                                        Constants().pastelgreen400,
+                                                      ),
+                                                      style: TextStyle(
+                                                          color: HexColor(
+                                                            Constants().pastelgreen400,
+                                                          )),
+                                                      value: dropdownValue,
+                                                      items: items.map<DropdownMenuItem<String>>(
+                                                              (String value) {
+                                                            return DropdownMenuItem(
+                                                                value: value,
+                                                                child: txtOftravalon(
+                                                                    data: value,
+                                                                    textStyle: Constants()
+                                                                        .boldstylewhite(16)));
+                                                          }).toList(),
+                                                      onChanged: (String? newValue) {
+                                                        setState(() {});
+                                                      });
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        )),
+                                  );
+                                }else if(state is buttonClicckOneError){
+                                  return Text("try again");
+                                }else{
+                                  return Container();
                                 }
                               },
                             ),
                           ),
                         ))),
                 Spacer(),
-                Visibility(
-                  visible: _isShow,
-                  child: btnthreeTravelon(
-                      function: () {
-                        objhomecubit.location;
-                      },
-                      height: 50,
-                      width: 150,
-                      childWid: BlocProvider<HomeCubit>(
-                        create: (context) => objhomecubit,
-                        child: BlocListener<HomeCubit, HomeState>(
-                          listener: (context, state) {
-                            if (state is HomeSuccess) {
-                              dropdownValue == newValue;
-                              text = "Go to Home";
-                              if (dropdownValue == newValue) {
-                                _width = 340;
-                                _height = 50;
-                                _isShow = false;
-                              } else {
-                                _width = 180;
-                                _height = 50;
-                              }
-                            }
-                          },
-                          child: BlocBuilder<HomeCubit, HomeState>(
-                            builder: (context, state) {
-                              if (state is HomeLoading) {
-                                return CircularProgressIndicator();
-                              } else {
-                                return DropdownButton(
-                                    underline: SizedBox(),
-                                    dropdownColor: Colors.green.shade700,
-                                    menuMaxHeight: 100,
-                                    iconEnabledColor: HexColor(
-                                      Constants().pastelgreen400,
-                                    ),
-                                    style: TextStyle(
-                                        color: HexColor(
-                                      Constants().pastelgreen400,
-                                    )),
-                                    value: dropdownValue,
-                                    items: items.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem(
-                                          value: value,
-                                          child: txtOftravalon(
-                                              data: value,
-                                              textStyle: Constants()
-                                                  .boldstylewhite(16)));
-                                    }).toList(),
-                                    onChanged: (String? newValue) {
-                                      setState(() {});
-                                    });
-                              }
-                            },
-                          ),
-                        ),
-                      )),
-                ),
+
               ],
             ),
             SizedBox(

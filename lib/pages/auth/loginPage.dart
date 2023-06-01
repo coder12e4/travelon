@@ -28,8 +28,8 @@ class _loginState extends State<login> {
   late HomeCubit objhomecubit;
   @override
   void initState() {
-   objhomecubit =HomeCubit(HomeInitial(),homeView() );
-    // TODO: implement initState
+  /* objhomecubit =HomeCubit(HomeInitial(),homeView() );
+  */  // TODO: implement initState
     super.initState();
   }
 
@@ -90,12 +90,12 @@ class _loginState extends State<login> {
             SizedBox(
               height: 20,
             ),
-            Container(
+           /* Container(
               height: 50,
               width: MediaQuery.of(context).size.width,
               child: btnthreeTravelon(
                   function: () {
-                        objhomecubit.nearby();
+                       // objhomecubit.nearby();
                   },
                   height: 50,
                   width: double.infinity,
@@ -129,7 +129,7 @@ class _loginState extends State<login> {
                     ),
                   )),
             ),
-            SizedBox(
+           */ SizedBox(
               height: 20,
             ),
             Row(

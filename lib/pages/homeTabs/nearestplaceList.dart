@@ -129,13 +129,13 @@ class _nearByState extends State<nearBy> {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                         children: [
-                                          GestureDetector(
+                               /*           GestureDetector(
                                               child: txtOftravalon(
                                                 data: location,
                                                 textStyle:
                                                 Constants().lightstyle1(14),
                                               ),
-                                              /*onTap: () async {
+                                              *//*onTap: () async {
                                                 Position position =
                                                 await _getGeoLocationPosition();
                                                 location =
@@ -144,10 +144,10 @@ class _nearByState extends State<nearBy> {
                                                     .longitude}';
                                                 setState(() {});
                                               }
-                                              */
+                                              *//*
 
                                               ),
-                                          Container(
+                               */           Container(
                                             height: 20,
                                             width: 60,
                                             decoration: BoxDecoration(
