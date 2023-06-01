@@ -1,20 +1,20 @@
 import 'dart:convert';
 
-import 'package:travlon/models/nearplacesModel.dart';
+import 'package:travlon/models/nearbyModel.dart';
 import 'package:http/http.dart'as http;
 
 abstract class nearbyrepo{
- Future<nearbyModel>nearbylist();
+ Future<nearbyModel>nearbylist(int lat,int long,int km);
 }
 class homeView extends nearbyrepo{
 
-  Future<nearbyModel>nearbylist()async{
+  Future<nearbyModel>nearbylist(int lat,int long,int km)async{
     nearbyModel? objnearby;
     var response=await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/"),
         body:{
-          "lat":11.232547530793925,
-          "long":76.05168568558676,
-          "km":30,
+          "lat":lat,
+          "long":long,
+          "km":km,
         }
     );
     if(response.statusCode==200){

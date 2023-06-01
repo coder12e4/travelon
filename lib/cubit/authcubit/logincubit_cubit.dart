@@ -4,7 +4,7 @@ import 'package:travlon/repository/loginrepository.dart';
 
 part 'logincubit_state.dart';
 
-class LogincubitCubit extends Cubit<LogincubitState> {
+/*class LogincubitCubit extends Cubit<LogincubitState> {
 
   final loginRepo objloginrepo;
   LogincubitCubit(LogincubitState state,this.objloginrepo) : super(LogincubitInitial());
@@ -20,4 +20,4 @@ emit(LogincubitSuccess(objlogin));
 }
 
 
-}
+}*/

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
+import '../../models/nearbyModel.dart';
 import '../../repository/loginrepository.dart';
 import '../../utils/constants/constantsOfTravlne.dart';
 import '../../utils/widgets/btnTravelon.dart';
 import '../../utils/widgets/txtOftravalon.dart';
 
 class travelogView extends StatefulWidget {
-  final List<Tavologs>? tavologs;
-  const travelogView({Key? key, this.tavologs}) : super(key: key);
+  final  List<TravelLogs>? travelLogs;
+  const travelogView({Key? key, this.travelLogs, }) : super(key: key);
 
   @override
   State<travelogView> createState() => _travelogViewState();
 }
 
 class _travelogViewState extends State<travelogView> {
-  List<Tavologs>? tavologs=[];
+  List<TravelLogs>? travelLogs=[];
   @override
   void initState() {
-    tavologs=widget.tavologs;
+    travelLogs =widget.travelLogs;
     // TODO: implement initState
     super.initState();
   }
