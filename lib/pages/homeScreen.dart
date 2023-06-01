@@ -7,7 +7,7 @@ import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
-import '../models/nearplacesModel.dart';
+import '../models/nearbyModel.dart';
 import 'homeTabs/nearestplaceList.dart';
 import 'homeTabs/travloglList.dart';
 
@@ -36,16 +36,18 @@ class _homeScreenState extends State<homeScreen> {
       bool? status;
       String? totalRating;
       int? iV;
-      List<String>? image;
       double? distanceInMeters;
-       List<Result>? result=[];
+
+      List<String>? image=[];
+      List<NearPlaces>? nearPlaces=[];
+      List<TravelLogs>? travelLogs=[];
 
 
 @override
   void initState() {
   objnearby=widget.objnearby;
-
-  result = objnearby!.data!.result;
+  data =objnearby!.data;
+  nearPlaces =objnearby!.data!.nearPlaces;
 
 
     // TODO: implement initState
@@ -139,8 +141,8 @@ class _homeScreenState extends State<homeScreen> {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      nearBy(result:result ,),
-                     /* travelogList(travologs: tavologs,)*/
+                      nearBy(nearPlaces:nearPlaces ),
+                     travelogList(travelLogs:travelLogs )
 
                     ],
                   ),

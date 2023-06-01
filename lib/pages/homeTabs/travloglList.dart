@@ -5,12 +5,13 @@ import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
+import '../../models/nearbyModel.dart';
 import '../../repository/loginrepository.dart';
 
 class travelogList extends StatefulWidget {
-  final List<Tavologs>? tavologs;
+  final  List<TravelLogs>? travelLogs;
 
-  const travelogList({Key? key, this.tavologs}) : super(key: key);
+  const travelogList({Key? key, this.travelLogs, }) : super(key: key);
 
   @override
   State<travelogList> createState() => _travelogListState();
@@ -42,10 +43,11 @@ class _travelogListState extends State<travelogList> {
   }
 
 
-  List<Tavologs>? tavologs = [];
+  List<TravelLogs>? travelLogs=[];
   @override
   void initState() {
-    tavologs = widget.tavologs;
+
+    travelLogs = widget.travelLogs;
 
     // TODO: implement initState
     super.initState();
@@ -56,7 +58,7 @@ class _travelogListState extends State<travelogList> {
     return Scaffold(
       body: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: tavologs!.length,
+          itemCount: travelLogs!.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               child: Card(
@@ -104,7 +106,7 @@ class _travelogListState extends State<travelogList> {
                             width: 16,
                           ),
                           txtOftravalon(
-                              data: tavologs![index].heading!,
+                              data: travelLogs![index].heading!,
                               textStyle: Constants().boldstyleblack(24)),
                         ],
                       ),
@@ -118,7 +120,7 @@ class _travelogListState extends State<travelogList> {
                           ),
                           Expanded(
                             child: txtOftravalon(
-                              data: tavologs![index].content!,
+                              data: travelLogs![index].content!,
                               textStyle: Constants().Regularstyleblack(14),
                             ),
                           ),

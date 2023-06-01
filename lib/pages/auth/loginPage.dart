@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:travlon/cubit/home/home_cubit.dart';
-import 'package:travlon/models/nearplacesModel.dart';
+import 'package:travlon/models/nearbyModel.dart';
 import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/repository/nearbyrepo.dart';
@@ -114,7 +114,7 @@ class _loginState extends State<login> {
                           if (state is HomeLoading) {
                             return Center(
                               child: SpinKitCubeGrid(
-                                duration: Duration(seconds: 5),
+                                duration: Duration(seconds: 2),
                                 color: Colors.white,
                                 size: 20,
                               ),

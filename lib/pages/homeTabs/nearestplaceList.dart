@@ -4,15 +4,16 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:travlon/pages/homeTabs/placeView.dart';
 
-import '../../models/nearplacesModel.dart';
+
+import '../../models/nearbyModel.dart';
 import '../../repository/loginrepository.dart';
 import '../../utils/constants/constantsOfTravlne.dart';
 import '../../utils/widgets/btnTravelon.dart';
 import '../../utils/widgets/txtOftravalon.dart';
 
 class nearBy extends StatefulWidget {
-  final  List<Result>? result;
-  const nearBy({Key? key, this.result,}) : super(key: key);
+  final   List<NearPlaces>? nearPlaces;
+  const nearBy({Key? key,  this.nearPlaces,}) : super(key: key);
 
   @override
   State<nearBy> createState() => _nearByState();
@@ -44,11 +45,11 @@ class _nearByState extends State<nearBy> {
         desiredAccuracy: LocationAccuracy.high);
   }
 
-  List<Result>? result;
+  List<NearPlaces>? nearPlaces=[];
   @override
   void initState() {
 
-    result =widget.result;
+   nearPlaces = widget.nearPlaces;
     // TODO: implement initState
     super.initState();
   }
@@ -60,9 +61,9 @@ class _nearByState extends State<nearBy> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
-            itemCount: result!.length,
+            itemCount: nearPlaces!.length,
             itemBuilder: (context, index) {
-              if (result!.length == 0) {
+              if (nearPlaces!.length == 0) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey.shade300,
                   highlightColor: Colors.grey.shade100,
@@ -135,11 +136,11 @@ class _nearByState extends State<nearBy> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     txtOftravalon(
-                                        data: result![index].name!,
+                                        data: nearPlaces![index].name!,
                                         textStyle: Constants().boldstyleblack(
                                             14)),
                                     txtOftravalon(
-                                        data: result![index].detail!,
+                                        data: nearPlaces![index].detail!,
                                         textStyle:
                                         Constants().Regularstyleblack(12)),
                                     Container(

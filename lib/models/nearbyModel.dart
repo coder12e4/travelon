@@ -20,32 +20,39 @@ class nearbyModel {
 }
 
 class Data {
-  List<Result>? result;
-  int? count;
+  List<NearPlaces>? nearPlaces;
+  List<TravelLogs>? travelLogs;
 
-  Data({this.result, this.count});
+  Data({this.nearPlaces, this.travelLogs});
 
   Data.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
-      result = <Result>[];
-      json['result'].forEach((v) {
-        result!.add(new Result.fromJson(v));
+    if (json['nearPlaces'] != null) {
+      nearPlaces = <NearPlaces>[];
+      json['nearPlaces'].forEach((v) {
+        nearPlaces!.add(new NearPlaces.fromJson(v));
       });
     }
-    count = json['count'];
+    if (json['travelLogs'] != null) {
+      travelLogs = <TravelLogs>[];
+      json['travelLogs'].forEach((v) {
+        travelLogs!.add(new TravelLogs.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.map((v) => v.toJson()).toList();
+    if (this.nearPlaces != null) {
+      data['nearPlaces'] = this.nearPlaces!.map((v) => v.toJson()).toList();
     }
-    data['count'] = this.count;
+    if (this.travelLogs != null) {
+      data['travelLogs'] = this.travelLogs!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
 
-class Result {
+class NearPlaces {
   String? sId;
   String? name;
   String? detail;
@@ -60,7 +67,7 @@ class Result {
   List<String>? image;
   double? distanceInMeters;
 
-  Result(
+  NearPlaces(
       {this.sId,
         this.name,
         this.detail,
@@ -75,7 +82,7 @@ class Result {
         this.image,
         this.distanceInMeters});
 
-  Result.fromJson(Map<String, dynamic> json) {
+  NearPlaces.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     detail = json['detail'];
@@ -129,6 +136,63 @@ class Location {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['coordinates'] = this.coordinates;
     data['type'] = this.type;
+    return data;
+  }
+}
+
+class TravelLogs {
+  String? sId;
+  String? heading;
+  String? remark;
+  String? latitude;
+  String? longitude;
+  String? content;
+  List<String>? images;
+  bool? status;
+  double? rating;
+  String? createdAt;
+  int? iV;
+
+  TravelLogs(
+      {this.sId,
+        this.heading,
+        this.remark,
+        this.latitude,
+        this.longitude,
+        this.content,
+        this.images,
+        this.status,
+        this.rating,
+        this.createdAt,
+        this.iV});
+
+  TravelLogs.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    heading = json['heading'];
+    remark = json['remark'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    content = json['content'];
+    images = json['images'].cast<String>();
+    status = json['status'];
+    rating = json['Rating'];
+    createdAt = json['createdAt'];
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['heading'] = this.heading;
+    data['remark'] = this.remark;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
+    data['content'] = this.content;
+    data['images'] = this.images;
+    data['status'] = this.status;
+    data['Rating'] = this.rating;
+    data['createdAt'] = this.createdAt;
+    data['__v'] = this.iV;
     return data;
   }
 }

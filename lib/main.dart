@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travlon/models/nearplacesModel.dart';
+
 import 'package:travlon/pages/auth/location.dart';
 import 'package:travlon/pages/auth/loginPage.dart';
 import 'package:travlon/pages/auth/registration.dart';
@@ -12,7 +12,7 @@ import 'package:travlon/pages/homeTabs/nearestplaceList.dart';
 import 'package:travlon/pages/homeTabs/placeView.dart';
 import 'package:travlon/pages/homeTabs/profileView.dart';
 import 'package:travlon/pages/homeTabs/travaleogView.dart';
-
+import '../models/nearbyModel.dart';
 import 'package:travlon/pages/homeScreen.dart';
 import 'package:travlon/pages/intro.dart';
 import 'package:travlon/repository/nearbyrepo.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
 
-        home: /const Introductionpage()/login()
+        home:/* /const Introductionpage()*/location()
 
     );
   }
