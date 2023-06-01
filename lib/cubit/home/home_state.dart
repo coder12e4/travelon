@@ -3,11 +3,25 @@ part of 'home_cubit.dart';
 @immutable
 abstract class HomeState {}
 
-class HomeInitial extends HomeState {}
-class HomeLoading extends HomeState {}
-class HomeSuccess extends HomeState {
-  final nearbyModel objnearby;
+class buttonClicckOneInitial extends HomeState {
+  String buttonName="Get Nearest Locations";
 
-  HomeSuccess(this.objnearby);
 }
-class HomeError extends HomeState {}
+class buttonClicckOneLoading extends HomeState {
+  //Loding progressbar
+}
+class buttonClicckOneSuccess extends HomeState {
+
+  final bool k;
+  final String latitude;
+  final String longitude;
+  final String address;
+  buttonClicckOneSuccess(this.k,this.latitude,this.longitude,this.address);
+
+}
+class buttonClicckOneError extends HomeState {
+
+  final bool k;
+  buttonClicckOneError(this.k);
+
+}

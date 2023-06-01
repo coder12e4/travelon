@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:travlon/models/nearbyModel.dart';
@@ -9,19 +10,41 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final nearbyrepo objnearbyrepo;
-  HomeCubit(HomeState state, this.objnearbyrepo) : super(HomeInitial());
-  Future<void>nearby()async{
-    emit(HomeLoading());
-    nearbyModel objnearby = await objnearbyrepo.nearbylist(1,1,1);
-    emit(HomeSuccess(objnearby));
-  }
+  HomeCubit(HomeState state, this.objnearbyrepo) : super(buttonClicckOneInitial());
+
   String location = 'Location';
-  Future<Position> _getGeoLocationPosition() async {
+
+
+  void getLocation() async {
+
+    emit(buttonClicckOneLoading());
+
+    _determinePosition().then((value) async {
+      List<Placemark> newPlace =
+      await placemarkFromCoordinates(value.latitude, value.longitude);
+      Placemark placeMark = newPlace[0];
+      String name = placeMark.name.toString();
+      String subLocality = placeMark.subLocality.toString();
+      String locality = placeMark.locality.toString();
+      String administrativeArea = placeMark.administrativeArea.toString();
+      String postalCode = placeMark.postalCode.toString();
+      String country = placeMark.country.toString();
+      String address = "$subLocality$locality,$administrativeArea";
+     emit(buttonClicckOneSuccess(true,value.latitude.toString(), value.longitude.toString(), address));
+     // parser.saveLatLng(value.latitude, value.longitude, address);
+ }).catchError((error) async {
+   emit(buttonClicckOneError(false));
+      await Geolocator.openLocationSettings();
+    });
+
+    /////// REAL DATA /////
+  }
+
+  Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
       return Future.error('Location services are disabled.');
     }
     permission = await Geolocator.checkPermission();
@@ -35,10 +58,8 @@ class HomeCubit extends Cubit<HomeState> {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+    return await Geolocator.getCurrentPosition();
   }
-
 
 
 }

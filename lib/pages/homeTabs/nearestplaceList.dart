@@ -21,29 +21,7 @@ class nearBy extends StatefulWidget {
 
 class _nearByState extends State<nearBy> {
   bool _enabled = true;
-  String location = 'Location';
-  Future<Position> _getGeoLocationPosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
-      return Future.error('Location services are disabled.');
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-  }
+
 
   List<NearPlaces>? nearPlaces=[];
   @override
@@ -157,7 +135,7 @@ class _nearByState extends State<nearBy> {
                                                 textStyle:
                                                 Constants().lightstyle1(14),
                                               ),
-                                              onTap: () async {
+                                              /*onTap: () async {
                                                 Position position =
                                                 await _getGeoLocationPosition();
                                                 location =
@@ -165,7 +143,10 @@ class _nearByState extends State<nearBy> {
                                                     .latitude} , Long: ${position
                                                     .longitude}';
                                                 setState(() {});
-                                              }),
+                                              }
+                                              */
+
+                                              ),
                                           Container(
                                             height: 20,
                                             width: 60,
