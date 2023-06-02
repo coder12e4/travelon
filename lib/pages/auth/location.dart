@@ -79,7 +79,7 @@ class _locationState extends State<location> {
                   onTap: (){
                     objhomecubit.getLocation();
 
-setState(() {
+                  setState(() {
 
   if (_isShow = !_isShow) {
     _width = 180;
