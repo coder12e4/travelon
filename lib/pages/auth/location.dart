@@ -74,143 +74,143 @@ class _locationState extends State<location> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                GestureDetector(
+                BlocProvider<HomeCubit>(
+                  create: (context) => objhomecubit,
+                  child: BlocListener<HomeCubit, HomeState>(
+                    listener: (context, state) {
+                      if (state is buttonClicckOneInitial) {
+                        // guestBtnName=state.buttonName;
+                      } else if (state is buttonClicckOneLoading) {
+                        //no value
+                      } else if (state is buttonClicckOneSuccess) {
 
-                  onTap: (){
-                    objhomecubit.getLocation();
+                        _isShow =state.k;
 
-setState(() {
-
-  if (_isShow = !_isShow) {
-    _width = 180;
-    _height = 50;
-  } else {
-    _width = 340;
-    _height = 50;
-  }
-
-});
-                  },
-
-                    child: AnimatedContainer(
-                        height: _height,
-                        width: _width,
-                        padding: EdgeInsets.all(10),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: _color,
-                          borderRadius: _borderRadiusGeometry,
-                        ),
-                        duration: Duration(seconds: 1),
-                        curve: Curves.fastOutSlowIn,
-                        child: BlocProvider<HomeCubit>(
-                          create: (context) => objhomecubit,
-                          child: BlocListener<HomeCubit, HomeState>(
-                            listener: (context, state) {
-                              if (state is buttonClicckOneInitial) {
-                                // guestBtnName=state.buttonName;
-                              } else if (state is buttonClicckOneLoading) {
-                                //no value
-                              }
-                              else if(state is buttonClicckOneSuccess){
-
-
-
-
-                              }
-
-
-
-                            },
-                            child: BlocBuilder<HomeCubit, HomeState>(
-                              builder: (context, state) {
-                                if (state is buttonClicckOneLoading) {
-                                  return Center(
-                                    child: SpinKitCubeGrid(
-                                      duration: Duration(seconds: 2),
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                  );
-                                } else if(state is buttonClicckOneSuccess) {
-                                  return Visibility(
-                                    visible: _isShow,
-                                    child: btnthreeTravelon(
-                                        function: () {
-                                          objhomecubit.getLocation();
-                                        },
-                                        height: 50,
-                                        width: 150,
-                                        childWid: BlocProvider<HomeCubit>(
-                                          create: (context) => objhomecubit,
-                                          child: BlocListener<HomeCubit, HomeState>(
-                                            listener: (context, state) {
-
-                                              if(state is buttonClicckOneLoading){
-                                                //
-                                              }
+                      }
+                    },
+                    child: BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                       if(state is buttonClicckOneInitial){
+                         return GestureDetector(
+                           onTap: (){
+                             objhomecubit.getLocation();
+                             setState(() {
+                               if (_isShow = !_isShow) {
+                                 _width = 180;
+                                 _height = 50;
+                               } else {
+                                 _width = 340;
+                                 _height = 50;
+                               }
+                             });
+                           },
+                           child: AnimatedContainer(
+                               height: _height,
+                               width: _width,
+                               padding: EdgeInsets.all(10),
+                               alignment: Alignment.center,
+                               decoration: BoxDecoration(
+                                 color: _color,
+                                 borderRadius: _borderRadiusGeometry,
+                               ),
+                               duration: Duration(seconds: 1),
+                               curve: Curves.fastOutSlowIn,
+                               child:txtOftravalon(data: "Get Location",textStyle: TextStyle(color: Colors.white),) ),
+                         );
+                       }
 
 
-                                              else if (state is buttonClicckOneSuccess) {
-                                                dropdownValue == newValue;
-                                                text = "Go to Home";
-                                                if (dropdownValue == newValue) {
-                                                  _width = 340;
-                                                  _height = 50;
-                                                  _isShow = false;
-                                                } else {
-                                                  _width = 180;
-                                                  _height = 50;
-                                                }
-                                              }
-
-                                            },
-                                            child: BlocBuilder<HomeCubit, HomeState>(
-                                              builder: (context, state) {
-                                                if (state is buttonClicckOneLoading) {
-                                                  return CircularProgressIndicator();
-                                                } else {
-                                                  return DropdownButton(
-                                                      underline: SizedBox(),
-                                                      dropdownColor: Colors.green.shade700,
-                                                      menuMaxHeight: 100,
-                                                      iconEnabledColor: HexColor(
-                                                        Constants().pastelgreen400,
-                                                      ),
-                                                      style: TextStyle(
-                                                          color: HexColor(
-                                                            Constants().pastelgreen400,
-                                                          )),
-                                                      value: dropdownValue,
-                                                      items: items.map<DropdownMenuItem<String>>(
-                                                              (String value) {
-                                                            return DropdownMenuItem(
-                                                                value: value,
-                                                                child: txtOftravalon(
-                                                                    data: value,
-                                                                    textStyle: Constants()
-                                                                        .boldstylewhite(16)));
-                                                          }).toList(),
-                                                      onChanged: (String? newValue) {
-                                                        setState(() {});
-                                                      });
-                                                }
-                                              },
-                                            ),
-                                          ),
-                                        )),
-                                  );
-                                }else if(state is buttonClicckOneError){
-                                  return Text("try again");
-                                }else{
-                                  return Container();
-                                }
-                              },
+                        if (state is buttonClicckOneLoading) {
+                          return Center(
+                            child: SpinKitCubeGrid(
+                              duration: Duration(seconds: 2),
+                              color: Colors.white,
+                              size: 20,
                             ),
-                          ),
-                        ))),
-                Spacer(),
+                          );
+                        } else if (state is buttonClicckOneSuccess) {
+                          return GestureDetector(
+                              onTap: (){
 
+                              },
+                              child: Container());
+                        } else if (state is buttonClicckOneError) {
+                          return Text("try again");
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+                  ),
+                ),
+
+                Visibility(
+                  visible: _isShow,
+                  child: btnthreeTravelon(
+                      function: () {
+
+                      },
+                      height: 50,
+                      width: 150,
+                      childWid: BlocProvider<HomeCubit>(
+                        create: (context) => objhomecubit,
+                        child: BlocListener<HomeCubit,
+                            HomeState>(
+                          listener: (context, state) {
+                            if (state
+                            is buttonClicckOneLoading) {
+                              //
+                            } else if (state
+                            is buttonClicckOneSuccess) {
+                              dropdownValue == newValue;
+                              text = "Go to Home";
+                              if (dropdownValue == newValue) {
+                                _width = 340;
+                                _height = 50;
+                                _isShow = false;
+                              } else {
+                                _width = 180;
+                                _height = 50;
+                              }
+                            }
+                          },
+                          child:  DropdownButton(
+                              underline: SizedBox(),
+                              dropdownColor:
+                              Colors.green.shade700,
+                              menuMaxHeight: 100,
+                              iconEnabledColor:
+                              HexColor(
+                                Constants()
+                                    .pastelgreen400,
+                              ),
+                              style: TextStyle(
+                                  color: HexColor(
+                                    Constants()
+                                        .pastelgreen400,
+                                  )),
+                              value: dropdownValue,
+                              items: items.map<
+                                  DropdownMenuItem<
+                                      String>>(
+                                      (String value) {
+                                    return DropdownMenuItem(
+                                        value: value,
+                                        child: txtOftravalon(
+                                            data: value,
+                                            textStyle: Constants()
+                                                .boldstylewhite(
+                                                16)));
+                                  }).toList(),
+                              onChanged:
+                                  (String? newValue) {
+                                setState(() {});
+                              }),
+                        ),
+                      )),
+                ),
+                
+                Spacer(),
               ],
             ),
             SizedBox(
