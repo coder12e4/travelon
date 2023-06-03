@@ -26,10 +26,10 @@ class location extends StatefulWidget {
 }
 
 class _locationState extends State<location> {
-  String dropdownValue = "10m";
+  String dropdownValue = "10";
   String? lat;
   String? long;
-  List<String> items = ["10m", "25m", "50m", "100m", "500m", "1KM"];
+  List<String> items = ["10", "25", "50", "100", "500", "2000"];
   bool newValue = false;
   var text = "Get Location";
 

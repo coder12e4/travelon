@@ -14,14 +14,19 @@ class homeView extends nearbyrepo{
     nearbyModel? objnearby;
 
     var response=await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/api/near"),
-        body:{
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+
+        body:json.encode({
           "lat":lat,
           "long":long,
           "km":km,
-        }
+        })
 
     );
     if(response.statusCode==200){
+     print(response.statusCode);
       print(response.body);
       var data =jsonDecode(response.body);
       objnearby = nearbyModel.fromJson(data);

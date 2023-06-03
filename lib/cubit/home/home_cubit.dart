@@ -62,12 +62,17 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> getGuestHome(String lat, String long, String km) async {
-    emit(buttonClickHomeApiLoading());
-    nearbyModel objNearBy = await objnearbyrepo.nearbylist(lat, long, km);
-    if (objNearBy.success!) {
-      emit(buttonClickHomeApiSuccess(objNearBy));
-    }else {
-      emit(buttonClickHomeApiFailed());
+
+    try{
+      emit(buttonClickHomeApiLoading());
+      nearbyModel objNearBy = await objnearbyrepo.nearbylist(lat, long, km);
+      if (objNearBy.success!) {
+        emit(buttonClickHomeApiSuccess(objNearBy));
+      }else {
+        emit(buttonClickHomeApiFailed());
+      }
+    }catch(e){
+      print(e);
     }
 
   }
