@@ -25,3 +25,14 @@ class buttonClicckOneError extends HomeState {
   buttonClicckOneError(this.k);
 
 }
+class buttonClickHomeApiLoading extends HomeState{
+
+}
+class buttonClickHomeApiSuccess extends HomeState{
+  final nearbyModel obj;
+  buttonClickHomeApiSuccess(this.obj);
+}
+class buttonClickHomeApiFailed extends HomeState{
+
+
+}

@@ -27,6 +27,8 @@ class location extends StatefulWidget {
 
 class _locationState extends State<location> {
   String dropdownValue = "10m";
+  String? lat;
+  String? long;
   List<String> items = ["10m", "25m", "50m", "100m", "500m", "1KM"];
   bool newValue = false;
   var text = "Get Location";
@@ -83,133 +85,292 @@ class _locationState extends State<location> {
                       } else if (state is buttonClicckOneLoading) {
                         //no value
                       } else if (state is buttonClicckOneSuccess) {
+                        _isShow = state.k;
+                        lat = state.latitude.toString();
+                        long = state.longitude.toString();
+                      }else if(state is buttonClicckOneError){
+                        //initiatial state calling
+                      }else if(state is buttonClickHomeApiLoading){
 
-                        _isShow =state.k;
-
+                      }else if(state is buttonClickHomeApiSuccess){
+                        nearbyModel obbj=state.obj;
+                        Constants().loadPages(homeScreen(objnearby: obbj), context);
                       }
                     },
                     child: BlocBuilder<HomeCubit, HomeState>(
                       builder: (context, state) {
-                       if(state is buttonClicckOneInitial){
-                         return GestureDetector(
-                           onTap: (){
-                             objhomecubit.getLocation();
-                             setState(() {
-                               if (_isShow = !_isShow) {
-                                 _width = 180;
-                                 _height = 50;
-                               } else {
-                                 _width = 340;
-                                 _height = 50;
-                               }
-                             });
-                           },
-                           child: AnimatedContainer(
-                               height: _height,
-                               width: _width,
-                               padding: EdgeInsets.all(10),
-                               alignment: Alignment.center,
-                               decoration: BoxDecoration(
-                                 color: _color,
-                                 borderRadius: _borderRadiusGeometry,
-                               ),
-                               duration: Duration(seconds: 1),
-                               curve: Curves.fastOutSlowIn,
-                               child:txtOftravalon(data: "Get Location",textStyle: TextStyle(color: Colors.white),) ),
-                         );
-                       }
-
+                        if (state is buttonClicckOneInitial) {
+                          return GestureDetector(
+                            onTap: () {
+                              objhomecubit.getLocation();
+                              setState(() {
+                                if (_isShow = !_isShow) {
+                                  _width = 180;
+                                  _height = 50;
+                                } else {
+                                  _width = 340;
+                                  _height = 50;
+                                }
+                              });
+                            },
+                            child: AnimatedContainer(
+                                height: _height,
+                                width: _width,
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: _color,
+                                  borderRadius: _borderRadiusGeometry,
+                                ),
+                                duration: Duration(seconds: 1),
+                                curve: Curves.fastOutSlowIn,
+                                child: txtOftravalon(
+                                  data: "Get Location",
+                                  textStyle: TextStyle(color: Colors.white),
+                                )),
+                          );
+                        }
 
                         if (state is buttonClicckOneLoading) {
-                          return Center(
-                            child: SpinKitCubeGrid(
-                              duration: Duration(seconds: 2),
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                          return Row(
+                            children: [
+                              AnimatedContainer(
+                                  height: _height,
+                                  width: _width,
+                                  padding: EdgeInsets.all(10),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: _color,
+                                    borderRadius: _borderRadiusGeometry,
+                                  ),
+                                  duration: Duration(seconds: 1),
+                                  curve: Curves.fastOutSlowIn,
+                                  child: Center(
+                                    child: SpinKitCubeGrid(
+                                      duration: Duration(seconds: 2),
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  )),
+                              Visibility(
+                                visible: _isShow,
+                                child: btnthreeTravelon(
+                                    function: () {},
+                                    height: 50,
+                                    width: 150,
+                                    childWid: DropdownButton(
+                                        underline: SizedBox(),
+                                        dropdownColor: Colors.green.shade700,
+                                        menuMaxHeight: 100,
+                                        iconEnabledColor: HexColor(
+                                          Constants().pastelgreen400,
+                                        ),
+                                        style: TextStyle(
+                                            color: HexColor(
+                                          Constants().pastelgreen400,
+                                        )),
+                                        value: dropdownValue,
+                                        items: items
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem(
+                                              value: value,
+                                              child: txtOftravalon(
+                                                  data: value,
+                                                  textStyle: Constants()
+                                                      .boldstylewhite(16)));
+                                        }).toList(),
+                                        onChanged: (String? newValue) {
+                                          setState(() {});
+                                        })),
+                              ),
+                            ],
                           );
-                        } else if (state is buttonClicckOneSuccess) {
-                          return GestureDetector(
-                              onTap: (){
+                        }
+                        else if (state is buttonClicckOneSuccess) {
+                          return Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  objhomecubit.getGuestHome(
+                                      lat!, long!, dropdownValue);
+                                },
+                                child: AnimatedContainer(
+                                    height: _height,
+                                    width: _width,
+                                    padding: EdgeInsets.all(10),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: _color,
+                                      borderRadius: _borderRadiusGeometry,
+                                    ),
+                                    duration: Duration(seconds: 1),
+                                    curve: Curves.fastOutSlowIn,
+                                    child: txtOftravalon(
+                                      data: "Go to Home",
+                                      textStyle: TextStyle(color: Colors.white),
+                                    )),
+                              ),
+                              Visibility(
+                                visible: _isShow,
+                                child: btnthreeTravelon(
+                                    function: () {},
+                                    height: 50,
+                                    width: 150,
+                                    childWid: DropdownButton(
+                                        underline: SizedBox(),
+                                        dropdownColor: Colors.green.shade700,
+                                        menuMaxHeight: 100,
+                                        iconEnabledColor: HexColor(
+                                          Constants().pastelgreen400,
+                                        ),
+                                        style: TextStyle(
+                                            color: HexColor(
+                                          Constants().pastelgreen400,
+                                        )),
+                                        value: dropdownValue,
+                                        items: items
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem(
+                                              value: value,
+                                              child: txtOftravalon(
+                                                  data: value,
+                                                  textStyle: Constants()
+                                                      .boldstylewhite(16)));
+                                        }).toList(),
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        })),
+                              ),
+                            ],
+                          );
 
-                              },
-                              child: Container());
                         } else if (state is buttonClicckOneError) {
                           return Text("try again");
-                        } else {
+                        }else if(state is buttonClickHomeApiLoading){
+                          return  Row(
+                            children: [
+                              AnimatedContainer(
+                                  height: _height,
+                                  width: _width,
+                                  padding: EdgeInsets.all(10),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: _color,
+                                    borderRadius: _borderRadiusGeometry,
+                                  ),
+                                  duration: Duration(seconds: 1),
+                                  curve: Curves.fastOutSlowIn,
+                                  child: Center(
+                                    child: SpinKitCubeGrid(
+                                      duration: Duration(seconds: 2),
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  )),
+                              Visibility(
+                                visible: _isShow,
+                                child: btnthreeTravelon(
+                                    function: () {},
+                                    height: 50,
+                                    width: 150,
+                                    childWid: DropdownButton(
+                                        underline: SizedBox(),
+                                        dropdownColor: Colors.green.shade700,
+                                        menuMaxHeight: 100,
+                                        iconEnabledColor: HexColor(
+                                          Constants().pastelgreen400,
+                                        ),
+                                        style: TextStyle(
+                                            color: HexColor(
+                                              Constants().pastelgreen400,
+                                            )),
+                                        value: dropdownValue,
+                                        items: items
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                              return DropdownMenuItem(
+                                                  value: value,
+                                                  child: txtOftravalon(
+                                                      data: value,
+                                                      textStyle: Constants()
+                                                          .boldstylewhite(16)));
+                                            }).toList(),
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        })),
+                              ),
+                            ],
+                          );
+                        }else if(state is buttonClickHomeApiFailed){
+                          return  Row(
+                            children: [
+                              AnimatedContainer(
+                                  height: _height,
+                                  width: _width,
+                                  padding: EdgeInsets.all(10),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: _color,
+                                    borderRadius: _borderRadiusGeometry,
+                                  ),
+                                  duration: Duration(seconds: 1),
+                                  curve: Curves.fastOutSlowIn,
+                                  child: Center(
+                                    child: Text("try again"),
+                                  )),
+                              Visibility(
+                                visible: _isShow,
+                                child: btnthreeTravelon(
+                                    function: () {},
+                                    height: 50,
+                                    width: 150,
+                                    childWid: DropdownButton(
+                                        underline: SizedBox(),
+                                        dropdownColor: Colors.green.shade700,
+                                        menuMaxHeight: 100,
+                                        iconEnabledColor: HexColor(
+                                          Constants().pastelgreen400,
+                                        ),
+                                        style: TextStyle(
+                                            color: HexColor(
+                                              Constants().pastelgreen400,
+                                            )),
+                                        value: dropdownValue,
+                                        items: items
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                              return DropdownMenuItem(
+                                                  value: value,
+                                                  child: txtOftravalon(
+                                                      data: value,
+                                                      textStyle: Constants()
+                                                          .boldstylewhite(16)));
+                                            }).toList(),
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            dropdownValue = newValue!;
+                                          });
+                                        })),
+                              ),
+                            ],
+                          );
+                        }
+
+
+
+                        else {
                           return Container();
                         }
                       },
                     ),
                   ),
                 ),
-
-                Visibility(
-                  visible: _isShow,
-                  child: btnthreeTravelon(
-                      function: () {
-
-                      },
-                      height: 50,
-                      width: 150,
-                      childWid: BlocProvider<HomeCubit>(
-                        create: (context) => objhomecubit,
-                        child: BlocListener<HomeCubit,
-                            HomeState>(
-                          listener: (context, state) {
-                            if (state
-                            is buttonClicckOneLoading) {
-                              //
-                            } else if (state
-                            is buttonClicckOneSuccess) {
-                              dropdownValue == newValue;
-                              text = "Go to Home";
-                              if (dropdownValue == newValue) {
-                                _width = 340;
-                                _height = 50;
-                                _isShow = false;
-                              } else {
-                                _width = 180;
-                                _height = 50;
-                              }
-                            }
-                          },
-                          child:  DropdownButton(
-                              underline: SizedBox(),
-                              dropdownColor:
-                              Colors.green.shade700,
-                              menuMaxHeight: 100,
-                              iconEnabledColor:
-                              HexColor(
-                                Constants()
-                                    .pastelgreen400,
-                              ),
-                              style: TextStyle(
-                                  color: HexColor(
-                                    Constants()
-                                        .pastelgreen400,
-                                  )),
-                              value: dropdownValue,
-                              items: items.map<
-                                  DropdownMenuItem<
-                                      String>>(
-                                      (String value) {
-                                    return DropdownMenuItem(
-                                        value: value,
-                                        child: txtOftravalon(
-                                            data: value,
-                                            textStyle: Constants()
-                                                .boldstylewhite(
-                                                16)));
-                                  }).toList(),
-                              onChanged:
-                                  (String? newValue) {
-                                setState(() {});
-                              }),
-                        ),
-                      )),
-                ),
-                
                 Spacer(),
               ],
             ),
