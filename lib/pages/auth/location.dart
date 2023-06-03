@@ -181,7 +181,11 @@ class _locationState extends State<location> {
                                                       .boldstylewhite(16)));
                                         }).toList(),
                                         onChanged: (String? newValue) {
-                                          setState(() {});
+                                          setState(() {
+
+                                            dropdownValue=newValue!;
+
+                                          });
                                         })),
                               ),
                             ],

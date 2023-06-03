@@ -97,6 +97,7 @@ class NearPlaces {
     totalRating = json['totalRating'];
     iV = json['__v'];
     image = json['image'].cast<String>();
+
     distanceInMeters = json['distance in meters'];
   }
 
