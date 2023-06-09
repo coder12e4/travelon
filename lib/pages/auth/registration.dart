@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:travlon/cubit/register/register_cubit.dart';
+import 'package:travlon/models/registermodel.dart';
+import 'package:travlon/pages/auth/loginPage.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/edttravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
+import '../../repository/registerRepo.dart';
 import '../../utils/widgets/btnTravelon.dart';
 import '../homeScreen.dart';
 
@@ -31,10 +36,23 @@ class _registeroneState extends State<registerone> {
   bool confirmpasswordVisible = false;
 
   String dropdownValue = "BloodGroup";
-  List<String> items =["BloodGroup","A+","b+","AB+","O+","A-","B-","AB-","o+"];
+  List<String> items = [
+    "BloodGroup",
+    "A+",
+    "b+",
+    "AB+",
+    "O+",
+    "A-",
+    "B-",
+    "AB-",
+    "o+"
+  ];
+
+  late RegisterCubit objregistercubit;
 
   @override
   void initState() {
+    objregistercubit = RegisterCubit(RegisterInitial(), registration());
     passwordVisible = true;
     confirmpasswordVisible = true;
     // TODO: implement initState
@@ -96,16 +114,13 @@ class _registeroneState extends State<registerone> {
                 height: MediaQuery.of(context).size.height * .87,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30),
-                      topLeft: Radius.circular(30)),
-                  gradient: LinearGradient(colors: [Colors.grey,Colors.white],
-                  begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter
-                  )
-                ),
-
-
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30)),
+                    gradient: LinearGradient(
+                        colors: [Colors.grey, Colors.white],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,29 +217,32 @@ class _registeroneState extends State<registerone> {
                                 ("${selectedDate.toLocal()}".split(' ')[0]),
                           ),
                         ),
-                       Container(
-                              padding: EdgeInsets.only(left: 10),
+                        Container(
+                          padding: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
-                            color:Colors.green.shade200,
-                            borderRadius: Constants().radiusreturningthree(),
-                          border: Border.all(color: HexColor(Constants().pastelgreen700),)
-                          ),
+                              color: Colors.green.shade200,
+                              borderRadius: Constants().radiusreturningthree(),
+                              border: Border.all(
+                                color: HexColor(Constants().pastelgreen700),
+                              )),
                           width: 170,
                           height: 40,
-                          child:DropdownButton(
+                          child: DropdownButton(
                             iconSize: 20,
-                            iconEnabledColor:  HexColor(Constants().pastelgreen700),
-
-
+                            iconEnabledColor:
+                                HexColor(Constants().pastelgreen700),
                             menuMaxHeight: 100,
                             value: dropdownValue,
-                            items: items.map<DropdownMenuItem<String>>((String value){
+                            items: items
+                                .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem(
-                                  value:  value,
-                                  child: txtOftravalon(data: value, textStyle: Constants().Regularstyleblack(14))
-                                  );
+                                  value: value,
+                                  child: txtOftravalon(
+                                      data: value,
+                                      textStyle:
+                                          Constants().Regularstyleblack(14)));
                             }).toList(),
-                            onChanged: (String? newValue){
+                            onChanged: (String? newValue) {
                               setState(() {
                                 dropdownValue = newValue!;
                               });
@@ -352,15 +370,49 @@ class _registeroneState extends State<registerone> {
                       height: 50,
                       width: MediaQuery.of(context).size.width,
                       child: btnthreeTravelon(
-                        function: () {
-                          /*   Constants().loadPages(homeScreen(), context);
-                       */
-                        },
+                        function: () {},
                         height: 50,
                         width: double.infinity,
-                        childWid: txtOftravalon(
-                            data: "Sign In",
-                            textStyle: Constants().boldstylewhite(16)),
+                        childWid: BlocProvider<RegisterCubit>(
+                          create: (context) => objregistercubit,
+                          child: BlocListener<RegisterCubit, RegisterState>(
+                            listener: (context, state) {
+                              if (state is RegisterInitial) {}
+                              else if (state is RegisterLoading) {}
+                              else if (state is RegisterSuccess) {}
+                              else if (state is RegisterError) {}
+                              else if (state is RegInitial) {}
+                              else if (state is RegSuccess) {
+                                registerModel objNew = state.obj;
+                                objregistercubit.regFinal(
+                                    "amal",
+                                    "amalsekhar1@gmail.com",
+                                    "khfdsdhfkdkfd",
+                                    673517,
+                                    05051997,
+                                    8075756471,
+                                    "O",
+                                    "amal@123",
+                                    "amal@123",
+                                    1234);
+                                Constants().loadPages(login(), context);
+                              }
+                              child:
+                              BlocBuilder<RegisterCubit, RegisterState>(
+                                builder: (context, state) {
+                                  if (state is RegisterLoading) {
+                                    return CircularProgressIndicator();
+                                  } else {
+                                    return txtOftravalon(
+                                        data: "Sign In",
+                                        textStyle:
+                                        Constants().boldstylewhite(16));
+                                  }
+                                },
+
+                              );
+                            } ),
+                        ),
                       ),
                     ),
                     Spacer(
