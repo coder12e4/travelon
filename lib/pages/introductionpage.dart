@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:travlon/pages/duo2.dart';
+import 'package:travlon/pages/profilepage.dart';
 
 
 

@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:travlon/pages/homeTabs/placeView.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 import '../../models/nearbyModel.dart';
@@ -21,6 +22,15 @@ class nearBy extends StatefulWidget {
 
 class _nearByState extends State<nearBy> {
   bool _enabled = true;
+
+  void _launchMapsUrl(double lat, double lon) async {
+    final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lon';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
 
   List<NearPlaces>? nearPlaces=[];
@@ -42,6 +52,8 @@ class _nearByState extends State<nearBy> {
             itemCount: nearPlaces!.length,
             itemBuilder: (context, index) {
                 return GestureDetector(
+
+
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: Constants().radiusreturning(),
@@ -164,7 +176,14 @@ class _nearByState extends State<nearBy> {
                       ),
                     ),
                     onTap: () {
-                      Constants().loadPages(placeView(), context);
+                      _launchMapsUrl(
+                          nearPlaces![index].location!.coordinates![1],
+                          nearPlaces![index].location!.coordinates![0]
+                      );
+
+                  /*    Constants().loadPages(placeView(), context);
+                  */
+
                     });
 
             }

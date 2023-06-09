@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart'as http;
+import 'package:travlon/models/otpModel.dart';
 
 import '../models/registermodel.dart';
 
@@ -16,10 +17,11 @@ abstract class registerRepo{
       var passWord,
       var Confirmpassword,
       int otp,
-
-
-
       );
+
+
+  Future<optModel>sentOtp(String email);
+
 }
 class registration extends registerRepo{
   Future<registerModel>register(
@@ -34,6 +36,7 @@ class registration extends registerRepo{
       var Confirmpassword,
       int otp,)async{
     registerModel? objregister;
+
     var response = await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/registration"),
         body:json.encode({
         "name" : name,
@@ -58,5 +61,26 @@ class registration extends registerRepo{
       print("error");
     }
     return objregister!;
+  }
+
+  @override
+  Future<optModel> sentOtp(String email)async {
+    optModel? objotp;
+    var response = await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/otp"),
+        body:json.encode({
+          "email" : email,
+
+        })
+    );
+    if (response.statusCode==200){
+      print(response.statusCode);
+      print(response.body);
+      var data= jsonDecode(response.body);
+       objotp = optModel.fromJson(data);
+
+    }else{
+      print("error");
+    }
+    return  objotp!;
   }
 }

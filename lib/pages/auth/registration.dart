@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:travlon/cubit/register/register_cubit.dart';
 import 'package:travlon/models/registermodel.dart';
@@ -27,7 +28,7 @@ class _registeroneState extends State<registerone> {
   TextEditingController phonenumber = TextEditingController();
   TextEditingController bloodGroup = TextEditingController();
   TextEditingController pinNumber = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
 
@@ -254,9 +255,74 @@ class _registeroneState extends State<registerone> {
                     Spacer(),
                     SizedBox(
                       height: 40,
-                      child: edttravlon(
-                        textEditingController: email,
-                        hinttext: "Email",
+                      child: Row(
+                        children: [
+
+                          edttravlon(
+                            textEditingController: emailController,
+                            hinttext: "Email",
+                          ), btnoneTravelon(function: (){
+                            
+                            objregistercubit.sentOtp(emailController.text.toString());
+                            
+                          }, childWid: BlocProvider<RegisterCubit>(
+                            create: (context) => objregistercubit,
+                            child: BlocListener<RegisterCubit, RegisterState>(
+                              listener: (context, state) {
+                                if (state is otpRegInitial) {}
+                                else if (state is otpRegLoading) {}
+                                else if (state is otpRegSuccess) {
+                                  Fluttertoast.showToast(
+                                      msg: "otp sent to $emailController ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0
+                                  );
+                                }
+                                else if (state is otpRegError) {
+                                  Fluttertoast.showToast(
+                                      msg: "otp not sent to $emailController try again",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0
+                                  );
+                                }else{
+
+                                }
+
+
+                              },
+                              child: BlocBuilder<RegisterCubit, RegisterState>(
+                                builder: (context, state) {
+                                  if (state is otpRegInitial) {
+                                    return Text("Sent OTP");
+                                  }
+                                  else if (state is otpRegLoading) {
+
+                                    return CircularProgressIndicator();
+                                  }
+                                  else if (state is otpRegSuccess) {
+                                    return Text("success");
+
+                                  }
+                                  else if (state is otpRegError) {
+                                        return Text("resent");
+                                  }else{
+return Text("!");
+                                  }
+                                  },
+                              ),
+                            ),
+                          ))
+
+
+                        ],
                       ),
                     ),
                     Spacer(),
@@ -379,10 +445,7 @@ class _registeroneState extends State<registerone> {
                             listener: (context, state) {
                               if (state is RegisterInitial) {}
                               else if (state is RegisterLoading) {}
-                              else if (state is RegisterSuccess) {}
-                              else if (state is RegisterError) {}
-                              else if (state is RegInitial) {}
-                              else if (state is RegSuccess) {
+                              else if (state is RegisterSuccess) {
                                 registerModel objNew = state.obj;
                                 objregistercubit.regFinal(
                                     "amal",
@@ -396,7 +459,9 @@ class _registeroneState extends State<registerone> {
                                     "amal@123",
                                     1234);
                                 Constants().loadPages(login(), context);
+
                               }
+
                               child:
                               BlocBuilder<RegisterCubit, RegisterState>(
                                 builder: (context, state) {
