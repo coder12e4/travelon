@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:travlon/cubit/home/home_cubit.dart';
+import 'package:travlon/models/loginmodel.dart';
 import 'package:travlon/models/nearbyModel.dart';
 import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/repository/loginrepository.dart';
@@ -24,10 +26,12 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-
-  late HomeCubit objhomecubit;
+bool passwordVisible = false;
+  late LogincubitCubit objlogincubit;
   @override
   void initState() {
+    objlogincubit = LogincubitCubit(LogincubitInitial(), LoginNew());
+passwordVisible =true;
   /* objhomecubit =HomeCubit(HomeInitial(),homeView() );
   */  // TODO: implement initState
     super.initState();
@@ -47,7 +51,10 @@ class _loginState extends State<login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 txtOftravalon(
-                    data: "travelOn",
+                    data: "Travel",
+                    textStyle: Constants().boldstylegreenmon(30)),
+                txtOftravalon(
+                    data: "On",
                     textStyle: Constants().boldstyleblack(30)),
               ],
             ),
@@ -59,7 +66,7 @@ class _loginState extends State<login> {
               children: [
                 txtOftravalon(
                     data: "Login to your account",
-                    textStyle: Constants().mediumstyleblack(24)),
+                    textStyle: Constants(). mediumstyleblackmon(24)),
               ],
             ),
             SizedBox(
@@ -72,9 +79,46 @@ class _loginState extends State<login> {
             SizedBox(
               height: 10,
             ),
-            edttravlon(
-              textEditingController: password,
-              hinttext: "Password",
+            TextField(
+
+              controller: password,
+              obscureText: passwordVisible,
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: Constants().radiusreturningthree(),
+                    borderSide: BorderSide(
+                      width: .5,
+                      color: HexColor(Constants().pastelgreen400),
+                    )),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: Constants().radiusreturningthree(),
+                  borderSide: BorderSide(
+
+                    color: HexColor(Constants().pastelgreen600),
+                  ),
+                ),
+                hintText: "Password",
+                hintStyle: Constants().RegularstyleblackMon(14),
+                helperStyle: TextStyle(color: Colors.green),
+                suffixIcon: IconButton(
+                  icon: Icon(passwordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off,color: HexColor(Constants().pastelgreen300),),
+                  onPressed: () {
+                    setState(
+                          () {
+                        passwordVisible = !passwordVisible;
+                      },
+                    );
+                  },
+                ),
+                alignLabelWithHint: false,
+              ),
+              keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
             ),
             SizedBox(
               height: 30,
@@ -84,13 +128,13 @@ class _loginState extends State<login> {
               children: [
                 txtOftravalon(
                     data: "Forgot Password?",
-                    textStyle: Constants().mediumstyleblack(14)),
+                    textStyle: Constants(). mediumstyleblackmon(14)),
               ],
             ),
             SizedBox(
               height: 20,
             ),
-           /* Container(
+            Container(
               height: 50,
               width: MediaQuery.of(context).size.width,
               child: btnthreeTravelon(
@@ -99,26 +143,21 @@ class _loginState extends State<login> {
                   },
                   height: 50,
                   width: double.infinity,
-                  childWid: BlocProvider<HomeCubit>(
-                    create: (context) => objhomecubit,
-                    child: BlocListener<HomeCubit, HomeState>(
+                  childWid: BlocProvider<LogincubitCubit>(
+                    create: (context) => objlogincubit,
+                    child: BlocListener<LogincubitCubit, LogincubitState>(
                       listener: (context, state) {
-                        if (state is HomeSuccess) {
-                          nearbyModel objhome = state.objnearby;
-                          Constants().loadPages(homeScreen(objnearby:objhome), context);
+                        if (state is LogincubitSuccess) {
+                          loginModel objlatest = state.loginobj;
+                        objlogincubit.login("amalsekhar1@gmail.com","amal@123", 10,10, 25);
+                        Constants().loadPages(homeScreen(objnearby: ,), context);
                         }
                         // TODO: implement listener
                       },
-                      child: BlocBuilder<HomeCubit, HomeState>(
+                      child: BlocBuilder<LogincubitCubit,LogincubitState>(
                         builder: (context, state) {
-                          if (state is HomeLoading) {
-                            return Center(
-                              child: SpinKitCubeGrid(
-                                duration: Duration(seconds: 2),
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            );
+                          if (state is LogincubitLoading) {
+                            return Constants().spinkit();
                           } else {
                             return txtOftravalon(
                                 data: "Login",
@@ -129,7 +168,8 @@ class _loginState extends State<login> {
                     ),
                   )),
             ),
-           */ SizedBox(
+
+            SizedBox(
               height: 20,
             ),
             Row(
@@ -137,7 +177,7 @@ class _loginState extends State<login> {
               children: [
                 txtOftravalon(
                     data: "Not a member?",
-                    textStyle: Constants().mediumstyleblack(14)),
+                    textStyle: Constants(). mediumstyleblackmon(14)),
                 GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>registerone()));

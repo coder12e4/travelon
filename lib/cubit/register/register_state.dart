@@ -21,13 +21,7 @@ class RegisterSuccess extends RegisterState {
 class RegisterError extends RegisterState {}
 
 
-class otpRegInitial extends RegisterState{
-
-}
+class otpRegInitial extends RegisterState{}
 class otpRegLoading extends RegisterState{}
-class otpRegSuccess extends RegisterState{
-
-}
-class otpRegError extends RegisterState{
-
-}
+class otpRegSuccess extends RegisterState{}
+class otpRegError extends RegisterState{}
