@@ -1,6 +1,40 @@
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import '../models/loginmodel.dart';
+abstract class loginRepo{
+  Future<loginModel>login(String email,String password,double lat,double long,double km);
+  
+}
+class LoginNew extends loginRepo{
+  Future<loginModel>login(String email,String password,double lat,double long,double km)async{
+    loginModel? objlogin;
+    var response = await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/login"),
+    body:json.encode({
+      "email":email,
+      "passwrd":password,
+      "lat":lat,
+      "long":long,
+      "km":km,
+    })
+    );
+    if (response.statusCode==200){
+      print(response.statusCode);
+      print(response.body);
+      var data =jsonDecode(response.body);
+      objlogin =loginModel.fromJson(data);
+    }else {
+      print("error");
+
+    }
+    return objlogin!;
+  }
+}
+
+
+
+
 /*
 
 abstract class loginRepo{

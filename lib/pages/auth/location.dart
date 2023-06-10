@@ -252,9 +252,11 @@ class _locationState extends State<location> {
                             ],
                           );
 
-                        } else if (state is buttonClicckOneError) {
+                        }
+                        else if (state is buttonClicckOneError) {
                           return Text("try again");
-                        }else if(state is buttonClickHomeApiLoading){
+                        }
+                        else if(state is buttonClickHomeApiLoading){
                           return  Row(
                             children: [
                               AnimatedContainer(
@@ -269,11 +271,12 @@ class _locationState extends State<location> {
                                   duration: Duration(seconds: 1),
                                   curve: Curves.fastOutSlowIn,
                                   child: Center(
-                                    child: SpinKitCubeGrid(
-                                      duration: Duration(seconds: 2),
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
+                                    child: Center(
+                                        child: Constants().spinkit()
+                                    )
+
+
+                                    ,
                                   )),
                               Visibility(
                                 visible: _isShow,
@@ -311,7 +314,8 @@ class _locationState extends State<location> {
                               ),
                             ],
                           );
-                        }else if(state is buttonClickHomeApiFailed){
+                        }
+                        else if(state is buttonClickHomeApiFailed){
                           return  Row(
                             children: [
                               AnimatedContainer(
@@ -365,9 +369,6 @@ class _locationState extends State<location> {
                             ],
                           );
                         }
-
-
-
                         else {
                           return Container();
                         }
@@ -375,7 +376,7 @@ class _locationState extends State<location> {
                     ),
                   ),
                 ),
-                Spacer(),
+                
               ],
             ),
             SizedBox(

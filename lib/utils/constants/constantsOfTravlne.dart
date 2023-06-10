@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -29,9 +30,16 @@ class Constants {
     return TextStyle(
         fontFamily: "bold", fontSize: size, color: HexColor(pastelgreen500));
   }
+  boldstylegreenmon(double size) {
+    return TextStyle(
+        fontFamily: "Bold", fontSize: size, color: HexColor(pastelgreen500));
+  }
 
   boldstyleblack(double size) {
     return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.black);
+  }
+  boldstyleblackmon(double size) {
+    return TextStyle(fontFamily: "Bold", fontSize: size, color: Colors.black);
   }
 
   boldstylewhite(double size) {
@@ -43,7 +51,7 @@ class Constants {
 
   Stylemediuemgreen(double size) {
     return TextStyle(
-      fontFamily: "semibold",
+      fontFamily: "Medium",
       color: HexColor(pastelgreen400),
       fontSize: size,
     );
@@ -68,6 +76,13 @@ class Constants {
   mediumstyleblack(double size) {
     return TextStyle(
       fontFamily: "semibold",
+      color: Colors.black,
+      fontSize: size,
+    );
+  }
+  mediumstyleblackmon(double size) {
+    return TextStyle(
+      fontFamily: "Medium",
       color: Colors.black,
       fontSize: size,
     );
@@ -234,27 +249,18 @@ decor(){
     Icons.sports_gymnastics,
   ];
 
-  List<dynamic>carimg=[
-   "assets/images/ben.jpg",
-   "assets/images/ben.jpg",
-   "assets/images/ben.jpg",
-   "assets/images/ben.jpg",
-   "assets/images/ben.jpg",
-   "assets/images/ben.jpg",
-   "assets/images/ben.jpg",
-  ];
+  spinkit(){
+    return SpinKitSpinningLines(
+      duration: Duration(seconds: 2),
+      color: Colors.white,
+      size: 20,
+    );
+  }
 
-List<dynamic>carnames=[
-  'A-Class',
-  'E-Class',
-  'C-Class',
-  'S-Class',
-  'GLA',
-  'GLB',
-  'GLE',
-  'GLC',
-  'GLS'
-];
+
+
+
+
 
 
 

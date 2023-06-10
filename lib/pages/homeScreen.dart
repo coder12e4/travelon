@@ -14,7 +14,7 @@ import 'homeTabs/travloglList.dart';
 class homeScreen extends StatefulWidget {
   final nearbyModel objnearby;
 
-  const homeScreen({Key? key, required this.objnearby}) : super(key: key);
+  const homeScreen({Key? key,required this.objnearby}) : super(key: key);
 
   @override
   State<homeScreen> createState() => _homeScreenState();

@@ -14,31 +14,38 @@ class edttravlon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: textEditingController,
-      textAlignVertical: TextAlignVertical.bottom,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor:  Colors.green.shade200,
-        hintText: hinttext,
-        hintStyle: Constants(). Regularstyleblack(14),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: Constants().radiusreturningthree(),
-          borderSide: BorderSide(
-            width: 1,
-            color: Colors.green.shade700,
+    return Container(
+      width: 400,
+
+      child: TextField(
+        controller: textEditingController,
+        textAlignVertical: TextAlignVertical.bottom,
+        decoration: InputDecoration(
+
+          filled: true,
+          fillColor: Colors.white,
+          hintText: hinttext,
+          hintStyle: Constants().RegularstyleblackMon(14),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: Constants().radiusreturningthree(),
+            borderSide: BorderSide(
+              width: .5,
+              color: HexColor(Constants().pastelgreen400),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: Constants().radiusreturningthree(),
+            borderSide: BorderSide(
+              color: HexColor(Constants().pastelgreen600),
+            ),
           ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: Constants().radiusreturningthree(),
-          borderSide: BorderSide(
-            color: HexColor(Constants().pastelgreen700),
-          ),
-        ),
+
       ),
     );
   }
 }
+
 class datetxt extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hinttext;
@@ -47,29 +54,28 @@ class datetxt extends StatelessWidget {
   const datetxt({
     Key? key,
     required this.textEditingController,
-    required this.hinttext, required this.function,
+    required this.hinttext,
+    required this.function,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onTap: (){
+      onTap: () {
         function();
       },
       controller: textEditingController,
-
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.green.shade200,
+        fillColor: Colors.white,
         hintText: hinttext,
-        hintStyle: Constants(). RegularstyleblackMon(14),
-
+        hintStyle: Constants().RegularstyleblackMon(14),
         enabledBorder: OutlineInputBorder(
           borderRadius: Constants().radiusreturningthree(),
           borderSide: BorderSide(
-            width: 1,
-            color: Colors.green.shade700,
+            width: .5,
+            color:HexColor(Constants().pastelgreen400),
           ),
         ),
         focusedBorder: OutlineInputBorder(
