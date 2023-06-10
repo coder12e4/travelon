@@ -35,6 +35,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       print(e);
     }
   }
+
   // otp senting funtion
 Future<void>sentOtp(String email)async{
     try{
@@ -45,7 +46,6 @@ Future<void>sentOtp(String email)async{
       emit(otpRegError());
       print(e);
       emit(otpRegInitial());
-
     }
 }
 

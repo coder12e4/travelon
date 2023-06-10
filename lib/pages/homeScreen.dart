@@ -12,9 +12,11 @@ import 'homeTabs/nearestplaceList.dart';
 import 'homeTabs/travloglList.dart';
 
 class homeScreen extends StatefulWidget {
-  final nearbyModel objnearby;
 
-  const homeScreen({Key? key,required this.objnearby}) : super(key: key);
+  final List<NearPlaces>? nearPlaces ;
+  final List<TravelLogs>? travelLogs ;
+
+  const homeScreen({Key? key, this.nearPlaces, this.travelLogs}) : super(key: key);
 
   @override
   State<homeScreen> createState() => _homeScreenState();
@@ -42,8 +44,7 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   void initState() {
-    objnearby = widget.objnearby;
-    data = objnearby!.data;
+
 
 
     String? sId;
@@ -60,8 +61,8 @@ class _homeScreenState extends State<homeScreen> {
     double? distanceInMeters;
 
    // image =objnearby!.data!;
-     nearPlaces = objnearby!.data!.nearPlaces;
-     travelLogs = objnearby!.data!.travelLogs;
+     nearPlaces = widget.nearPlaces;
+     travelLogs = widget.travelLogs;
 
 
 

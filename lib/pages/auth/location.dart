@@ -94,7 +94,7 @@ class _locationState extends State<location> {
 
                       }else if(state is buttonClickHomeApiSuccess){
                         nearbyModel obbj=state.obj;
-                        Constants().loadPages(homeScreen(objnearby: obbj), context);
+                        Constants().loadPages(homeScreen(nearPlaces: obbj.data!.nearPlaces!,travelLogs: obbj.data!.travelLogs!,), context);
                       }
                     },
                     child: BlocBuilder<HomeCubit, HomeState>(

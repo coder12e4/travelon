@@ -148,9 +148,8 @@ passwordVisible =true;
                     child: BlocListener<LogincubitCubit, LogincubitState>(
                       listener: (context, state) {
                         if (state is LogincubitSuccess) {
-                          loginModel objlatest = state.loginobj;
-                        objlogincubit.login("amalsekhar1@gmail.com","amal@123", 10,10, 25);
-                        Constants().loadPages(homeScreen(objnearby: ,), context);
+                          loginModel? objlatest = state.loginobj;
+                          Constants().loadPages(homeScreen( nearPlaces: objlatest.data!.nearPlaces,travelLogs:objlatest.data!.travelLogs,), context);
                         }
                         // TODO: implement listener
                       },
