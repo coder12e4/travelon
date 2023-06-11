@@ -88,13 +88,17 @@ class _locationState extends State<location> {
                         _isShow = state.k;
                         lat = state.latitude.toString();
                         long = state.longitude.toString();
-                      }else if(state is buttonClicckOneError){
+                      } else if (state is buttonClicckOneError) {
                         //initiatial state calling
-                      }else if(state is buttonClickHomeApiLoading){
-
-                      }else if(state is buttonClickHomeApiSuccess){
-                        nearbyModel obbj=state.obj;
-                        Constants().loadPages(homeScreen(nearPlaces: obbj.data!.nearPlaces!,travelLogs: obbj.data!.travelLogs!,), context);
+                      } else if (state is buttonClickHomeApiLoading) {
+                      } else if (state is buttonClickHomeApiSuccess) {
+                        nearbyModel obbj = state.obj;
+                        Constants().loadPages(
+                            homeScreen(
+                              nearPlaces: obbj.data!.nearPlaces!,
+                              travelLogs: obbj.data!.travelLogs!,
+                            ),
+                            context);
                       }
                     },
                     child: BlocBuilder<HomeCubit, HomeState>(
@@ -182,16 +186,13 @@ class _locationState extends State<location> {
                                         }).toList(),
                                         onChanged: (String? newValue) {
                                           setState(() {
-
-                                            dropdownValue=newValue!;
-
+                                            dropdownValue = newValue!;
                                           });
                                         })),
                               ),
                             ],
                           );
-                        }
-                        else if (state is buttonClicckOneSuccess) {
+                        } else if (state is buttonClicckOneSuccess) {
                           return Row(
                             children: [
                               GestureDetector(
@@ -251,13 +252,38 @@ class _locationState extends State<location> {
                               ),
                             ],
                           );
-
-                        }
-                        else if (state is buttonClicckOneError) {
-                          return Text("try again");
-                        }
-                        else if(state is buttonClickHomeApiLoading){
-                          return  Row(
+                        } else if (state is buttonClicckOneError) {
+                          return  GestureDetector(
+                            onTap: () {
+                              objhomecubit.getLocation();
+                              setState(() {
+                                if (_isShow = !_isShow) {
+                                  _width = 180;
+                                  _height = 50;
+                                } else {
+                                  _width = 340;
+                                  _height = 50;
+                                }
+                              });
+                            },
+                            child: AnimatedContainer(
+                                height: _height,
+                                width: _width,
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: _color,
+                                  borderRadius: _borderRadiusGeometry,
+                                ),
+                                duration: Duration(seconds: 1),
+                                curve: Curves.fastOutSlowIn,
+                                child: txtOftravalon(
+                                  data: "Get Location",
+                                  textStyle: TextStyle(color: Colors.white),
+                                )),
+                          );
+                        } else if (state is buttonClickHomeApiLoading) {
+                          return Row(
                             children: [
                               AnimatedContainer(
                                   height: _height,
@@ -271,12 +297,7 @@ class _locationState extends State<location> {
                                   duration: Duration(seconds: 1),
                                   curve: Curves.fastOutSlowIn,
                                   child: Center(
-                                    child: Center(
-                                        child: Constants().spinkit()
-                                    )
-
-
-                                    ,
+                                    child: Center(child: Constants().spinkit()),
                                   )),
                               Visibility(
                                 visible: _isShow,
@@ -293,19 +314,19 @@ class _locationState extends State<location> {
                                         ),
                                         style: TextStyle(
                                             color: HexColor(
-                                              Constants().pastelgreen400,
-                                            )),
+                                          Constants().pastelgreen400,
+                                        )),
                                         value: dropdownValue,
                                         items: items
                                             .map<DropdownMenuItem<String>>(
                                                 (String value) {
-                                              return DropdownMenuItem(
-                                                  value: value,
-                                                  child: txtOftravalon(
-                                                      data: value,
-                                                      textStyle: Constants()
-                                                          .boldstylewhite(16)));
-                                            }).toList(),
+                                          return DropdownMenuItem(
+                                              value: value,
+                                              child: txtOftravalon(
+                                                  data: value,
+                                                  textStyle: Constants()
+                                                      .boldstylewhite(16)));
+                                        }).toList(),
                                         onChanged: (String? newValue) {
                                           setState(() {
                                             dropdownValue = newValue!;
@@ -314,9 +335,8 @@ class _locationState extends State<location> {
                               ),
                             ],
                           );
-                        }
-                        else if(state is buttonClickHomeApiFailed){
-                          return  Row(
+                        } else if (state is buttonClickHomeApiFailed) {
+                          return Row(
                             children: [
                               AnimatedContainer(
                                   height: _height,
@@ -347,19 +367,19 @@ class _locationState extends State<location> {
                                         ),
                                         style: TextStyle(
                                             color: HexColor(
-                                              Constants().pastelgreen400,
-                                            )),
+                                          Constants().pastelgreen400,
+                                        )),
                                         value: dropdownValue,
                                         items: items
                                             .map<DropdownMenuItem<String>>(
                                                 (String value) {
-                                              return DropdownMenuItem(
-                                                  value: value,
-                                                  child: txtOftravalon(
-                                                      data: value,
-                                                      textStyle: Constants()
-                                                          .boldstylewhite(16)));
-                                            }).toList(),
+                                          return DropdownMenuItem(
+                                              value: value,
+                                              child: txtOftravalon(
+                                                  data: value,
+                                                  textStyle: Constants()
+                                                      .boldstylewhite(16)));
+                                        }).toList(),
                                         onChanged: (String? newValue) {
                                           setState(() {
                                             dropdownValue = newValue!;
@@ -368,15 +388,13 @@ class _locationState extends State<location> {
                               ),
                             ],
                           );
-                        }
-                        else {
+                        } else {
                           return Container();
                         }
                       },
                     ),
                   ),
                 ),
-                
               ],
             ),
             SizedBox(

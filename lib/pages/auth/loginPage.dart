@@ -139,6 +139,7 @@ passwordVisible =true;
               width: MediaQuery.of(context).size.width,
               child: btnthreeTravelon(
                   function: () {
+                    objlogincubit.login( username.text, password.text, 10);
                        // objhomecubit.nearby();
                   },
                   height: 50,
