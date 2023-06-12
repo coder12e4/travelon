@@ -18,11 +18,9 @@ class LogincubitCubit extends Cubit<LogincubitState> {
   String latitude="";
   String longitude="";
 
-  Future<void> login(
-      String email, String password, double km) async {
+  Future<void> login( String email, String password, double km) async {
     try {
       emit(LogincubitLoading());
-      getLocation();
       print(latitude+"   "+longitude);
       loginModel objNew = await objloginrepo.login(email, password, latitude, longitude, 20);
       emit(LogincubitSuccess(objNew));
@@ -33,7 +31,7 @@ class LogincubitCubit extends Cubit<LogincubitState> {
     }
   }
 
-  void getLocation() async {
+  void getLocation(String email, String password, double km) async {
     _determinePosition().then((value) async {
     latitude=value.latitude.toString();
     longitude=value.longitude.toString();
@@ -51,6 +49,8 @@ class LogincubitCubit extends Cubit<LogincubitState> {
       String address = "$subLocality$locality,$administrativeArea";
 */
       // parser.saveLatLng(value.latitude, value.longitude, address);
+
+    login(email,password,km);
     }).catchError((error) async {
       await Geolocator.openLocationSettings();
     });

@@ -13,7 +13,7 @@ class LoginNew extends loginRepo{
     var response = await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/login"),
     body:json.encode({
       "email":email,
-      "passwrd":password,
+      "password":password,
       "lat":lat,
       "long":long,
       "km":km,
@@ -26,7 +26,6 @@ class LoginNew extends loginRepo{
       objlogin =loginModel.fromJson(data);
     }else {
       print("error");
-
     }
     return objlogin!;
   }
