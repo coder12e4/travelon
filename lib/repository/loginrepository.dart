@@ -17,7 +17,9 @@ class LoginNew extends loginRepo{
       "lat":lat,
       "long":long,
       "km":km,
-    })
+    }), headers: <String, String>{
+          'Content-Type': 'application/json',
+        }
     );
     if (response.statusCode==200){
       print(response.statusCode);
