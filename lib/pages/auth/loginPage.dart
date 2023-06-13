@@ -6,6 +6,7 @@ import 'package:travlon/cubit/home/home_cubit.dart';
 import 'package:travlon/models/loginmodel.dart';
 import 'package:travlon/models/nearbyModel.dart';
 import 'package:travlon/pages/auth/registration.dart';
+import 'package:travlon/pages/forgotpassword.dart';
 import 'package:travlon/repository/loginrepository.dart';
 import 'package:travlon/repository/nearbyrepo.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
@@ -126,9 +127,14 @@ passwordVisible =true;
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                txtOftravalon(
-                    data: "Forgot Password?",
-                    textStyle: Constants(). mediumstyleblackmon(14)),
+                GestureDetector(
+                  onTap: (){
+                    Constants().loadPages(fpasswd(), context);
+                  },
+                  child: txtOftravalon(
+                      data: "Forgot Password?",
+                      textStyle: Constants(). mediumstyleblackmon(14)),
+                ),
               ],
             ),
             SizedBox(

@@ -1,18 +1,39 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:travlon/cubit/fpaswd/fpaswd_cubit.dart';
+import 'package:travlon/models/fpswdModel.dart';
 import 'package:travlon/pages/addOns.dart';
+import 'package:travlon/pages/otpVerification.dart';
+import 'package:travlon/repository/fpswdRepo.dart';
+import 'package:travlon/utils/widgets/btnTravelon.dart';
 
-class duoFour extends StatefulWidget {
-  const duoFour({Key? key}) : super(key: key);
+import 'package:travlon/utils/widgets/txtOftravalon.dart';
+import 'package:travlon/utils/constants/constantsOfTravlne.dart';
+
+import '../utils/widgets/edttravelon.dart';
+
+class fpasswd extends StatefulWidget {
+  const fpasswd({Key? key}) : super(key: key);
 
   @override
-  State<duoFour> createState() => _duoFourState();
+  State<fpasswd> createState() => _fpasswdState();
 }
 
-class _duoFourState extends State<duoFour> {
+class _fpasswdState extends State<fpasswd> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  late FpaswdCubit objfpswdcubit;
+  @override
+  void initState() {
+    objfpswdcubit = FpaswdCubit(FpaswdInitial(), getPswd());
+
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,60 +41,94 @@ class _duoFourState extends State<duoFour> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.all(20),
-        color: Colors.black,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            Text(
-              "Login to your account",
-              textAlign: TextAlign.center,
-              softWrap: false,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 3,
-              style: TextStyle(
-                  fontSize: 40,
-                  fontFamily: 'duob',
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white),
+            SizedBox(
+              height: 20,
             ),
-            TextField(
-              textAlign: TextAlign.start,
-              controller: username,
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  hintText: "Username or email",
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(10)),
-                  errorBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Colors.red.shade800),
-                      borderRadius: BorderRadius.circular(20))),
+            txtOftravalon(
+                data: "Enter Email Address",
+                textStyle: Constants().mediumstyleblackmon(24)),
+            SizedBox(
+              height: 20,
             ),
-            TextField(
-              textAlign: TextAlign.start,
-              controller: password,
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  hintText: "Password",
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.circular(20)),
-                  errorBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Colors.red.shade800),
-                      borderRadius: BorderRadius.circular(20))),
+            edttravlon(
+              textEditingController: username,
+              hinttext: "Enter your email",
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            btnthreeTravelon(
+                function: () {
+                  objfpswdcubit.otpSend(username.text);
+                },
+                height: 50,
+                childWid: BlocProvider<FpaswdCubit>(
+                    create: (context) => objfpswdcubit,
+                    child: BlocListener<FpaswdCubit, FpaswdState>(
+                      listener: (context, state) {
+                        if (state is FpaswdInitial) {
+                        } else if (state is FpaswdLoading) {
+                        } else if (state is FpaswdSuccess) {
+                          Fluttertoast.showToast(
+                              msg: "OTP sent to $username",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.grey,
+                              textColor: Colors.green,
+                              fontSize: 16.0);
+                          Constants().loadPages(otpVerification(), context);
+                        } else if (state is FpaswdError) {
+                          Fluttertoast.showToast(
+                              msg: "otp not sent to $username try again",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        } else {}
+                      },
+                      child: BlocBuilder<FpaswdCubit, FpaswdState>(
+                        builder: (context, state) {
+                          if (state is FpaswdInitial) {
+                            return txtOftravalon(
+                                data: 'Send',
+                                textStyle: Constants().mediumstylewhitemon(16));
+                          } else if (state is FpaswdLoading) {
+                            return Center(
+                              child: Constants().spinkit(),
+                            );
+                          } else {
+                            return txtOftravalon(
+                                data: 'Send',
+                                textStyle: Constants().mediumstylewhitemon(16));
+                          }
+                        },
+                      ),
+                    )
+                )
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            txtOftravalon(
+                data: "or", textStyle: Constants().RegularstylegreenMon(14)),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () {}, icon: Icon(Icons.facebook_outlined)),
+                IconButton(
+                    onPressed: () {}, icon: Icon(Icons.mail_outline_rounded)),
+                IconButton(onPressed: () {}, icon: Icon(Icons.apple)),
+              ],
             )
           ],
         ),

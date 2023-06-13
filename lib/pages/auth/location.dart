@@ -150,11 +150,7 @@ class _locationState extends State<location> {
                                   duration: Duration(seconds: 1),
                                   curve: Curves.fastOutSlowIn,
                                   child: Center(
-                                    child: SpinKitCubeGrid(
-                                      duration: Duration(seconds: 2),
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
+                                    child: Constants().spinkit()
                                   )),
                               Visibility(
                                 visible: _isShow,
@@ -192,7 +188,8 @@ class _locationState extends State<location> {
                               ),
                             ],
                           );
-                        } else if (state is buttonClicckOneSuccess) {
+                        }
+                        else if (state is buttonClicckOneSuccess) {
                           return Row(
                             children: [
                               GestureDetector(
@@ -252,7 +249,8 @@ class _locationState extends State<location> {
                               ),
                             ],
                           );
-                        } else if (state is buttonClicckOneError) {
+                        }
+                        else if (state is buttonClicckOneError) {
                           return  GestureDetector(
                             onTap: () {
                               objhomecubit.getLocation();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:travlon/pages/profilepage.dart';
 
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
@@ -77,6 +78,7 @@ class _homeScreenState extends State<homeScreen> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
+          drawer: drawer(),
           body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,

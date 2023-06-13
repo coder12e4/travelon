@@ -87,6 +87,13 @@ class Constants {
       fontSize: size,
     );
   }
+  mediumstylewhitemon(double size) {
+    return TextStyle(
+      fontFamily: "Medium",
+      color: Colors.white,
+      fontSize: size,
+    );
+  }
 
 
   mediumstylewhite(double size) {
@@ -110,18 +117,19 @@ class Constants {
     return TextStyle(
         fontFamily: "Regular", fontSize: size, color: Colors.black);
   }
-  notoRegularstyleblack(double size) {
+  RegularstylegreenMon(double size) {
     return TextStyle(
-        fontFamily: "notoregular", fontSize: size, color: Colors.black);
+        fontFamily: "Regular", fontSize: size, color:HexColor(pastelgreen300) );
   }
+
   Regularstylegrey(double size) {
     return TextStyle(
-        fontFamily: "regular", fontSize: size, color: Colors.grey);
+        fontFamily: "Regular", fontSize: size, color: Colors.grey);
   }
 
   Regularstylewhite(double size) {
     return TextStyle(
-        fontFamily: "regular", fontSize: size, color: Colors.white);
+        fontFamily: "Regular", fontSize: size, color: Colors.white);
   }
 
   lightstyle1(double size) {
