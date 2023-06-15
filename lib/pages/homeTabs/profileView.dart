@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travlon/pages/homeScreen.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
@@ -25,7 +26,9 @@ class _profileViewState extends State<profileView> {
               top: 20,
               left: 20,
               child: btntwoTravelon(
-                  function: () {},
+                  function: () {
+                    Constants().loadPages(homeScreen(), context);
+                  },
                   height: 40,
                   width: 40,
                   childWid: Icon(
