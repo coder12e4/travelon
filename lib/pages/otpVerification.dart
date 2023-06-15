@@ -32,6 +32,45 @@ class _otpVerificationState extends State<otpVerification> {
     // TODO: implement initState
     super.initState();
   }
+  Widget _textFieldOTP(BuildContext context, {required bool first, last}) {
+    return Container(
+      height: 60,
+      width: 52,
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: TextField(
+          autofocus: true,
+          onChanged: (value) {
+            if(value.length == 1 && last == false){
+              FocusScope.of(context).nextFocus();
+            }
+            if(value.length == 0 && first == false){
+              FocusScope.of(context).previousFocus();
+            }
+          },
+          showCursor: false,
+          readOnly: false,
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.number,
+          maxLength: 1,
+          decoration: InputDecoration(
+            counter: Offstage(),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: HexColor(Constants().pastelgreen300)),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color:HexColor(Constants().pastelgreen400)),
+              borderRadius: BorderRadius.circular(6),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,19 +94,17 @@ class _otpVerificationState extends State<otpVerification> {
             SizedBox(
               height: 24,
             ),
-          OTPTextField(
-            controller: otpController,
-            width: MediaQuery.of(context).size.width,
-            length: 4,
-            fieldWidth: 48,
-            textFieldAlignment: MainAxisAlignment.spaceEvenly,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _textFieldOTP(context, first: true, last: false),
+                _textFieldOTP(context, first: false, last: false),
+                _textFieldOTP(context, first: false, last: false),
+                _textFieldOTP(context, first: false, last: false),
 
-            outlineBorderRadius: 15,
-            style: TextStyle(fontSize: 17),
+              ],
+            ),
 
-
-
-          ),
             SizedBox(
               height: 20,
             ),
@@ -75,7 +112,7 @@ class _otpVerificationState extends State<otpVerification> {
              mainAxisAlignment:MainAxisAlignment.center ,
              children: [
                txtOftravalon(data: "Didn't received OTP ?  ", textStyle: Constants().Regularstylegrey(14)),
-               txtOftravalon(data: "OTP", textStyle: Constants().RegularstylegreenMon(14)),
+               txtOftravalon(data: "Resend", textStyle: Constants().RegularstylegreenMon(14)),
 
              ],
            ),
@@ -188,8 +225,47 @@ class _changepswdState extends State<changepswd> {
   TextEditingController confirmpassword = TextEditingController();
   bool passwordVisible = false;
 
+  Widget _textFieldOTP(BuildContext context, {required bool first, last}) {
+    return Container(
+      height: 60,
+      width: 52,
+      child: AspectRatio(
+        aspectRatio: 1.0,
+        child: TextField(
+          autofocus: true,
+          onChanged: (value) {
+            if(value.length == 1 && last == false){
+              FocusScope.of(context).nextFocus();
+            }
+            if(value.length == 1 && first == false){
+              FocusScope.of(context).previousFocus();
+            }
+          },
+          showCursor: false,
+          readOnly: false,
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.number,
+          maxLength: 1,
+          decoration: InputDecoration(
+            counter: Offstage(),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: Colors.black),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: Colors.purple),
+              borderRadius: BorderRadius.circular(6),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
           body: Container(
             height: MediaQuery.of(context).size.height,
@@ -199,6 +275,17 @@ class _changepswdState extends State<changepswd> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _textFieldOTP(context, first: true, last: false),
+                    _textFieldOTP(context, first: false, last: false),
+                    _textFieldOTP(context, first: false, last: false),
+                    _textFieldOTP(context, first: false, last: false),
+                    _textFieldOTP(context, first: false, last: true),
+                  ],
+                ),
+
                 Spacer(),
                 txtOftravalon(data: "Enter New Password", textStyle: Constants().mediumstyleblackmon(20)),
                 SizedBox(
@@ -269,6 +356,7 @@ class _changepswdState extends State<changepswd> {
               ],
             ),
           ),
+
     );
   }
 }
