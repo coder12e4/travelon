@@ -22,7 +22,7 @@ class _IntroductionpageState extends State<Introductionpage> {
 
           child: Stack(
             children: [
-              Positioned(
+             /* Positioned(
                 bottom: 0,
                 top: 0,
                 right: 0,
@@ -31,7 +31,7 @@ class _IntroductionpageState extends State<Introductionpage> {
                   "assets/images/shutt (1).jpg",
                   fit: BoxFit.fill,
                 ),
-              ),
+              ),*/
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(begin: Alignment.bottomCenter,
@@ -83,7 +83,7 @@ class _IntroductionpageState extends State<Introductionpage> {
                       ),
                     ),
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>duoTwo()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>drawer()));
                   }
                   ),
               )

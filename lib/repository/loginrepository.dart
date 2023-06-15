@@ -1,40 +1,40 @@
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../models/loginmodel.dart';
-abstract class loginRepo{
-  Future<loginModel>login(String email,String password,String lat,String long,double km);
-  
+
+abstract class loginRepo {
+  Future<loginModel> login(
+      String email, String password, String lat, String long, double km);
 }
-class LoginNew extends loginRepo{
-  Future<loginModel>login(String email,String password,String lat,String long,double km)async{
+
+class LoginNew extends loginRepo {
+  Future<loginModel> login(
+      String email, String password, String lat, String long, double km) async {
     loginModel? objlogin;
-    var response = await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/login"),
-    body:json.encode({
-      "email":email,
-      "password":password,
-      "lat":lat,
-      "long":long,
-      "km":km,
-    }), headers: <String, String>{
+    var response = await http.post(
+        Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/login"),
+        body: json.encode({
+          "email": email,
+          "password": password,
+          "lat": lat,
+          "long": long,
+          "km": km,
+        }),
+        headers: <String, String>{
           'Content-Type': 'application/json',
-        }
-    );
-    if (response.statusCode==200){
+        });
+    if (response.statusCode == 200) {
       print(response.statusCode);
       print(response.body);
-      var data =jsonDecode(response.body);
-      objlogin =loginModel.fromJson(data);
-    }else {
+      var data = jsonDecode(response.body);
+      objlogin = loginModel.fromJson(data);
+    } else {
       print("error");
     }
     return objlogin!;
   }
 }
-
-
-
 
 /*
 
@@ -59,8 +59,7 @@ class loginInt extends loginRepo{
     throw UnimplementedError();
   }
 
-  
+
 }
 
 */
-

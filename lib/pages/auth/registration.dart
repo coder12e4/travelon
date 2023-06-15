@@ -240,6 +240,7 @@ class _registeroneState extends State<registerone> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
+
                               } else if (state is otpRegError) {
                                 Fluttertoast.showToast(
                                     msg:
