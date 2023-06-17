@@ -245,42 +245,7 @@ class _changepswdState extends State<changepswd> {
   TextEditingController confirmpassword = TextEditingController();
   bool passwordVisible = false;
 
-  Widget _textFieldOTP(BuildContext context, {required bool first, last}) {
-    return Container(
-      height: 60,
-      width: 52,
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: TextField(
-          autofocus: true,
-          onChanged: (value) {
-            if(value.length == 1 && last == false){
-              FocusScope.of(context).nextFocus();
-            }
-            if(value.length == 1 && first == false){
-              FocusScope.of(context).previousFocus();
-            }
-          },
-          showCursor: false,
-          readOnly: false,
-          textAlign: TextAlign.center,
-          keyboardType: TextInputType.number,
-          maxLength: 1,
-          decoration: InputDecoration(
-            counter: Offstage(),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 2, color: Colors.black),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 2, color: Colors.purple),
-              borderRadius: BorderRadius.circular(6),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+
 
 
   @override
@@ -295,16 +260,7 @@ class _changepswdState extends State<changepswd> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _textFieldOTP(context, first: true, last: false),
-                    _textFieldOTP(context, first: false, last: false),
-                    _textFieldOTP(context, first: false, last: false),
-                    _textFieldOTP(context, first: false, last: false),
-                    _textFieldOTP(context, first: false, last: true),
-                  ],
-                ),
+
 
                 Spacer(),
                 txtOftravalon(data: "Enter New Password", textStyle: Constants().mediumstyleblackmon(20)),
