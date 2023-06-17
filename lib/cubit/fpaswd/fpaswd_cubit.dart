@@ -14,7 +14,7 @@ String email="";
     try{
       emit(FpaswdLoading());
       fpswdModel obj =await objrepo.newPswd(email);
-      emit(FpaswdSuccess());
+      emit(FpaswdSuccess(obj));
     }catch(e){
       emit(FpaswdError());
       print(e);

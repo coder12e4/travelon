@@ -7,11 +7,12 @@ import 'package:travlon/pages/homeTabs/profileView.dart';
 import 'package:travlon/pages/profilepage.dart';
 
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
-import 'package:travlon/utils/widgets/appbar.dart';
-import 'package:travlon/utils/widgets/bottombar.dart';
+
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
+import '../Utils/widgets/appbar.dart';
+import '../Utils/widgets/bottombar.dart';
 import '../models/nearbyModel.dart';
 import 'homeTabs/nearestplaceList.dart';
 import 'homeTabs/travloglList.dart';

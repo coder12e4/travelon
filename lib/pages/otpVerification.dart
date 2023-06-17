@@ -1,44 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-
 import 'package:hexcolor/hexcolor.dart';
+import 'package:otp_text_field/otp_field.dart';
 import 'package:travlon/cubit/verify/verify_otp_cubit.dart';
+import 'package:travlon/models/fpswdOTP.dart';
 import 'package:travlon/pages/auth/loginPage.dart';
 import 'package:travlon/repository/otpVerifyRepo.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/edttravelon.dart';
 
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
-import 'package:otp_text_field/otp_text_field.dart';
+
 import '../utils/constants/constantsOfTravlne.dart';
 
 
 
 class otpVerification extends StatefulWidget {
-  const otpVerification({Key? key}) : super(key: key);
+  final String email;
+  const otpVerification({Key? key, required this.email}) : super(key: key);
 
   @override
   State<otpVerification> createState() => _otpVerificationState();
 }
 
 class _otpVerificationState extends State<otpVerification> {
-  OtpFieldController otpController = OtpFieldController();
+
   late VerifyOtpCubit objcerifycubit;
+
+  TextEditingController v1=TextEditingController();
+  TextEditingController v2=TextEditingController();
+  TextEditingController v3=TextEditingController();
+  TextEditingController v4=TextEditingController();
+
+
   @override
   void initState() {
     objcerifycubit =VerifyOtpCubit(VerifyOtpInitial(), getOTP());
     // TODO: implement initState
     super.initState();
   }
-  Widget _textFieldOTP(BuildContext context, {required bool first, last}) {
+  Widget _textFieldOTP(BuildContext context, {required bool first, last,required TextEditingController textEditingController}) {
     return Container(
       height: 60,
       width: 52,
       child: AspectRatio(
         aspectRatio: 1.0,
         child: TextField(
+          controller: textEditingController,
           autofocus: true,
           onChanged: (value) {
             if(value.length == 1 && last == false){
@@ -97,10 +106,10 @@ class _otpVerificationState extends State<otpVerification> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _textFieldOTP(context, first: true, last: false),
-                _textFieldOTP(context, first: false, last: false),
-                _textFieldOTP(context, first: false, last: false),
-                _textFieldOTP(context, first: false, last: false),
+                _textFieldOTP(context, first: true, last: false,textEditingController: v1),
+                _textFieldOTP(context, first: false, last: false,textEditingController: v2),
+                _textFieldOTP(context, first: false, last: false,textEditingController: v3),
+                _textFieldOTP(context, first: false, last: false,textEditingController: v4),
 
               ],
             ),
@@ -113,7 +122,6 @@ class _otpVerificationState extends State<otpVerification> {
              children: [
                txtOftravalon(data: "Didn't received OTP ?  ", textStyle: Constants().Regularstylegrey(14)),
                txtOftravalon(data: "Resend", textStyle: Constants().RegularstylegreenMon(14)),
-
              ],
            ),
             SizedBox(
@@ -121,8 +129,9 @@ class _otpVerificationState extends State<otpVerification> {
             ),
             btnthreeTravelon(
                 function: () {
-                    objcerifycubit.verifyOTP(otpController.toString());
-                },
+                    objcerifycubit.verifyOTP(v1.text.toString()+v2.text.toString()+v3.text.toString()+v4.text.toString(),widget.email);
+                print(v1.text.toString()+v2.text.toString()+v3.text.toString()+v4.text.toString());
+                    },
                 height: 50,
                 childWid:BlocProvider<VerifyOtpCubit>(
                   create: (context)=>objcerifycubit,
@@ -131,15 +140,26 @@ class _otpVerificationState extends State<otpVerification> {
                         if (state is VerifyOtpInitial){
                         }else if(state is VerifyOtpLoading){
                         }else if(state is VerifyOtpSuccess){
+
+                          verifyModel k=state.obj;
+                          String? msg=k.msg.toString();
+
+
+
+
                           Fluttertoast.showToast(
-                              msg:"Verified",
+                              msg:msg,
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.CENTER,
                             timeInSecForIosWeb: 2,
                             backgroundColor: Colors.grey,
                             fontSize: 16
                           );
+
+
                           Constants().loadPages(changepswd(), context);
+
+
                         }else if(state is VerifyOtpError){
                           Fluttertoast.showToast(
                               msg: "Invalid OTP. Try again",

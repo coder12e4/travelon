@@ -4,14 +4,15 @@ import '../models/fpswdOTP.dart';
 import 'package:http/http.dart' as http;
 
 abstract class otpVerify{
-  Future<verifyModel>newOTP(String otp);
+  Future<verifyModel>newOTP(String otp,String email);
 }
 class getOTP extends otpVerify{
-  Future<verifyModel>newOTP(String otp)async{
+  Future<verifyModel>newOTP(String otp,String email)async{
     verifyModel? objverify;
     var response = await http.post(Uri.parse("https://muddy-deer-turtleneck-shirt.cyclic.app/user/verifyForgotOTP"),
     body: json.encode({
       "otp":otp,
+      "email":email
     }),
         headers: <String,String>{
       "Content-Type":"application/json",

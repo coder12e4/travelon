@@ -10,10 +10,10 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
   final  otpVerify objotpverify;
   VerifyOtpCubit(VerifyOtpState state,this.objotpverify) : super(VerifyOtpInitial());
   String otp = "";
- Future<void>verifyOTP(String otp)async{
+ Future<void>verifyOTP(String otp,String email)async{
    try {
      emit(VerifyOtpLoading());
-     verifyModel objverify = await objotpverify.newOTP(otp);
+     verifyModel objverify = await objotpverify.newOTP(otp,email);
      if (objverify.success!) {
        emit(VerifyOtpSuccess(objverify));
      } else {

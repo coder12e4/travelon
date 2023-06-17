@@ -72,15 +72,18 @@ class _fpasswdState extends State<fpasswd> {
                         if (state is FpaswdInitial) {
                         } else if (state is FpaswdLoading) {
                         } else if (state is FpaswdSuccess) {
+
+                          fpswdModel obj=state.obj;
+                          String message=obj.data!.expiresAt.toString();
                           Fluttertoast.showToast(
-                              msg: "OTP sent to $username",
+                              msg: "OTP sent to $username +Expires at $message",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
                               backgroundColor: Colors.grey,
                               textColor: Colors.green,
                               fontSize: 16.0);
-                          Constants().loadPages(otpVerification(), context);
+                          Constants().loadPages(otpVerification(email: username.text,), context);
                         } else if (state is FpaswdError) {
                           Fluttertoast.showToast(
                               msg: "otp not sent to $username try again",
@@ -102,7 +105,15 @@ class _fpasswdState extends State<fpasswd> {
                             return Center(
                               child: Constants().spinkit(),
                             );
-                          } else {
+                          }
+                          else if (state is FpaswdSuccess) {
+                            return txtOftravalon(
+                                data: 'Send',
+                                textStyle: Constants().mediumstylewhitemon(16));
+                          }
+
+
+                          else {
                             return txtOftravalon(
                                 data: 'Send',
                                 textStyle: Constants().mediumstylewhitemon(16));
