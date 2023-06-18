@@ -1,10 +1,10 @@
-/*
 import 'dart:async';
 import 'package:flutter_geocoder/geocoder.dart';
 import 'package:flutter_geocoder/model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import '../../models/location/locationModel.dart';
+import 'package:travlon/location/locationModel.dart';
+
 class LocationManager {
   static final LocationManager _sharedInsatnce = LocationManager._internal();
   factory LocationManager() {
@@ -12,9 +12,9 @@ class LocationManager {
   }
   LocationManager._internal();
   static LocationManager get instance => _sharedInsatnce;
+
   Future<LatLng?> getCurrentLocation() async {
     Location location = new Location();
-
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
     LocationData _locationData;
@@ -73,4 +73,4 @@ class LocationManager {
     // return null;
   }
 }
-*/
+
