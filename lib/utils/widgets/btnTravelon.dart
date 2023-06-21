@@ -134,7 +134,8 @@ class btnthreeTravelon extends StatelessWidget {
         padding:EdgeInsets.all(10),
 
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20,),color:Colors.green.shade400
+            borderRadius: BorderRadius.circular(20,),color:HexColor(
+            Constants().pastelgreen300)
         ),
         child: childWid,
       ),

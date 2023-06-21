@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:travlon/pages/homeScreen.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
@@ -64,11 +65,11 @@ class _profileViewState extends State<profileView> {
                               children: [
                                 txtOftravalon(
                                     data: "Edit Profile",
-                                    textStyle: Constants().StyleMediumBlue(14)),
+                                    textStyle: Constants().Stylemediuemgreen(14)),
                                 Icon(
                                   Icons.edit,
-                                  color: Colors.blue,
-                                  size: 20,
+                                  color:HexColor(Constants().pastelgreen400),
+                                  size: 14,
                                 ),
                               ],
                             )),
@@ -79,18 +80,18 @@ class _profileViewState extends State<profileView> {
                         textStyle: Constants().boldstyleblack(24)),
                     txtOftravalon(
                         data: "@OberoiTam",
-                        textStyle: Constants().Regularstylegrey(16)),
+                        textStyle: Constants().Regularstylegrey(14)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Icon(
                           Icons.calendar_month_outlined,
                           color: Colors.grey,
-                          size: 20,
+                          size: 14,
                         ),
                         txtOftravalon(
-                            data: "Joined Jun 2022",
-                            textStyle: Constants().Regularstylegrey(16)),
+                            data: " Joined Jun 2022",
+                            textStyle: Constants().Regularstylegrey(14)),
                       ],
                     ),
                     SizedBox(

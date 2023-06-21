@@ -35,9 +35,20 @@ class _nearByState extends State<nearBy> {
   }
 
   List<NearPlaces>? nearPlaces = [];
+  String? sId;
+  String? name;
+  String? detail;
+  String? address;
+  String? country;
+  String? state;
+  String? district;
+  Location? location;
+  bool? status;
+  String? totalRating;
+  int? iV;
   @override
   void initState() {
-    nearPlaces = widget.nearPlaces;
+    nearPlaces = widget.nearPlaces!;
     // TODO: implement initState
     super.initState();
   }
