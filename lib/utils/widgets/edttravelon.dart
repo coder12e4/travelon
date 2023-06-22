@@ -46,15 +46,15 @@ class edttravlon extends StatelessWidget {
     );
   }
 }
-class edttravlonone extends StatelessWidget {
+class edttravlonNumber extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hinttext;
-  final String? Function(String?)? validator;
 
-  const edttravlonone({
+
+  const  edttravlonNumber({
     Key? key,
     required this.textEditingController,
-    required this.hinttext, this.validator,
+    required this.hinttext,
   }) : super(key: key);
 
   @override
@@ -62,15 +62,17 @@ class edttravlonone extends StatelessWidget {
     return Container(
       width: 400,
 
-      child: TextFormField(
-        validator: validator,
+      child: TextField(
+
         controller: textEditingController,
         textAlignVertical: TextAlignVertical.center,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
 
           filled: true,
           fillColor: Colors.white,
           hintText: hinttext,
+
           hintStyle: Constants().RegularstyleblackMon(14),
           enabledBorder: OutlineInputBorder(
             borderRadius: Constants().radiusreturningthree(),

@@ -7,6 +7,7 @@ import 'package:travlon/pages/homeTabs/profileView.dart';
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
 
 import '../../pages/homeTabs/placeView.dart';
+import '../../pages/homeTabs/tabView.dart';
 
 class bottombar extends StatelessWidget {
   const bottombar({Key? key}) : super(key: key);
@@ -116,9 +117,11 @@ class bottombarnotch extends StatelessWidget {
             ),
             IconButton(
               enableFeedback: false,
-              onPressed: () {},
+              onPressed: () {
+                Constants().loadPages(tabView(), context);
+              },
               icon: Icon(
-                Icons.bookmark_border,
+                Icons.add_comment_outlined,
                 color: HexColor(Constants().pastelgreen300),
                 size: 20,
               ),

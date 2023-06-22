@@ -209,7 +209,7 @@ class _homeScreenState extends State<homeScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Constants().loadPages(tabView(), context);
+
           },
           child: Icon(Icons.add),
           backgroundColor: HexColor(Constants().pastelgreen300),

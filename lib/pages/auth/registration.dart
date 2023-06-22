@@ -127,7 +127,7 @@ class _registeroneState extends State<registerone> {
                     SizedBox(
                       width: 170,
                       height: 50,
-                      child: edttravlon(
+                      child: edttravlonNumber(
                         textEditingController: phonenumber,
                         hinttext: "Phonenumber",
                       ),
