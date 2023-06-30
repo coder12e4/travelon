@@ -1,13 +1,6 @@
 /*
 import 'dart:convert';
-
-import 'package:fixa/Utils/managers/shared_preference_manager.dart';
-import 'package:fixa/models/auth/user.dart';
-import 'package:fixa/models/home/availabilityModel.dart';
-
-import '../../models/auth/LoginModel.dart';
-import '../../models/profile/profile.dart';
-
+import 'package:travlon/Utils/managers/shared_preference_manager.dart';
 class UserManager {
   static final UserManager _sharedInsatnce = UserManager._internal();
   Profile currentUserProfile = Profile();
@@ -126,4 +119,5 @@ class UserManager {
     SharedPreferenceManager().setBoolValue("isAvailabilitySet", isLoggedIn);
   }
 }
+
 */

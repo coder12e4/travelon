@@ -223,7 +223,6 @@ class _otpVerificationState extends State<otpVerification> {
                   ),
                 )
 
-
             ),
 
           ],
