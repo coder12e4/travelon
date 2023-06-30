@@ -6,6 +6,21 @@ class Assets {
   static const String fontsIBMPlexSansExtraLight = 'assets/fonts/IBMPlexSans-ExtraLight.ttf';
   static const String fontsIBMPlexSansMedium = 'assets/fonts/IBMPlexSans-Medium.ttf';
   static const String fontsIBMPlexSansRegular = 'assets/fonts/IBMPlexSans-Regular.ttf';
+  static const String fontsMontserratBold = 'assets/fonts/Montserrat-Bold.ttf';
+  static const String fontsMontserratLight = 'assets/fonts/Montserrat-Light.ttf';
+  static const String fontsMontserratMedium = 'assets/fonts/Montserrat-Medium.ttf';
+  static const String fontsMontserratRegular = 'assets/fonts/Montserrat-Regular.ttf';
+  static const String fontsNotoSansRegular = 'assets/fonts/NotoSans-Regular.ttf';
+  static const String imagesBeard = 'assets/images/beard.jpg';
   static const String imagesHome = 'assets/images/home.jpg';
+  static const String imagesLogo = 'assets/images/logooo.jpeg';
+  static const String imagesPark = 'assets/images/park.jpg';
+  static const String imagesProfile = 'assets/images/profile.jpg';
+  static const String imagesWaterfalls = 'assets/images/waterfalls.jpg';
+  static const String slidersTravelersAmico = 'assets/sliders/1.png';
+  static const String slidersTravelersBro = 'assets/sliders/2.png';
+  static const String slidersTravelersCuate = 'assets/sliders/3.png';
+  static const String slidersTravelersPana = 'assets/sliders/4.png';
+  static const String slidersTravelersRafiki = 'assets/sliders/5.png';
 
 }
