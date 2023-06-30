@@ -6,6 +6,10 @@ import 'package:travlon/pages/auth/loginPage.dart';
 import 'package:travlon/pages/auth/registration.dart';
 import 'package:travlon/pages/auth/splashScreen.dart';
 import 'package:travlon/pages/forgotpassword.dart';
+import 'package:travlon/pages/homeTabs/AddTravelog.dart';
+import 'package:travlon/pages/homeTabs/addPlaces.dart';
+import 'package:travlon/pages/homeTabs/nearbyPlaces.dart';
+import 'package:travlon/pages/homeTabs/tabView.dart';
 
 import 'package:travlon/pages/introductionpage.dart';
 import 'package:travlon/pages/homeTabs/bottom%20sheet.dart';

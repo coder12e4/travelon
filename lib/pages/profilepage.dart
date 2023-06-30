@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:travlon/pages/addOns.dart';
+import 'package:hexcolor/hexcolor.dart';
+
+import 'package:travlon/utils/constants/constantsOfTravlne.dart';
+
 
 class drawer extends StatefulWidget {
   const drawer({Key? key}) : super(key: key);
@@ -17,12 +19,18 @@ class _drawerState extends State<drawer> {
       backgroundColor: Colors.white,
       child: ListView(
         children: [
-          const DrawerHeader(
+           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.orange,
+              color: Colors.white,
             ), //BoxDecoration
             child: UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Colors.black),
+              decoration: BoxDecoration(
+                color: HexColor(Constants().pastelgreen300),
+                borderRadius: Constants().radiusreturningthree()
+
+
+              
+              ),
               accountName: Text(
                 "Amal Sekhar",
                 style: TextStyle(fontSize: 18),
@@ -30,10 +38,10 @@ class _drawerState extends State<drawer> {
               accountEmail: Text("amalsekhar1@gmail.com"),
               currentAccountPictureSize: Size.square(50),
               currentAccountPicture: CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 165, 255, 137),
+                backgroundColor: Colors.white,
                 child: Text(
                   "A",
-                  style: TextStyle(fontSize: 30.0, color: Colors.blue),
+                  style: TextStyle(fontSize: 30.0, color: HexColor(Constants().pastelgreen300)),
                 ), //Text
               ), //circleAvatar
             ), //UserAccountDrawerHeader
@@ -72,13 +80,7 @@ class _drawerState extends State<drawer> {
               style: TextStyle(color: Colors.black),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.flag_outlined, color: Colors.black),
-            title: Text(
-              "Frequently Asked Questions",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
+
           ListTile(
             leading: Icon(Icons.help_outline, color: Colors.black),
             title: Text(
@@ -104,6 +106,13 @@ class _drawerState extends State<drawer> {
             leading: Icon(Icons.help_center_outlined, color: Colors.black),
             title: Text(
               "About",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.logout, color: Colors.black),
+            title: Text(
+              "Log Out",
               style: TextStyle(color: Colors.black),
             ),
           )

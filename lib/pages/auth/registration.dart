@@ -87,13 +87,13 @@ class _registeroneState extends State<registerone> {
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-               /* borderRadius: BorderRadius.only(
+                /* borderRadius: BorderRadius.only(
                     topRight: Radius.circular(30), topLeft: Radius.circular(30)),
                 gradient: LinearGradient(
                     colors: [Colors.lightGreenAccent, Colors.white],
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter)*/
-            ),
+                ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,34 +109,24 @@ class _registeroneState extends State<registerone> {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 40,
-                  child: edttravlon(
-                    textEditingController: firstname,
-                    hinttext: "Firstname",
-                  ),
+                edttravlon(
+                  textEditingController: firstname,
+                  hinttext: "Firstname",
                 ),
-                SizedBox(
-                  height: 40,
-                  child: edttravlon(
-                    textEditingController: lastname,
-                    hinttext: "Lastname",
-                  ),
+                edttravlon(
+                  textEditingController: lastname,
+                  hinttext: "Lastname",
                 ),
-                SizedBox(
-                  height: 40,
-                  child: edttravlon(
-                    textEditingController: address,
-                    hinttext: "Address",
-                  ),
+                edttravlon(
+                  textEditingController: address,
+                  hinttext: "Address",
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     SizedBox(
                       width: 170,
-                      height: 40,
+                      height: 50,
                       child: edttravlon(
                         textEditingController: phonenumber,
                         hinttext: "Phonenumber",
@@ -144,7 +134,7 @@ class _registeroneState extends State<registerone> {
                     ),
                     SizedBox(
                       width: 170,
-                      height: 40,
+                      height: 50,
                       child: edttravlon(
                         textEditingController: pinNumber,
                         hinttext: "Enter your Postcode",
@@ -157,8 +147,7 @@ class _registeroneState extends State<registerone> {
                   children: [
                     Container(
                       width: 170,
-                      height: 40,
-
+                      height: 50,
                       child: datetxt(
                         function: () {
                           _selectDate(context);
@@ -169,34 +158,30 @@ class _registeroneState extends State<registerone> {
                     ),
                     Container(
                       width: 170,
-                      height: 40,
+                      height: 50,
                       padding: EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: Constants().radiusreturningthree(),
-                          border: Border.all(
-                            width: .5,
-                            color: HexColor(Constants().pastelgreen400),
-
-
-                          ),
-
-
-
+                        color: Colors.white,
+                        borderRadius: Constants().radiusreturningthree(),
+                        border: Border.all(
+                          width: .5,
+                          color: HexColor(Constants().pastelgreen400),
+                        ),
                       ),
-
                       child: DropdownButton(
                         underline: SizedBox(),
                         iconSize: 20,
                         iconEnabledColor: HexColor(Constants().pastelgreen700),
                         menuMaxHeight: 100,
                         value: dropdownValue,
-                        items: items.map<DropdownMenuItem<String>>((String value) {
+                        items:
+                            items.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem(
                               value: value,
                               child: txtOftravalon(
                                   data: value,
-                                  textStyle: Constants().RegularstyleblackMon(14)));
+                                  textStyle:
+                                      Constants().RegularstyleblackMon(14)));
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
@@ -211,7 +196,7 @@ class _registeroneState extends State<registerone> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 40,
+                      height: 50,
                       width: 250,
                       child: edttravlon(
                         textEditingController: emailController,
@@ -221,17 +206,18 @@ class _registeroneState extends State<registerone> {
                     Spacer(),
                     btnforOTP(
                         function: () {
-                          objregistercubit.sentOtp(emailController.text.toString());
+                          objregistercubit
+                              .sentOtp(emailController.text.toString());
                         },
-                        height: 40,
+                        height: 50,
                         width: 100,
                         childWid: BlocProvider<RegisterCubit>(
                           create: (context) => objregistercubit,
                           child: BlocListener<RegisterCubit, RegisterState>(
                             listener: (context, state) {
-                              if (state is otpRegInitial) {}
-                              else if (state is otpRegLoading) {}
-                              else if (state is otpRegSuccess) {
+                              if (state is otpRegInitial) {
+                              } else if (state is otpRegLoading) {
+                              } else if (state is otpRegSuccess) {
                                 Fluttertoast.showToast(
                                     msg: "otp sent to $emailController ",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -240,11 +226,10 @@ class _registeroneState extends State<registerone> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
-
                               } else if (state is otpRegError) {
                                 Fluttertoast.showToast(
                                     msg:
-                                    "otp not sent to $emailController try again",
+                                        "otp not sent to $emailController try again",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.CENTER,
                                     timeInSecForIosWeb: 1,
@@ -258,23 +243,26 @@ class _registeroneState extends State<registerone> {
                                 if (state is otpRegInitial) {
                                   return txtOftravalon(
                                       data: "Send OTP",
-                                      textStyle:Constants().RegularstyleblackMon(14));;
+                                      textStyle:
+                                          Constants().RegularstyleblackMon(14));
+                                  ;
                                 } else if (state is otpRegLoading) {
-                                  return Center(
-                                      child: Constants().spinkit()
-                                  );
+                                  return Center(child: Constants().spinkit());
                                 } else if (state is otpRegSuccess) {
-                                  return  txtOftravalon(
+                                  return txtOftravalon(
                                       data: "success",
-                                      textStyle:Constants().RegularstyleblackMon(14));
+                                      textStyle:
+                                          Constants().RegularstyleblackMon(14));
                                 } else if (state is otpRegError) {
                                   return txtOftravalon(
                                       data: "resend",
-                                      textStyle:Constants().RegularstyleblackMon(14));
+                                      textStyle:
+                                          Constants().RegularstyleblackMon(14));
                                 } else {
-                                  return  txtOftravalon(
+                                  return txtOftravalon(
                                       data: "OTP",
-                                      textStyle:Constants().RegularstyleblackMon(14));
+                                      textStyle:
+                                          Constants().RegularstyleblackMon(14));
                                 }
                               },
                             ),
@@ -284,10 +272,8 @@ class _registeroneState extends State<registerone> {
                   ],
                 ),
                 Container(
-                  height: 40,
-
+                  height: 50,
                   child: TextField(
-
                     controller: password,
                     obscureText: passwordVisible,
                     textAlignVertical: TextAlignVertical.center,
@@ -303,7 +289,6 @@ class _registeroneState extends State<registerone> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: Constants().radiusreturningthree(),
                         borderSide: BorderSide(
-
                           color: HexColor(Constants().pastelgreen600),
                         ),
                       ),
@@ -311,12 +296,15 @@ class _registeroneState extends State<registerone> {
                       hintStyle: Constants().RegularstyleblackMon(14),
                       helperStyle: TextStyle(color: Colors.green),
                       suffixIcon: IconButton(
-                        icon: Icon(passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,color: HexColor(Constants().pastelgreen300),),
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: HexColor(Constants().pastelgreen300),
+                        ),
                         onPressed: () {
                           setState(
-                                () {
+                            () {
                               passwordVisible = !passwordVisible;
                             },
                           );
@@ -329,8 +317,7 @@ class _registeroneState extends State<registerone> {
                   ),
                 ),
                 Container(
-                  height: 40,
-
+                  height: 50,
                   child: TextField(
                     controller: confirmpassword,
                     obscureText: confirmpasswordVisible,
@@ -340,16 +327,13 @@ class _registeroneState extends State<registerone> {
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
                           borderRadius: Constants().radiusreturningthree(),
-
                           borderSide: BorderSide(
                             width: .5,
                             color: HexColor(Constants().pastelgreen400),
                           )),
                       focusedBorder: OutlineInputBorder(
-
                         borderRadius: Constants().radiusreturningthree(),
                         borderSide: BorderSide(
-
                           color: HexColor(Constants().pastelgreen600),
                         ),
                       ),
@@ -358,12 +342,14 @@ class _registeroneState extends State<registerone> {
                       /* helperText: "Password must contain special character",*/
                       helperStyle: TextStyle(color: Colors.green),
                       suffixIcon: IconButton(
-                        icon: Icon(confirmpasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,color: HexColor(Constants().pastelgreen300)),
+                        icon: Icon(
+                            confirmpasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: HexColor(Constants().pastelgreen300)),
                         onPressed: () {
                           setState(
-                                () {
+                            () {
                               confirmpasswordVisible = !confirmpasswordVisible;
                             },
                           );
@@ -391,7 +377,6 @@ class _registeroneState extends State<registerone> {
                         textStyle: Constants().Regularstyleblack(14))
                   ],
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -440,9 +425,7 @@ class _registeroneState extends State<registerone> {
                         child: BlocBuilder<RegisterCubit, RegisterState>(
                           builder: (context, state) {
                             if (state is RegisterLoading) {
-                              return Center(
-                                  child: Constants().spinkit()
-                              );
+                              return Center(child: Constants().spinkit());
                             } else {
                               return txtOftravalon(
                                   data: "Sign Up",
@@ -454,11 +437,9 @@ class _registeroneState extends State<registerone> {
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -468,16 +449,20 @@ class _registeroneState extends State<registerone> {
                     SizedBox(
                       width: 8,
                     ),
-                    txtOftravalon(
-                        data: "LogIn",
-                        textStyle: Constants().Stylemediuemgreen(14))
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
+                      },
+                      child: txtOftravalon(
+                          data: "LogIn",
+                          textStyle: Constants().Stylemediuemgreen(14)),
+                    )
                   ],
                 ),
               ],
             ),
           ),
         ],
-
       ),
     );
   }

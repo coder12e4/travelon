@@ -34,3 +34,82 @@ class appBar extends StatelessWidget {
     );
   }
 }
+class nearbyappBar extends StatelessWidget {
+  const nearbyappBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+
+      toolbarHeight: 60,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(25),
+          bottomLeft: Radius.circular(25),
+        )
+      ),
+      leading:  IconButton(onPressed: (){}, icon:Icon(Icons.arrow_back,color: Colors.black,)),
+      title: Text("Nearby Places",style: TextStyle(fontSize: 20,fontFamily: "Medium",color: Colors.black),),
+
+      backgroundColor: Colors.white,
+      elevation: 0,
+
+    );
+  }
+}
+class addplaceappBar extends StatelessWidget {
+  
+  const addplaceappBar({Key? key, }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+
+      toolbarHeight: 60,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(25),
+          bottomLeft: Radius.circular(25),
+        )
+      ),
+      leading:  IconButton(onPressed: (){}, icon:Icon(Icons.arrow_back,color: Colors.black,)),
+      title:txtOftravalon(data: "Add new places", textStyle:Constants().mediumstyleblackmon(20)),
+
+      backgroundColor: Colors.white,
+      elevation: 0,
+
+
+
+
+
+    );
+  }
+}
+class travelogappBar extends StatelessWidget {
+
+  const travelogappBar({Key? key, }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+
+      toolbarHeight: 60,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(25),
+          bottomLeft: Radius.circular(25),
+        )
+      ),
+      leading:  IconButton(onPressed: (){}, icon:Icon(Icons.arrow_back,color: Colors.black,)),
+      title:txtOftravalon(data: "Add new Travelog", textStyle:Constants().mediumstyleblackmon(20)),
+
+      backgroundColor: Colors.white,
+      elevation: 0,
+
+
+
+
+
+    );
+  }
+}

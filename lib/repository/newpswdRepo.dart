@@ -16,7 +16,7 @@ class changePswd extends newpswdRepo {
         Uri.parse(
             "https://muddy-deer-turtleneck-shirt.cyclic.app/user/setNewPassword"),
         body: json.encode(
-            {"email": email, "newPswd": newPswd, "confirm": confirmPswd}),
+            {"email": email, "password": newPswd, "confirmPassword": confirmPswd}),
         headers: <String, String>{
           "Content-Type": "application/json",
         });

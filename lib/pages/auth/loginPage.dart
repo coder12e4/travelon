@@ -27,14 +27,33 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-bool passwordVisible = false;
+  bool passwordVisible = false;
   late LogincubitCubit objlogincubit;
+    bool validate =false;
+var formKey =GlobalKey<FormState>();
+var isLoading =false;
+void Submit(){
+  final isValid =formKey.currentState!.validate();
+  if(!isValid){
+    return;
+  }
+  formKey.currentState!.save();
+}
+
+
+    @override
+  void dispose() {
+
+      password.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   void initState() {
     objlogincubit = LogincubitCubit(LogincubitInitial(), LoginNew());
-passwordVisible =true;
-  /* objhomecubit =HomeCubit(HomeInitial(),homeView() );
-  */  // TODO: implement initState
+    passwordVisible = true;
+    /* objhomecubit =HomeCubit(HomeInitial(),homeView() );
+  */ // TODO: implement initState
     super.initState();
   }
 
@@ -55,8 +74,7 @@ passwordVisible =true;
                     data: "Travel",
                     textStyle: Constants().boldstylegreenmon(30)),
                 txtOftravalon(
-                    data: "On",
-                    textStyle: Constants().boldstyleblack(30)),
+                    data: "On", textStyle: Constants().boldstyleblack(30)),
               ],
             ),
             SizedBox(
@@ -67,27 +85,35 @@ passwordVisible =true;
               children: [
                 txtOftravalon(
                     data: "Login to your account",
-                    textStyle: Constants(). mediumstyleblackmon(24)),
+                    textStyle: Constants().mediumstyleblackmon(24)),
               ],
             ),
             SizedBox(
-              height: 50,
+              height: 40,
             ),
             edttravlon(
               textEditingController: username,
               hinttext: "Username or email",
+
             ),
             SizedBox(
               height: 10,
             ),
             TextField(
-
               controller: password,
               obscureText: passwordVisible,
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
+                labelText: "Enter the password",
+                errorText: validate ? "Field can't be empty" : null,
                 filled: true,
                 fillColor: Colors.white,
+                errorBorder: OutlineInputBorder(
+                    borderRadius: Constants().radiusreturningthree(),
+                    borderSide: BorderSide(
+                      width: .5,
+                      color: HexColor(Constants().pastelgreen400),
+                    )),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: Constants().radiusreturningthree(),
                     borderSide: BorderSide(
@@ -97,7 +123,6 @@ passwordVisible =true;
                 focusedBorder: OutlineInputBorder(
                   borderRadius: Constants().radiusreturningthree(),
                   borderSide: BorderSide(
-
                     color: HexColor(Constants().pastelgreen600),
                   ),
                 ),
@@ -105,12 +130,13 @@ passwordVisible =true;
                 hintStyle: Constants().RegularstyleblackMon(14),
                 helperStyle: TextStyle(color: Colors.green),
                 suffixIcon: IconButton(
-                  icon: Icon(passwordVisible
-                      ? Icons.visibility
-                      : Icons.visibility_off,color: HexColor(Constants().pastelgreen300),),
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: HexColor(Constants().pastelgreen300),
+                  ),
                   onPressed: () {
                     setState(
-                          () {
+                      () {
                         passwordVisible = !passwordVisible;
                       },
                     );
@@ -128,12 +154,12 @@ passwordVisible =true;
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Constants().loadPages(fpasswd(), context);
                   },
                   child: txtOftravalon(
                       data: "Forgot Password?",
-                      textStyle: Constants(). mediumstyleblackmon(14)),
+                      textStyle: Constants().mediumstyleblackmon(14)),
                 ),
               ],
             ),
@@ -145,8 +171,14 @@ passwordVisible =true;
               width: MediaQuery.of(context).size.width,
               child: btnthreeTravelon(
                   function: () {
-                    objlogincubit.getLocation( username.text, password.text, 10);
-                       // objhomecubit.nearby();
+                    objlogincubit.getLocation(username.text, password.text, 10);
+                    // objhomecubit.nearby();
+
+                    setState(() {
+                      password.text.isEmpty ? validate =true : validate =false;
+
+                    });
+
                   },
                   height: 50,
                   width: double.infinity,
@@ -156,11 +188,16 @@ passwordVisible =true;
                       listener: (context, state) {
                         if (state is LogincubitSuccess) {
                           loginModel? objlatest = state.loginobj;
-                          Constants().loadPages(homeScreen( nearPlaces: objlatest.data!.nearPlaces,travelLogs:objlatest.data!.travelLogs,), context);
+                          Constants().loadPages(
+                              homeScreen(
+                                nearPlaces: objlatest.data!.nearPlaces,
+                                travelLogs: objlatest.data!.travelLogs,
+                              ),
+                              context);
                         }
                         // TODO: implement listener
                       },
-                      child: BlocBuilder<LogincubitCubit,LogincubitState>(
+                      child: BlocBuilder<LogincubitCubit, LogincubitState>(
                         builder: (context, state) {
                           if (state is LogincubitLoading) {
                             return Constants().spinkit();
@@ -174,7 +211,6 @@ passwordVisible =true;
                     ),
                   )),
             ),
-
             SizedBox(
               height: 20,
             ),
@@ -183,10 +219,11 @@ passwordVisible =true;
               children: [
                 txtOftravalon(
                     data: "Not a member?",
-                    textStyle: Constants(). mediumstyleblackmon(14)),
+                    textStyle: Constants().mediumstyleblackmon(14)),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>registerone()));
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => registerone()));
                   },
                   child: txtOftravalon(
                       data: "Register now",
