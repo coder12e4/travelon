@@ -3,9 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:otp_text_field/otp_field.dart';
+import 'package:travlon/cubit/newPswd/new_pswd_cubit.dart';
 import 'package:travlon/cubit/verify/verify_otp_cubit.dart';
 import 'package:travlon/models/fpswdOTP.dart';
+import 'package:travlon/models/newPswd.dart';
 import 'package:travlon/pages/auth/loginPage.dart';
+import 'package:travlon/repository/fpswdRepo.dart';
+import 'package:travlon/repository/newpswdRepo.dart';
 import 'package:travlon/repository/otpVerifyRepo.dart';
 import 'package:travlon/utils/widgets/btnTravelon.dart';
 import 'package:travlon/utils/widgets/edttravelon.dart';
@@ -13,6 +17,7 @@ import 'package:travlon/utils/widgets/edttravelon.dart';
 import 'package:travlon/utils/widgets/txtOftravalon.dart';
 
 import '../utils/constants/constantsOfTravlne.dart';
+import 'homeTabs/changepswd.dart';
 
 
 
@@ -32,6 +37,8 @@ class _otpVerificationState extends State<otpVerification> {
   TextEditingController v2=TextEditingController();
   TextEditingController v3=TextEditingController();
   TextEditingController v4=TextEditingController();
+
+  TextEditingController username = TextEditingController();
 
 
   @override
@@ -157,7 +164,7 @@ class _otpVerificationState extends State<otpVerification> {
                           );
 
 
-                          Constants().loadPages(changepswd(), context);
+                          Constants().loadPages(changepswd(email:username.text ,), context);
 
 
                         }else if(state is VerifyOtpError){
@@ -223,7 +230,6 @@ class _otpVerificationState extends State<otpVerification> {
                   ),
                 )
 
-
             ),
 
           ],
@@ -233,107 +239,4 @@ class _otpVerificationState extends State<otpVerification> {
   }
 }
 
-class changepswd extends StatefulWidget {
-  const changepswd({Key? key}) : super(key: key);
-
-  @override
-  State<changepswd> createState() => _changepswdState();
-}
-
-class _changepswdState extends State<changepswd> {
-  TextEditingController password = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
-  bool passwordVisible = false;
-
-
-
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-
-                Spacer(),
-                txtOftravalon(data: "Enter New Password", textStyle: Constants().mediumstyleblackmon(20)),
-                SizedBox(
-                  height: 10,
-                ),
-                edttravlon(textEditingController: password, hinttext: "At least 8 digits"),
-                SizedBox(
-                  height: 20,
-                ),
-                 txtOftravalon(data: "Confirm Password", textStyle: Constants().mediumstyleblackmon(20)),
-                SizedBox(
-                  height: 10,
-                ),
-                TextField(
-
-                  controller: confirmpassword,
-                  obscureText: passwordVisible,
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: Constants().radiusreturningthree(),
-                        borderSide: BorderSide(
-                          width: .5,
-                          color: HexColor(Constants().pastelgreen400),
-                        )),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: Constants().radiusreturningthree(),
-                      borderSide: BorderSide(
-
-                        color: HexColor(Constants().pastelgreen600),
-                      ),
-                    ),
-                    hintText: "confirm Password",
-                    hintStyle: Constants().RegularstyleblackMon(14),
-                    helperStyle: TextStyle(color: Colors.green),
-                    suffixIcon: IconButton(
-                      icon: Icon(passwordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,color: HexColor(Constants().pastelgreen300),),
-                      onPressed: () {
-                        setState(
-                              () {
-                            passwordVisible = !passwordVisible;
-                          },
-                        );
-                      },
-                    ),
-                    alignLabelWithHint: false,
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
-                  textInputAction: TextInputAction.done,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                btnthreeTravelon(function: (){
-                  Constants().loadPages(login(), context);
-                },
-                    height: 50,
-                    childWid:txtOftravalon(data: 'Submit', textStyle: Constants(). mediumstylewhitemon(16))),
-
-                Spacer()
-
-
-
-              ],
-            ),
-          ),
-
-    );
-  }
-}
 

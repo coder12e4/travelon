@@ -49,6 +49,7 @@ class Constants {
     return TextStyle(fontFamily: "bold", fontSize: size, color: Colors.blue);
   }
 
+
   Stylemediuemgreen(double size) {
     return TextStyle(
       fontFamily: "Medium",
@@ -94,8 +95,10 @@ class Constants {
       fontSize: size,
     );
   }
-
-
+  Mediumstylegrey(double size) {
+    return TextStyle(
+        fontFamily: "Regular", fontSize: size, color: Colors.grey);
+  }
   mediumstylewhite(double size) {
     return TextStyle(
       fontFamily: "semibold",

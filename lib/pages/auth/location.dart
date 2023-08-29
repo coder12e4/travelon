@@ -35,7 +35,8 @@ class _locationState extends State<location> {
 
   double _width = 300;
   double _height = 50;
-  Color _color = Colors.green.shade700;
+  Color _color = HexColor(
+      Constants().pastelgreen300);
   BorderRadiusGeometry _borderRadiusGeometry = BorderRadius.circular(20);
   bool _isShow = false;
   List<NearPlaces>? nearPlaces = [];
@@ -166,6 +167,8 @@ class _locationState extends State<location> {
 
                         if (state is buttonClicckOneLoading) {
                           return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                             children: [
                               AnimatedContainer(
                                   height: _height,
@@ -181,6 +184,10 @@ class _locationState extends State<location> {
                                   child: Center(
                                     child: Constants().spinkit()
                                   )),
+                              SizedBox(
+                                  width: 20
+                              ),
+
                               Visibility(
                                 visible: _isShow,
                                 child: btnthreeTravelon(
@@ -189,11 +196,10 @@ class _locationState extends State<location> {
                                     width: 150,
                                     childWid: DropdownButton(
                                         underline: SizedBox(),
-                                        dropdownColor: Colors.green.shade700,
+                                        dropdownColor: HexColor(
+                        Constants().pastelgreen300),
                                         menuMaxHeight: 100,
-                                        iconEnabledColor: HexColor(
-                                          Constants().pastelgreen400,
-                                        ),
+                                        iconEnabledColor: Colors.white,
                                         style: TextStyle(
                                             color: HexColor(
                                           Constants().pastelgreen400,
@@ -220,6 +226,8 @@ class _locationState extends State<location> {
                         }
                         else if (state is buttonClicckOneSuccess) {
                           return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                             children: [
                               GestureDetector(
                                 onTap: () {
@@ -242,6 +250,9 @@ class _locationState extends State<location> {
                                       textStyle: TextStyle(color: Colors.white),
                                     )),
                               ),
+                              SizedBox(
+                                width: 20
+                              ),
                               Visibility(
                                 visible: _isShow,
                                 child: btnthreeTravelon(
@@ -250,7 +261,8 @@ class _locationState extends State<location> {
                                     width: 150,
                                     childWid: DropdownButton(
                                         underline: SizedBox(),
-                                        dropdownColor: Colors.green.shade700,
+                                        dropdownColor:HexColor(
+                                            Constants().pastelgreen300),
                                         menuMaxHeight: 100,
                                         iconEnabledColor: HexColor(
                                           Constants().pastelgreen400,
@@ -312,6 +324,8 @@ class _locationState extends State<location> {
                         }
                         else if (state is buttonClickHomeApiLoading) {
                           return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                             children: [
                               AnimatedContainer(
                                   height: _height,
@@ -327,6 +341,9 @@ class _locationState extends State<location> {
                                   child: Center(
                                     child: Center(child: Constants().spinkit()),
                                   )),
+                              SizedBox(
+                                  width: 20
+                              ),
                               Visibility(
                                 visible: _isShow,
                                 child: btnthreeTravelon(
@@ -335,7 +352,8 @@ class _locationState extends State<location> {
                                     width: 150,
                                     childWid: DropdownButton(
                                         underline: SizedBox(),
-                                        dropdownColor: Colors.green.shade700,
+                                        dropdownColor: HexColor(
+                                            Constants().pastelgreen300),
                                         menuMaxHeight: 100,
                                         iconEnabledColor: HexColor(
                                           Constants().pastelgreen400,
@@ -365,6 +383,7 @@ class _locationState extends State<location> {
                           );
                         } else if (state is buttonClickHomeApiFailed) {
                           return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AnimatedContainer(
                                   height: _height,
@@ -380,6 +399,9 @@ class _locationState extends State<location> {
                                   child: Center(
                                     child: Text("try again"),
                                   )),
+                              SizedBox(
+                                  width: 20
+                              ),
                               Visibility(
                                 visible: _isShow,
                                 child: btnthreeTravelon(
@@ -388,7 +410,8 @@ class _locationState extends State<location> {
                                     width: 150,
                                     childWid: DropdownButton(
                                         underline: SizedBox(),
-                                        dropdownColor: Colors.green.shade700,
+                                        dropdownColor: HexColor(
+                                            Constants().pastelgreen300),
                                         menuMaxHeight: 100,
                                         iconEnabledColor: HexColor(
                                           Constants().pastelgreen400,

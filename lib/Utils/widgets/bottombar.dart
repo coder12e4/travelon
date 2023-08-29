@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:travlon/pages/homeScreen.dart';
+import 'package:travlon/pages/homeTabs/nearbyPlaces.dart';
 import 'package:travlon/pages/homeTabs/profileView.dart';
 
 import 'package:travlon/utils/constants/constantsOfTravlne.dart';
@@ -25,7 +27,9 @@ class bottombar extends StatelessWidget {
         children: [
           IconButton(
             enableFeedback: false,
-            onPressed: () {},
+            onPressed: () {
+              Constants().loadPages(homeScreen(), context);
+            },
             icon: Icon(
               Icons.home_outlined,
               color: HexColor(Constants().pastelgreen300),
@@ -89,7 +93,10 @@ class bottombarnotch extends StatelessWidget {
           children: [
             IconButton(
               enableFeedback: false,
-              onPressed: () {},
+              onPressed: () {
+
+                Constants().loadPages(homeScreen(), context);
+              },
               icon: Icon(
                 Icons.home_outlined,
                 color: HexColor(Constants().pastelgreen300),
@@ -99,7 +106,7 @@ class bottombarnotch extends StatelessWidget {
             IconButton(
               enableFeedback: false,
               onPressed: () {
-                Constants().loadPages(placeView(), context);
+                Constants().loadPages(nearbyPlaces(), context);
               },
               icon: Icon(
                 Icons.my_location,
@@ -111,14 +118,17 @@ class bottombarnotch extends StatelessWidget {
               enableFeedback: false,
               onPressed: () {},
               icon: Icon(
-                Icons.widgets_outlined,
+                Icons.bookmark_border,
                 color: HexColor(Constants().pastelgreen300),
                 size: 20,
               ),
             ),
             IconButton(
               enableFeedback: false,
-              onPressed: () {},
+              onPressed: () {
+                Constants().loadPages(profileView(), context);
+
+              },
               icon: Icon(
                 Icons.person_outline,
                 color: HexColor(Constants().pastelgreen300),
