@@ -1,17 +1,13 @@
-/*
+
 import 'dart:convert';
+import 'package:travlon/Utils/managers/shared_preference_manager.dart';
+import 'package:travlon/models/loginmodel.dart';
 
-import 'package:fixa/Utils/managers/shared_preference_manager.dart';
-import 'package:fixa/models/auth/user.dart';
-import 'package:fixa/models/home/availabilityModel.dart';
-
-import '../../models/auth/LoginModel.dart';
-import '../../models/profile/profile.dart';
 
 class UserManager {
   static final UserManager _sharedInsatnce = UserManager._internal();
-  Profile currentUserProfile = Profile();
-  availability  availabity=availability();
+  UserProfile currentUserProfile = UserProfile();
+  //availability  availabity=availability();
   factory UserManager() {
     return _sharedInsatnce;
   }
@@ -29,58 +25,58 @@ class UserManager {
     SharedPreferenceManager().setBoolValue("isUserLoggedIn", isLoggedIn);
   }
 
-  void setUserProfile(Profile userProfile) async {
+  void setUserProfile(UserProfile userProfile) async {
     currentUserProfile = userProfile;
     String userProfileString = jsonEncode(userProfile.toJson());
     SharedPreferenceManager.instance.setValue("userProfile", userProfileString);
     setUserLoggedIn(true);
   }
 
-  Future<Profile?> getUserProfile() async {
+  Future<UserProfile?> getUserProfile() async {
     String userProfileString =
         await SharedPreferenceManager.instance.getValueFor("userProfile");
     try {
       Map json = jsonDecode(userProfileString);
-      var userProfile = Profile.fromJson(json as Map<String, dynamic>);
+      var userProfile = UserProfile.fromJson(json as Map<String, dynamic>);
       return userProfile;
     } catch (error) {
       return null;
     }
   }
 
-  Profile getCurrentUserProfile() {
+  UserProfile getCurrentUserProfile() {
     return currentUserProfile;
   }
 
-  void setUserSession(login_model userSession) async {
+  void setUserSession(UserProfile userSession) async {
     String userSessionString = jsonEncode(userSession.toJson());
     SharedPreferenceManager.instance.setValue("userSession", userSessionString);
     setUserLoggedIn(true);
   }
 
-  Future<login_model?> getUserSession() async {
+  Future<UserProfile?> getUserSession() async {
     String userString = await SharedPreferenceManager.instance.getValueFor("userSession");
 
     try {
       Map json = jsonDecode(userString);
-      var user = login_model.fromJson(json as Map<String, dynamic>);
+      var user = UserProfile.fromJson(json as Map<String, dynamic>);
       return user;
     } catch (error) {
       return null;
     }
   }
 
-  void setUser(User user) async {
+  void setUser(UserProfile user) async {
     String userString = jsonEncode(user.toJson());
     SharedPreferenceManager.instance.setValue("loggedInUser", userString);
   }
 
-  Future<User?> getUser() async {
+  Future<UserProfile?> getUser() async {
     String userString = await SharedPreferenceManager.instance.getValueFor("loggedInUser");
 
     try {
       Map json = jsonDecode(userString);
-      var user = User.fromJson(json as Map<String, dynamic>);
+      var user = UserProfile.fromJson(json as Map<String, dynamic>);
       return user;
     } catch (error) {
       return null;
@@ -98,7 +94,7 @@ class UserManager {
 
 
   void setAvailability(availability userProfile) async {
-    availabity = userProfile;
+    availability availabity = userProfile;
     String userProfileString = jsonEncode(userProfile.toJson());
     SharedPreferenceManager.instance.setValue("availability", userProfileString);
     setUserLoggedIn(true);
@@ -126,4 +122,28 @@ class UserManager {
     SharedPreferenceManager().setBoolValue("isAvailabilitySet", isLoggedIn);
   }
 }
-*/
+
+class availability {
+  String? fromDay;
+  String? startTime;
+  String? toDay;
+  String? endTime;
+
+  availability({this.fromDay, this.startTime, this.toDay, this.endTime});
+
+  availability.fromJson(Map<String, dynamic> json) {
+    fromDay = json['FromDay'];
+    startTime = json['StartTime'];
+    toDay = json['ToDay'];
+    endTime = json['EndTime'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['FromDay'] = this.fromDay;
+    data['StartTime'] = this.startTime;
+    data['ToDay'] = this.toDay;
+    data['EndTime'] = this.endTime;
+    return data;
+  }
+}

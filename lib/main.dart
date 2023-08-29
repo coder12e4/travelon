@@ -17,7 +17,6 @@ import 'package:travlon/pages/otpVerification.dart';
 import 'package:travlon/pages/profilepage.dart';
 import '../models/nearbyModel.dart';
 import 'package:travlon/pages/homeScreen.dart';
-import 'package:travlon/pages/intro.dart';
 import 'package:travlon/repository/nearbyrepo.dart';
 
 
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
 
-        home:/* /const Introductionpage()*/splash()
+        home:splash()
 
     );
   }

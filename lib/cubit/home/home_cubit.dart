@@ -19,8 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(buttonClicckOneLoading());
 
     _determinePosition().then((value) async {
-      List<Placemark> newPlace =
-          await placemarkFromCoordinates(value.latitude, value.longitude);
+    /*  List<Placemark> newPlace = await placemarkFromCoordinates(value.latitude, value.longitude);
       Placemark placeMark = newPlace[0];
       String name = placeMark.name.toString();
       String subLocality = placeMark.subLocality.toString();
@@ -28,9 +27,13 @@ class HomeCubit extends Cubit<HomeState> {
       String administrativeArea = placeMark.administrativeArea.toString();
       String postalCode = placeMark.postalCode.toString();
       String country = placeMark.country.toString();
+
+
       String address = "$subLocality$locality,$administrativeArea";
+
+     */
       emit(buttonClicckOneSuccess(true, value.latitude.toString(),
-          value.longitude.toString(), address));
+          value.longitude.toString(), "fast test"));
       // parser.saveLatLng(value.latitude, value.longitude, address);
     }).catchError((error) async {
       emit(buttonClicckOneError(false));

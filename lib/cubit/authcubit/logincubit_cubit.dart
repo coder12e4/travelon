@@ -3,9 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:travlon/repository/loginrepository.dart';
-
 import '../../models/loginmodel.dart';
-
 part 'logincubit_state.dart';
 
 class LogincubitCubit extends Cubit<LogincubitState> {

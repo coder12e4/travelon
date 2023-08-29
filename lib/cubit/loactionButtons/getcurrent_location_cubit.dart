@@ -8,7 +8,7 @@ class GetcurrentLocationCubit extends Cubit<GetcurrentLocationState> {
 
   void loadlocationsNear(){
     emit(GetcurrentLocationLoading());
-   Future.delayed(Duration(seconds: 4),(){
+   Future.delayed(Duration(seconds: 0),(){
      emit(GetcurrentLocationSuccess());
    });
 

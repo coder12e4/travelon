@@ -6,6 +6,17 @@ class Assets {
   static const String fontsIBMPlexSansExtraLight = 'assets/fonts/IBMPlexSans-ExtraLight.ttf';
   static const String fontsIBMPlexSansMedium = 'assets/fonts/IBMPlexSans-Medium.ttf';
   static const String fontsIBMPlexSansRegular = 'assets/fonts/IBMPlexSans-Regular.ttf';
+  static const String fontsMontserratBold = 'assets/fonts/Montserrat-Bold.ttf';
+  static const String fontsMontserratLight = 'assets/fonts/Montserrat-Light.ttf';
+  static const String fontsMontserratMedium = 'assets/fonts/Montserrat-Medium.ttf';
+  static const String fontsMontserratRegular = 'assets/fonts/Montserrat-Regular.ttf';
+  static const String fontsNotoSansRegular = 'assets/fonts/NotoSans-Regular.ttf';
+  static const String imagesBeard = 'assets/images/beard.jpg';
   static const String imagesHome = 'assets/images/home.jpg';
+  static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesLogohd = 'assets/images/logohd.png';
+  static const String imagesPark = 'assets/images/park.jpg';
+  static const String imagesProfile = 'assets/images/profile.jpg';
+  static const String imagesWaterfalls = 'assets/images/waterfalls.jpg';
 
 }

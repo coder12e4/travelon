@@ -115,7 +115,7 @@ class Constants {
   }
   RegularstyleblackMon(double size) {
     return TextStyle(
-        fontFamily: "Regular", fontSize: size, color: Colors.black);
+        fontFamily: "Regular", fontSize: size, color: Colors.black,);
   }
   RegularstylegreenMon(double size) {
     return TextStyle(

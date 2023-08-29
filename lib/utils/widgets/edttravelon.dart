@@ -15,16 +15,16 @@ class edttravlon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
+
 
       child: TextField(
         controller: textEditingController,
         textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
-
           filled: true,
           fillColor: Colors.white,
           hintText: hinttext,
+          alignLabelWithHint: true,
           hintStyle: Constants().RegularstyleblackMon(14),
           enabledBorder: OutlineInputBorder(
             borderRadius: Constants().radiusreturningthree(),

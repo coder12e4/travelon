@@ -1,6 +1,7 @@
-/*
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceManager {
   static final SharedPreferenceManager _sharedInsatnce = SharedPreferenceManager._internal();
@@ -37,4 +38,4 @@ class SharedPreferenceManager {
     return sharedPreference.getString(key) ?? "";
   }
 }
-*/
+

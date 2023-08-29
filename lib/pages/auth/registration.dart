@@ -87,13 +87,13 @@ class _registeroneState extends State<registerone> {
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-               /* borderRadius: BorderRadius.only(
+                /* borderRadius: BorderRadius.only(
                     topRight: Radius.circular(30), topLeft: Radius.circular(30)),
                 gradient: LinearGradient(
                     colors: [Colors.lightGreenAccent, Colors.white],
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter)*/
-            ),
+                ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,184 +110,194 @@ class _registeroneState extends State<registerone> {
                   height: 10,
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 50,
                   child: edttravlon(
                     textEditingController: firstname,
                     hinttext: "Firstname",
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 50,
                   child: edttravlon(
                     textEditingController: lastname,
                     hinttext: "Lastname",
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 50,
                   child: edttravlon(
                     textEditingController: address,
                     hinttext: "Address",
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: edttravlon(
+                          textEditingController: phonenumber,
+                          hinttext: "Phonenumber",
+                        ),
+                      ),
 
-                    SizedBox(
-                      width: 170,
-                      height: 40,
-                      child: edttravlon(
-                        textEditingController: phonenumber,
-                        hinttext: "Phonenumber",
+                      SizedBox(width: 10,),
+                      Expanded(
+                        child: edttravlon(
+                          textEditingController: pinNumber,
+                          hinttext: "Enter your Postcode",
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 170,
-                      height: 40,
-                      child: edttravlon(
-                        textEditingController: pinNumber,
-                        hinttext: "Enter your Postcode",
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 170,
-                      height: 40,
 
-                      child: datetxt(
-                        function: () {
-                          _selectDate(context);
-                        },
-                        textEditingController: DoB,
-                        hinttext: ("${selectedDate.toLocal()}".split(' ')[0]),
-                      ),
-                    ),
-                    Container(
-                      width: 170,
-                      height: 40,
-                      padding: EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: Constants().radiusreturningthree(),
-                          border: Border.all(
-                            width: .5,
-                            color: HexColor(Constants().pastelgreen400),
+                SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
 
-
-                          ),
-
-
-
-                      ),
-
-                      child: DropdownButton(
-                        underline: SizedBox(),
-                        iconSize: 20,
-                        iconEnabledColor: HexColor(Constants().pastelgreen700),
-                        menuMaxHeight: 100,
-                        value: dropdownValue,
-                        items: items.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem(
-                              value: value,
-                              child: txtOftravalon(
-                                  data: value,
-                                  textStyle: Constants().RegularstyleblackMon(14)));
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownValue = newValue!;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      width: 250,
-                      child: edttravlon(
-                        textEditingController: emailController,
-                        hinttext: "Email",
-                      ),
-                    ),
-                    Spacer(),
-                    btnforOTP(
-                        function: () {
-                          objregistercubit.sentOtp(emailController.text.toString());
-                        },
-                        height: 40,
-                        width: 100,
-                        childWid: BlocProvider<RegisterCubit>(
-                          create: (context) => objregistercubit,
-                          child: BlocListener<RegisterCubit, RegisterState>(
-                            listener: (context, state) {
-                              if (state is otpRegInitial) {}
-                              else if (state is otpRegLoading) {}
-                              else if (state is otpRegSuccess) {
-                                Fluttertoast.showToast(
-                                    msg: "otp sent to $emailController ",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-
-                              } else if (state is otpRegError) {
-                                Fluttertoast.showToast(
-                                    msg:
-                                    "otp not sent to $emailController try again",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                              } else {}
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: datetxt(
+                            function: () {
+                              _selectDate(context);
                             },
-                            child: BlocBuilder<RegisterCubit, RegisterState>(
-                              builder: (context, state) {
-                                if (state is otpRegInitial) {
-                                  return txtOftravalon(
-                                      data: "Send OTP",
-                                      textStyle:Constants().RegularstyleblackMon(14));;
-                                } else if (state is otpRegLoading) {
-                                  return Center(
-                                      child: Constants().spinkit()
-                                  );
-                                } else if (state is otpRegSuccess) {
-                                  return  txtOftravalon(
-                                      data: "success",
-                                      textStyle:Constants().RegularstyleblackMon(14));
-                                } else if (state is otpRegError) {
-                                  return txtOftravalon(
-                                      data: "resend",
-                                      textStyle:Constants().RegularstyleblackMon(14));
-                                } else {
-                                  return  txtOftravalon(
-                                      data: "OTP",
-                                      textStyle:Constants().RegularstyleblackMon(14));
-                                }
-                              },
+                            textEditingController: DoB,
+                            hinttext: ("${selectedDate.toLocal()}".split(' ')[0]),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10,),
+                      Expanded(
+                        child: Container(
+
+                          padding: EdgeInsets.only(left: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: Constants().radiusreturningthree(),
+                            border: Border.all(
+                              width: .5,
+                              color: HexColor(Constants().pastelgreen400),
                             ),
                           ),
-                        )),
-                    Spacer(),
-                  ],
+                          child: DropdownButton(
+                            underline: SizedBox(),
+                            iconSize: 20,
+                            iconEnabledColor: HexColor(Constants().pastelgreen700),
+                            menuMaxHeight: 100,
+                            value: dropdownValue,
+                            items:
+                                items.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem(
+                                  value: value,
+                                  child: txtOftravalon(
+                                      data: value,
+                                      textStyle:
+                                          Constants().RegularstyleblackMon(14)));
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue = newValue!;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+
+                SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: edttravlon(
+                          textEditingController: emailController,
+                          hinttext: "Email",
+                        ),
+                      ),
+
+                      SizedBox(width: 10,),
+                      btnforOTP(
+                          function: () {
+                            objregistercubit.sentOtp(emailController.text.toString());
+                          },
+                          height: 50,
+                          width: 100,
+                          childWid: BlocProvider<RegisterCubit>(
+                            create: (context) => objregistercubit,
+                            child: BlocListener<RegisterCubit, RegisterState>(
+                              listener: (context, state) {
+                                if (state is otpRegInitial) {
+                                } else if (state is otpRegLoading) {
+                                } else if (state is otpRegSuccess) {
+                                  Fluttertoast.showToast(
+                                      msg: "otp sent to $emailController ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                } else if (state is otpRegError) {
+                                  Fluttertoast.showToast(
+                                      msg:
+                                          "otp not sent to $emailController try again",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                } else {}
+                              },
+                              child: BlocBuilder<RegisterCubit, RegisterState>(
+                                builder: (context, state) {
+                                  if (state is otpRegInitial) {
+                                    return txtOftravalon(
+                                        data: "Send OTP",
+                                        textStyle:
+                                            Constants().RegularstyleblackMon(14));
+                                    ;
+                                  } else if (state is otpRegLoading) {
+                                    return Center(child: Constants().spinkit());
+                                  } else if (state is otpRegSuccess) {
+                                    return txtOftravalon(
+                                        data: "success",
+                                        textStyle:
+                                            Constants().RegularstyleblackMon(14));
+                                  } else if (state is otpRegError) {
+                                    return txtOftravalon(
+                                        data: "resend",
+                                        textStyle:
+                                            Constants().RegularstyleblackMon(14));
+                                  } else {
+                                    return txtOftravalon(
+                                        data: "OTP",
+                                        textStyle:
+                                            Constants().RegularstyleblackMon(14));
+                                  }
+                                },
+                              ),
+                            ),
+                          )),
+
+                    ],
+                  ),
+                ),
+
                 Container(
-                  height: 40,
-
+                  height: 50,
                   child: TextField(
-
                     controller: password,
                     obscureText: passwordVisible,
                     textAlignVertical: TextAlignVertical.center,
@@ -303,7 +313,6 @@ class _registeroneState extends State<registerone> {
                       focusedBorder: OutlineInputBorder(
                         borderRadius: Constants().radiusreturningthree(),
                         borderSide: BorderSide(
-
                           color: HexColor(Constants().pastelgreen600),
                         ),
                       ),
@@ -311,12 +320,15 @@ class _registeroneState extends State<registerone> {
                       hintStyle: Constants().RegularstyleblackMon(14),
                       helperStyle: TextStyle(color: Colors.green),
                       suffixIcon: IconButton(
-                        icon: Icon(passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,color: HexColor(Constants().pastelgreen300),),
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: HexColor(Constants().pastelgreen300),
+                        ),
                         onPressed: () {
                           setState(
-                                () {
+                            () {
                               passwordVisible = !passwordVisible;
                             },
                           );
@@ -329,8 +341,7 @@ class _registeroneState extends State<registerone> {
                   ),
                 ),
                 Container(
-                  height: 40,
-
+                  height: 50,
                   child: TextField(
                     controller: confirmpassword,
                     obscureText: confirmpasswordVisible,
@@ -340,16 +351,13 @@ class _registeroneState extends State<registerone> {
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
                           borderRadius: Constants().radiusreturningthree(),
-
                           borderSide: BorderSide(
                             width: .5,
                             color: HexColor(Constants().pastelgreen400),
                           )),
                       focusedBorder: OutlineInputBorder(
-
                         borderRadius: Constants().radiusreturningthree(),
                         borderSide: BorderSide(
-
                           color: HexColor(Constants().pastelgreen600),
                         ),
                       ),
@@ -358,12 +366,14 @@ class _registeroneState extends State<registerone> {
                       /* helperText: "Password must contain special character",*/
                       helperStyle: TextStyle(color: Colors.green),
                       suffixIcon: IconButton(
-                        icon: Icon(confirmpasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,color: HexColor(Constants().pastelgreen300)),
+                        icon: Icon(
+                            confirmpasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: HexColor(Constants().pastelgreen300)),
                         onPressed: () {
                           setState(
-                                () {
+                            () {
                               confirmpasswordVisible = !confirmpasswordVisible;
                             },
                           );
@@ -392,9 +402,6 @@ class _registeroneState extends State<registerone> {
                   ],
                 ),
 
-                SizedBox(
-                  height: 20,
-                ),
                 Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width,
@@ -440,9 +447,7 @@ class _registeroneState extends State<registerone> {
                         child: BlocBuilder<RegisterCubit, RegisterState>(
                           builder: (context, state) {
                             if (state is RegisterLoading) {
-                              return Center(
-                                  child: Constants().spinkit()
-                              );
+                              return Center(child: Constants().spinkit());
                             } else {
                               return txtOftravalon(
                                   data: "Sign Up",
@@ -453,10 +458,6 @@ class _registeroneState extends State<registerone> {
                       ),
                     ),
                   ),
-                ),
-
-                SizedBox(
-                  height: 20,
                 ),
 
                 Row(
@@ -477,7 +478,6 @@ class _registeroneState extends State<registerone> {
             ),
           ),
         ],
-
       ),
     );
   }

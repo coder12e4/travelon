@@ -33,7 +33,7 @@ class _locationState extends State<location> {
   bool newValue = false;
   var text = "Get Location";
 
-  double _width = 340;
+  double _width = 300;
   double _height = 50;
   Color _color = Colors.green.shade700;
   BorderRadiusGeometry _borderRadiusGeometry = BorderRadius.circular(20);
@@ -61,11 +61,40 @@ class _locationState extends State<location> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(child: SizedBox()),
-            Icon(
-              Icons.location_on_outlined,
-              size: 80,
-              color: Colors.green.shade700,
+
+            Image.asset("assets/images/logohd.png"),
+
+
+            RichText(
+              // Controls visual overflow
+              overflow: TextOverflow.clip,
+
+              // Controls how the text should be aligned horizontally
+              textAlign: TextAlign.end,
+
+              // Control the text direction
+              textDirection: TextDirection.rtl,
+
+              // Whether the text should break at soft line breaks
+              softWrap: true,
+
+              // Maximum number of lines for the text to span
+              maxLines: 1,
+
+              // The number of font pixels for each logical pixel
+              textScaleFactor: 1,
+              text: const TextSpan(
+                text: 'Hello ',
+
+                children: [
+                  TextSpan(
+                      text: 'Geeks', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.green)),
+                ],
+              ),
             ),
+
+
+
             txtOftravalon(
                 data: "Access Your", textStyle: Constants().boldstyleblack(14)),
             txtOftravalon(
@@ -112,7 +141,7 @@ class _locationState extends State<location> {
                                   _width = 180;
                                   _height = 50;
                                 } else {
-                                  _width = 340;
+                                  _width = 280;
                                   _height = 50;
                                 }
                               });
@@ -280,7 +309,8 @@ class _locationState extends State<location> {
                                   textStyle: TextStyle(color: Colors.white),
                                 )),
                           );
-                        } else if (state is buttonClickHomeApiLoading) {
+                        }
+                        else if (state is buttonClickHomeApiLoading) {
                           return Row(
                             children: [
                               AnimatedContainer(
@@ -387,7 +417,35 @@ class _locationState extends State<location> {
                             ],
                           );
                         } else {
-                          return Container();
+                          return GestureDetector(
+                            onTap: () {
+                              objhomecubit.getLocation();
+                              setState(() {
+                                if (_isShow = !_isShow) {
+                                  _width = 180;
+                                  _height = 50;
+                                } else {
+                                  _width = 280;
+                                  _height = 50;
+                                }
+                              });
+                            },
+                            child: AnimatedContainer(
+                                height: _height,
+                                width: _width,
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: _color,
+                                  borderRadius: _borderRadiusGeometry,
+                                ),
+                                duration: Duration(seconds: 1),
+                                curve: Curves.fastOutSlowIn,
+                                child: txtOftravalon(
+                                  data: "Get Location",
+                                  textStyle: TextStyle(color: Colors.white),
+                                )),
+                          );
                         }
                       },
                     ),
